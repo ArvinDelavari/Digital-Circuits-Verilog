@@ -1,7 +1,9 @@
 # Digital-Circuits-Verilog
 
 This repository includes some sample digital circuits scripted in Verilog HDL.
-Purpose of this repository is to maintain modules used in CPUs and computer architecture material used in digital design.
+Purpose of this repository is to maintain modules used in CPUs and computer architecture techniques performed in Verilog used in digital design and CPU design based on RISC-V ISA.
+
+
 Each folder includes 4 files:
 - module.v
 - testbench.v
