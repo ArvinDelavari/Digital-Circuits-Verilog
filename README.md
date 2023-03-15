@@ -9,12 +9,14 @@ Each folder includes 4 files:
 - module.vcd
 
 Simulations can be done using iverilog tool.
-You can use iverilog tool in vs code application and simulate your Verilog codes in a folder in 3 commands in your terminal:
+You can use iverilog tool in vs code application and simulate your Verilog codes in a folder with 3 commands in your terminal:
 1) iverilog -o module.vvp testbench.v
 2) vvp module.vvp
 3) gtkwave
 
 You can check the waveforms using GTKWave application.
-This repository will be updated 
+
+This repository will be updated.
+
 Last update : 3/15/2023
 ## Arvin Delavari - IUST
