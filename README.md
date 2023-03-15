@@ -15,3 +15,6 @@ You can use iverilog tool in vs code application and simulate your Verilog codes
 3) gtkwave
 
 You can check the waveforms using GTKWave application.
+This repository will be updated 
+Last update : 3/15/2023
+## Arvin Delavari - IUST
