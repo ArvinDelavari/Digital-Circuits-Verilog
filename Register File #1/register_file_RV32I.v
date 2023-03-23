@@ -30,7 +30,7 @@ initial begin
       registers_2[i] = 32'h0;
    end
 end
-
+ 
 
 always @(posedge clk)
 begin
