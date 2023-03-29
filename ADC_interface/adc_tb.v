@@ -3,7 +3,7 @@
 `include "ADC_top.v"
 
 module ADC_tb;
-
+ 
 	// Inputs
 	reg clk;
 	reg enable;
