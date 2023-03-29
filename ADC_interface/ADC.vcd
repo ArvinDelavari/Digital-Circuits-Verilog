@@ -1,0 +1,457 @@
+$date
+	Tue Mar 28 13:54:51 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ADC_tb $end
+$var wire 1 ! done $end
+$var wire 10 " data_out [9:0] $end
+$var wire 1 # conv $end
+$var wire 1 $ ADCclk $end
+$var wire 1 % ADC_in $end
+$var reg 1 & ADC_out $end
+$var reg 1 ' I1 $end
+$var reg 1 ( I2 $end
+$var reg 1 ) I3 $end
+$var reg 1 * clk $end
+$var reg 1 + enable $end
+$scope module uut $end
+$var wire 1 & ADC_out $end
+$var wire 1 ' I1 $end
+$var wire 1 ( I2 $end
+$var wire 1 ) I3 $end
+$var wire 1 * clk $end
+$var wire 1 + enable $end
+$var wire 1 , tc $end
+$var wire 32 - out [31:0] $end
+$var wire 1 ! done $end
+$var wire 10 . data_out1 [9:0] $end
+$var wire 10 / data_out [9:0] $end
+$var wire 1 # conv $end
+$var wire 1 $ ADCclk $end
+$var wire 1 % ADC_in $end
+$scope module counter $end
+$var wire 1 * clk $end
+$var wire 32 0 data [31:0] $end
+$var wire 1 + en $end
+$var wire 32 1 lmt [31:0] $end
+$var wire 1 , load $end
+$var parameter 32 2 reset $end
+$var reg 32 3 out [31:0] $end
+$var reg 1 , tc $end
+$upscope $end
+$scope module m1 $end
+$var wire 1 & ADC_out $end
+$var wire 1 ' I1 $end
+$var wire 1 ( I2 $end
+$var wire 1 ) I3 $end
+$var wire 1 $ clk $end
+$var wire 1 + enable $end
+$var reg 1 % ADC_in $end
+$var reg 3 4 Cs [2:0] $end
+$var reg 5 5 bit_pos [4:0] $end
+$var reg 1 # conv $end
+$var reg 5 6 count [4:0] $end
+$var reg 10 7 data_out [9:0] $end
+$var reg 1 ! done $end
+$upscope $end
+$scope module m2 $end
+$var wire 10 8 a [9:0] $end
+$var wire 1 $ clk $end
+$var wire 1 ! en $end
+$var wire 1 9 reset $end
+$var wire 10 : y [9:0] $end
+$scope module d1 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 ; d $end
+$var wire 1 9 reset $end
+$var reg 1 < q $end
+$upscope $end
+$scope module d10 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 = d $end
+$var wire 1 9 reset $end
+$var reg 1 > q $end
+$upscope $end
+$scope module d2 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 ? d $end
+$var wire 1 9 reset $end
+$var reg 1 @ q $end
+$upscope $end
+$scope module d3 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 A d $end
+$var wire 1 9 reset $end
+$var reg 1 B q $end
+$upscope $end
+$scope module d4 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 C d $end
+$var wire 1 9 reset $end
+$var reg 1 D q $end
+$upscope $end
+$scope module d5 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 E d $end
+$var wire 1 9 reset $end
+$var reg 1 F q $end
+$upscope $end
+$scope module d6 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 G d $end
+$var wire 1 9 reset $end
+$var reg 1 H q $end
+$upscope $end
+$scope module d7 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 I d $end
+$var wire 1 9 reset $end
+$var reg 1 J q $end
+$upscope $end
+$scope module d8 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 K d $end
+$var wire 1 9 reset $end
+$var reg 1 L q $end
+$upscope $end
+$scope module d9 $end
+$var wire 1 ! ce $end
+$var wire 1 $ clk $end
+$var wire 1 M d $end
+$var wire 1 9 reset $end
+$var reg 1 N q $end
+$upscope $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b0 2
+$end
+#0
+$dumpvars
+0N
+0M
+0L
+0K
+0J
+0I
+0H
+0G
+0F
+0E
+0D
+0C
+0B
+0A
+0@
+0?
+0>
+0=
+0<
+0;
+b0 :
+09
+b0 8
+b0 7
+b1 6
+b0 5
+b1 4
+b1 3
+b11111111111111111111111111111111 1
+b0 0
+b0 /
+b0 .
+b1 -
+0,
+1+
+0*
+0)
+0(
+0'
+0&
+1%
+0$
+0#
+b0 "
+0!
+$end
+#5000
+1*
+#10000
+b10 -
+b10 3
+0*
+#15000
+1*
+#20000
+b11 -
+b11 3
+0*
+#25000
+1*
+#30000
+b100 -
+b100 3
+0*
+#35000
+1*
+#40000
+b101 -
+b101 3
+0*
+#45000
+1*
+#50000
+b110 -
+b110 3
+0*
+#55000
+1*
+#60000
+b111 -
+b111 3
+0*
+#65000
+1*
+#70000
+b1000 -
+b1000 3
+0*
+#75000
+1*
+#80000
+b1001 -
+b1001 3
+0*
+#85000
+1*
+#90000
+b1010 -
+b1010 3
+0*
+#95000
+1*
+#100000
+b1011 -
+b1011 3
+0*
+#105000
+1*
+#110000
+b1100 -
+b1100 3
+0*
+1&
+#115000
+1*
+#120000
+b1101 -
+b1101 3
+0*
+#125000
+1*
+#130000
+b1110 -
+b1110 3
+0*
+#135000
+1*
+#140000
+b1111 -
+b1111 3
+0*
+0&
+#145000
+1*
+#150000
+b10000 -
+b10000 3
+0*
+1&
+#155000
+1*
+#160000
+b10001 -
+b10001 3
+0*
+#165000
+1*
+#170000
+b10010 -
+b10010 3
+0*
+0&
+#175000
+1*
+#180000
+b10011 -
+b10011 3
+0*
+1&
+#185000
+1*
+#190000
+b10100 -
+b10100 3
+0*
+#195000
+1*
+#200000
+b10101 -
+b10101 3
+0*
+#205000
+1*
+#210000
+b10110 -
+b10110 3
+0*
+0&
+#215000
+1*
+#220000
+b10111 -
+b10111 3
+0*
+1&
+#225000
+1*
+#230000
+b11000 -
+b11000 3
+0*
+0&
+#235000
+1*
+#240000
+b11001 -
+b11001 3
+0*
+#245000
+1*
+#250000
+b11010 -
+b11010 3
+0*
+1&
+#255000
+1*
+#260000
+b11011 -
+b11011 3
+0*
+0&
+#265000
+1*
+#270000
+b11100 -
+b11100 3
+0*
+1&
+#275000
+1*
+#280000
+b11101 -
+b11101 3
+0*
+#285000
+1*
+#290000
+b11110 -
+b11110 3
+0*
+0&
+#295000
+1*
+#300000
+b11111 -
+b11111 3
+0*
+1&
+#305000
+1*
+#310000
+b100000 -
+b100000 3
+0*
+#315000
+1*
+#320000
+b100001 -
+b100001 3
+0*
+0&
+#325000
+1*
+#330000
+b100010 -
+b100010 3
+0*
+1&
+#335000
+1*
+#340000
+$dumpoff
+xN
+xM
+xL
+xK
+xJ
+xI
+xH
+xG
+xF
+xE
+xD
+xC
+xB
+xA
+x@
+x?
+x>
+x=
+x<
+x;
+bx :
+x9
+bx 8
+bx 7
+bx 6
+bx 5
+bx 4
+bx 3
+bx 1
+bx 0
+bx /
+bx .
+bx -
+x,
+x+
+x*
+x)
+x(
+x'
+x&
+x%
+x$
+x#
+bx "
+x!
+$end
+0&
