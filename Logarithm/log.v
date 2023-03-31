@@ -31,7 +31,7 @@ VRSH_14 vrsh(x2,x3,it2);
 adsub ad1(1'b0,x2,x3,x4);
 mux12 mux3(x2,x4,~x4[10],x5);
 reg12 rg4(xf,clk,reset1,x5);
-
+ 
 endmodule
 
 module Rom(clk,addres,data_out,en);
