@@ -1,0 +1,15 @@
+First run 'Zaimo.exe'
+
+1- Create a new project: File -> New -> New project
+2- Write your C program in a file; say: 'prog1.c'
+3- Add your file to the project: Project -> Add to project ...
+4- Compile your project: Project -> Compile
+
+if your project is successfully compiled a HEX file will be generated 
+(e.g. prog1.hex). You can feed SAYEH with this HEX file and 
+execute it.
+
+NOTE 1: Your have to start with a an existing saved file.
+NOTE 2: The program does not support long directory names.
+NOTE 3: The program does not support long directory level, use at most 2.
+

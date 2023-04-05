@@ -1,0 +1,9 @@
+0000 mil r0 01		
+0001 mih r0 f0
+f001 ::: 000a
+0002 lda r1 r0
+0002 sta r1 r0
+0003 lda r1 r0
+0004 jpr ff
+0103 hlt
+

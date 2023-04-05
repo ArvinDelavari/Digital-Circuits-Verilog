@@ -1,0 +1,45 @@
+0000 mil r0 00		r0= 768		starting address in memory
+0001 mih r0 04                  
+0002 lda r1 r0		r1=		    total number of elements
+0003 awp 5
+0004 mil r0 01		r5=1		for adding with index each time
+0005 mih r0 00
+0006 cwp
+0006 add r1 r0		r1=		    limit for final r4
+0007 mvr r2 r1
+0008 awp 2
+0009 sub r0 r3		r2=		    limit for index r3
+0009 cwp
+000A mvr r3 r0		r3=		    outer index
+000A nop
+000B cwp
+000B cmp r3 r2				    check if outer index is equal to its limit
+000C brz 19				        branch to 0025 if zero
+000D awp 3
+000E add r0 r2		r3=r3+1		increment outer index
+000E mvr r1 r0		r4=r3		set inner index equal outer index as initial
+000F cwp
+0010 awp 1 
+0011 cmp r3 r0				    check if inner index is equal to its limit
+0012 brz 10				        branch to 0022 if zero
+0013 awp 2 
+0014 lda r3 r0		r6=(r3)
+0015 awp 1
+0016 add r0 r1		r4=r4+r5	increment inner index
+0016 lda r3 r0		r7=(r4)
+0017 cmp r2 r3				    check if r6 is greater than r7
+0018 brc 07				        branch to 001F if carry
+0019 lda r1 r0		r5=(r4)		r5 as an temperary register
+0019 sta r0 r2		(r4)=r6
+001A cwp
+001B awp 3
+001C sta r0 r2		(r3)=r5
+001D mil r2 01
+001E mih r2 00		r5=1		for adding with index each time
+001F cwp
+0020 awp 5
+0021 jpa r0 0E				    jump to 000F
+0022 cwp
+0023 awp 5
+0024 jpa r0 0A				    jump to 000B
+0025 hlt
