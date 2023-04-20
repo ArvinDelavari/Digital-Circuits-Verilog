@@ -1,7 +1,5 @@
-module Instruction_Memory #(
-    parameter ADDRESS_WIDTH = 20,
-    parameter DATA_WIDTH = 32
-) (
+module Instruction_Memory #(parameter ADDRESS_WIDTH = 20, parameter DATA_WIDTH = 32)
+(
     input Enable,
     input [ADDRESS_WIDTH - 1 : 0] Address,
 
