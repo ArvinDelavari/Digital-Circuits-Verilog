@@ -1,6 +1,5 @@
-module Arithmetic_Logic_Unit #(
-    parameter DATA_WIDTH = 18
-) (
+module Arithmetic_Logic_Unit #(parameter DATA_WIDTH = 18) 
+(
     input [1 : 0] Operation,
     input [7 : 0] Operand_1,
     input [7 : 0] Operand_2,
