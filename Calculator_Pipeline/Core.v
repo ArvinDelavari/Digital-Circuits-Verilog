@@ -2,10 +2,8 @@
 `include "Control_Unit.v"
 `include "Arithmetic_Logic_Unit.v"
 
-module Core #(
-    parameter ADDRESS_WIDTH = 10,
-    parameter DATA_WIDTH = 18
-) (
+module Core #(parameter ADDRESS_WIDTH = 10, parameter DATA_WIDTH = 18) 
+(
     input CLK,
     input [ADDRESS_WIDTH - 1 : 0] Counter,
     output [DATA_WIDTH - 1 : 0] Result
@@ -24,20 +22,23 @@ module Core #(
     wire    [7 : 0] Operand_2_S1;
     reg     [7 : 0] Operand_2_S2;
 
-    Instruction_Memory #(ADDRESS_WIDTH, DATA_WIDTH)  Imem (
+    Instruction_Memory #(ADDRESS_WIDTH, DATA_WIDTH)  Imem 
+    (
         .Enable(1'b1),
         .Address(Address),
         .Data(Instruction_S0)
     );
 
-    Control_Unit control_unit (
+    Control_Unit control_unit 
+    (
         .Instruction(Instruction_S1),
         .Operation(Operation_S1),
         .Operand_1(Operand_1_S1),
         .Operand_2(Operand_2_S1)
     );
 
-    Arithmetic_Logic_Unit #(DATA_WIDTH) ALU (
+    Arithmetic_Logic_Unit #(DATA_WIDTH) ALU 
+    (
         .Operation(Operation_S2),
         .Operand_1(Operand_1_S2),
         .Operand_2(Operand_2_S2),
