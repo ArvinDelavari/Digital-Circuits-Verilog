@@ -1,4 +1,5 @@
-module Control_Unit (
+module Control_Unit 
+(
     input [17 : 0] Instruction,
 
     output [1 : 0] Operation,
