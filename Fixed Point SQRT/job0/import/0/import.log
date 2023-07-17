@@ -1,0 +1,35 @@
+[INF:CM0023] Creating log file /home/arvin/Desktop/build/SQRT_FP/job0/import/0/slpp_all/surelog.log.
+
+[NTE:PP0128] /home/arvin/Desktop/SQRT_FP.v:29:30: Non ASCII character detected, replaced by space.
+
+[WRN:PA0205] /home/arvin/Desktop/SQRT_FP.v:1:1: No timescale set for "SQRT_FP".
+
+[INF:CP0300] Compilation...
+
+[INF:CP0303] /home/arvin/Desktop/SQRT_FP.v:1:1: Compile module "work@SQRT_FP".
+
+[INF:CP0302] Compile class "work@mailbox".
+
+[INF:CP0302] Compile class "work@process".
+
+[INF:CP0302] Compile class "work@semaphore".
+
+[INF:EL0526] Design Elaboration...
+
+[NTE:EL0503] /home/arvin/Desktop/SQRT_FP.v:1:1: Top level module "work@SQRT_FP".
+
+[NTE:EL0508] Nb Top level modules: 1.
+
+[NTE:EL0509] Max instance depth: 1.
+
+[NTE:EL0510] Nb instances: 1.
+
+[NTE:EL0511] Nb leaf instances: 0.
+
+[INF:UH0706] Creating UHDM Model...
+
+[  FATAL] : 0
+[ SYNTAX] : 0
+[  ERROR] : 0
+[WARNING] : 1
+[   NOTE] : 6

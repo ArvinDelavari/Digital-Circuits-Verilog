@@ -1,0 +1,1261 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/SQRT_FP.odb
+Reading SDC: inputs/SQRT_FP.sdc
+Warning: There are 33 input ports missing set_input_delay.
+Warning: There are 66 output ports missing set_output_delay.
+Warning: There are 66 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+######################
+# Do fill
+######################
+set removed_obs 0
+foreach obstruction [[ord::get_db_block] getObstructions] {
+  odb::dbObstruction_destroy $obstruction
+  incr removed_obs
+}
+utl::info FLW 1 "Deleted $removed_obs routing obstructions"
+[INFO FLW-0001] Deleted 0 routing obstructions
+if { $openroad_fin_add_fill == "true" && \
+     [dict exists $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] } {
+  set sc_fillrules [lindex [dict get $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] 0]
+  density_fill -rules $sc_fillrules
+}
+# estimate for metrics
+estimate_parasitics -global_routing
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0629_/X.
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0629_/X.
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0629_/X.
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _0631_/X.
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _0631_/X.
+[WARNING GRT-0026] Missing route to pin x_$_SDFFCE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _0631_/X.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _0636_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _0636_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _0636_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0642_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0642_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0642_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_22/D.
+[WARNING GRT-0026] Missing route to pin _0645_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_22/D.
+[WARNING GRT-0026] Missing route to pin _0645_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_22/D.
+[WARNING GRT-0026] Missing route to pin _0645_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0655_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0655_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0655_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0669_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0669_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0669_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _0672_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _0672_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _0672_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_12/D.
+[WARNING GRT-0026] Missing route to pin _0678_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_12/D.
+[WARNING GRT-0026] Missing route to pin _0678_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_12/D.
+[WARNING GRT-0026] Missing route to pin _0678_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _0682_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _0682_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _0682_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0685_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0685_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0685_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0688_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0688_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0688_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _0694_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _0694_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _0694_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _0699_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _0699_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _0699_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_5/D.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_5/D.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_5/D.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _0708_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _0708_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _0708_/Y.
+[WARNING GRT-0026] Missing route to pin _0711_/Y.
+[WARNING GRT-0026] Missing route to pin _0711_/Y.
+[WARNING GRT-0026] Missing route to pin _0711_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0714_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0714_/Y.
+[WARNING GRT-0026] Missing route to pin x_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0714_/Y.
+[WARNING GRT-0026] Missing route to pin ac_next_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0720_/Y.
+[WARNING GRT-0026] Missing route to pin ac_next_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0720_/Y.
+[WARNING GRT-0026] Missing route to pin ac_next_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0720_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0726_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0726_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0726_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0729_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0729_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0729_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1061_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1061_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1061_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1067_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1067_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1067_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1070_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1070_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1070_/Y.
+[WARNING GRT-0026] Missing route to pin _1080_/Y.
+[WARNING GRT-0026] Missing route to pin _1080_/Y.
+[WARNING GRT-0026] Missing route to pin _1080_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1083_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1083_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1083_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1093_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1093_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1093_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _1096_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _1096_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _1096_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1126_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1126_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1126_/X.
+[WARNING GRT-0026] Missing route to pin _1137_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1144_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1144_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1144_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_5/D.
+[WARNING GRT-0026] Missing route to pin _1148_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_5/D.
+[WARNING GRT-0026] Missing route to pin _1148_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_5/D.
+[WARNING GRT-0026] Missing route to pin _1148_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _1151_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _1151_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _1151_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1161_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1161_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1161_/X.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1165_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1165_/Y.
+[WARNING GRT-0026] Missing route to pin ac_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1165_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _0795_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _0795_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _0795_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _0808_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _0808_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _0808_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _0813_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _0813_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _0813_/Y.
+[WARNING GRT-0026] Missing route to pin _0824_/Y.
+[WARNING GRT-0026] Missing route to pin _0824_/Y.
+[WARNING GRT-0026] Missing route to pin _0824_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0855_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0855_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0855_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0864_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0864_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0864_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_16/D.
+[WARNING GRT-0026] Missing route to pin _0875_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_16/D.
+[WARNING GRT-0026] Missing route to pin _0875_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_16/D.
+[WARNING GRT-0026] Missing route to pin _0875_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0879_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0879_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_15/D.
+[WARNING GRT-0026] Missing route to pin _0879_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0902_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0902_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_10/D.
+[WARNING GRT-0026] Missing route to pin _0902_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0906_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0906_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _0906_/Y.
+[WARNING GRT-0026] Missing route to pin _0911_/Y.
+[WARNING GRT-0026] Missing route to pin _0911_/Y.
+[WARNING GRT-0026] Missing route to pin _0911_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _0930_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _0930_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _0930_/Y.
+[WARNING GRT-0026] Missing route to pin _0934_/Y.
+[WARNING GRT-0026] Missing route to pin _0934_/Y.
+[WARNING GRT-0026] Missing route to pin _0934_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0943_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0943_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _0943_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0948_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0948_/Y.
+[WARNING GRT-0026] Missing route to pin rem_$_DFFE_PP__Q/D.
+[WARNING GRT-0026] Missing route to pin _0948_/Y.
+[WARNING GRT-0026] Missing route to pin busy_$_SDFF_PP1__Q/D.
+[WARNING GRT-0026] Missing route to pin _1169_/Y.
+[WARNING GRT-0026] Missing route to pin busy_$_SDFF_PP1__Q/D.
+[WARNING GRT-0026] Missing route to pin _1169_/Y.
+[WARNING GRT-0026] Missing route to pin busy_$_SDFF_PP1__Q/D.
+[WARNING GRT-0026] Missing route to pin _1169_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _0954_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _0954_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _0954_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_27/D.
+[WARNING GRT-0026] Missing route to pin _0964_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_27/D.
+[WARNING GRT-0026] Missing route to pin _0964_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_27/D.
+[WARNING GRT-0026] Missing route to pin _0964_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_26/D.
+[WARNING GRT-0026] Missing route to pin _0967_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_26/D.
+[WARNING GRT-0026] Missing route to pin _0967_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_26/D.
+[WARNING GRT-0026] Missing route to pin _0967_/Y.
+[WARNING GRT-0026] Missing route to pin _0970_/Y.
+[WARNING GRT-0026] Missing route to pin _0970_/Y.
+[WARNING GRT-0026] Missing route to pin _0970_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _0973_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _0973_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _0973_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0976_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0976_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _0976_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0986_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0986_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_20/D.
+[WARNING GRT-0026] Missing route to pin _0986_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0989_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0989_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_19/D.
+[WARNING GRT-0026] Missing route to pin _0989_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0992_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0992_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _0992_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _1005_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _1005_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_14/D.
+[WARNING GRT-0026] Missing route to pin _1005_/Y.
+[WARNING GRT-0026] Missing route to pin _1021_/Y.
+[WARNING GRT-0026] Missing route to pin _1021_/Y.
+[WARNING GRT-0026] Missing route to pin _1021_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_8/D.
+[WARNING GRT-0026] Missing route to pin _1024_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_8/D.
+[WARNING GRT-0026] Missing route to pin _1024_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_8/D.
+[WARNING GRT-0026] Missing route to pin _1024_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1030_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1030_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1030_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1039_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1039_/Y.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1039_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _1172_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _1172_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_31/D.
+[WARNING GRT-0026] Missing route to pin _1172_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1176_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1176_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_30/D.
+[WARNING GRT-0026] Missing route to pin _1176_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1179_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1179_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_29/D.
+[WARNING GRT-0026] Missing route to pin _1179_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1182_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1182_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_28/D.
+[WARNING GRT-0026] Missing route to pin _1182_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _1192_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _1192_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _1192_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1195_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1195_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_24/D.
+[WARNING GRT-0026] Missing route to pin _1195_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _1198_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _1198_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_23/D.
+[WARNING GRT-0026] Missing route to pin _1198_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1205_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1205_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_21/D.
+[WARNING GRT-0026] Missing route to pin _1205_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _1215_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _1215_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_18/D.
+[WARNING GRT-0026] Missing route to pin _1215_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_17/D.
+[WARNING GRT-0026] Missing route to pin _1218_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_17/D.
+[WARNING GRT-0026] Missing route to pin _1218_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_17/D.
+[WARNING GRT-0026] Missing route to pin _1218_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1238_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1238_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_11/D.
+[WARNING GRT-0026] Missing route to pin _1238_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _1245_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _1245_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_9/D.
+[WARNING GRT-0026] Missing route to pin _1245_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1254_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1254_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _1254_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1263_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1263_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _1263_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1269_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1269_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin _1269_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1272_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1272_/Y.
+[WARNING GRT-0026] Missing route to pin q_$_SDFFE_PP0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _1272_/Y.
+[WARNING GRT-0026] Missing route to pin i_$_SDFFE_PP0P__Q_2/D.
+[WARNING GRT-0026] Missing route to pin _1280_/Y.
+[WARNING GRT-0026] Missing route to pin i_$_SDFFE_PP0P__Q_2/D.
+[WARNING GRT-0026] Missing route to pin _1280_/Y.
+[WARNING GRT-0026] Missing route to pin i_$_SDFFE_PP0P__Q_2/D.
+[WARNING GRT-0026] Missing route to pin _1280_/Y.
+[WARNING GRT-0026] Missing route to pin _1103_/A1.
+[WARNING GRT-0026] Missing route to pin _1101_/Y.
+[WARNING GRT-0026] Missing route to pin _1103_/A1.
+[WARNING GRT-0026] Missing route to pin _1101_/Y.
+[WARNING GRT-0026] Missing route to pin _1103_/A1.
+[WARNING GRT-0026] Missing route to pin _1101_/Y.
+[WARNING GRT-0026] Missing route to pin _1102_/X.
+[WARNING GRT-0026] Missing route to pin _1102_/X.
+[WARNING GRT-0026] Missing route to pin _1102_/X.
+[WARNING GRT-0026] Missing route to pin _1107_/A1.
+[WARNING GRT-0026] Missing route to pin _1105_/Y.
+[WARNING GRT-0026] Missing route to pin _1107_/A1.
+[WARNING GRT-0026] Missing route to pin _1105_/Y.
+[WARNING GRT-0026] Missing route to pin _1107_/A1.
+[WARNING GRT-0026] Missing route to pin _1105_/Y.
+[WARNING GRT-0026] Missing route to pin _1110_/A2.
+[WARNING GRT-0026] Missing route to pin _1109_/X.
+[WARNING GRT-0026] Missing route to pin _1110_/A2.
+[WARNING GRT-0026] Missing route to pin _1109_/X.
+[WARNING GRT-0026] Missing route to pin _1110_/A2.
+[WARNING GRT-0026] Missing route to pin _1109_/X.
+[WARNING GRT-0026] Missing route to pin _1112_/B1.
+[WARNING GRT-0026] Missing route to pin _1111_/Y.
+[WARNING GRT-0026] Missing route to pin _1112_/B1.
+[WARNING GRT-0026] Missing route to pin _1111_/Y.
+[WARNING GRT-0026] Missing route to pin _1112_/B1.
+[WARNING GRT-0026] Missing route to pin _1111_/Y.
+[WARNING GRT-0026] Missing route to pin _1115_/X.
+[WARNING GRT-0026] Missing route to pin _1115_/X.
+[WARNING GRT-0026] Missing route to pin _1115_/X.
+[WARNING GRT-0026] Missing route to pin _1120_/A1.
+[WARNING GRT-0026] Missing route to pin _1118_/Y.
+[WARNING GRT-0026] Missing route to pin _1120_/A1.
+[WARNING GRT-0026] Missing route to pin _1118_/Y.
+[WARNING GRT-0026] Missing route to pin _1120_/A1.
+[WARNING GRT-0026] Missing route to pin _1118_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/A1.
+[WARNING GRT-0026] Missing route to pin _1121_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/A1.
+[WARNING GRT-0026] Missing route to pin _1121_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/A1.
+[WARNING GRT-0026] Missing route to pin _1121_/Y.
+[WARNING GRT-0026] Missing route to pin _1123_/A2.
+[WARNING GRT-0026] Missing route to pin _1122_/X.
+[WARNING GRT-0026] Missing route to pin _1123_/A2.
+[WARNING GRT-0026] Missing route to pin _1122_/X.
+[WARNING GRT-0026] Missing route to pin _1123_/A2.
+[WARNING GRT-0026] Missing route to pin _1122_/X.
+[WARNING GRT-0026] Missing route to pin _1126_/A.
+[WARNING GRT-0026] Missing route to pin _1125_/Y.
+[WARNING GRT-0026] Missing route to pin _1126_/A.
+[WARNING GRT-0026] Missing route to pin _1125_/Y.
+[WARNING GRT-0026] Missing route to pin _1126_/A.
+[WARNING GRT-0026] Missing route to pin _1125_/Y.
+[WARNING GRT-0026] Missing route to pin _1133_/A1.
+[WARNING GRT-0026] Missing route to pin _1131_/Y.
+[WARNING GRT-0026] Missing route to pin _1133_/A1.
+[WARNING GRT-0026] Missing route to pin _1131_/Y.
+[WARNING GRT-0026] Missing route to pin _1133_/A1.
+[WARNING GRT-0026] Missing route to pin _1131_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/A1.
+[WARNING GRT-0026] Missing route to pin _1134_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/A1.
+[WARNING GRT-0026] Missing route to pin _1134_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/A1.
+[WARNING GRT-0026] Missing route to pin _1134_/Y.
+[WARNING GRT-0026] Missing route to pin _1137_/A2.
+[WARNING GRT-0026] Missing route to pin _1135_/X.
+[WARNING GRT-0026] Missing route to pin _1137_/A2.
+[WARNING GRT-0026] Missing route to pin _1135_/X.
+[WARNING GRT-0026] Missing route to pin _1137_/A2.
+[WARNING GRT-0026] Missing route to pin _1135_/X.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_10/CLK.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_10/CLK.
+[WARNING GRT-0026] Missing route to pin root_$_DFFE_PP__Q_10/CLK.
+[WARNING GRT-0026] Missing route to pin _1144_/A2.
+[WARNING GRT-0026] Missing route to pin _1143_/X.
+[WARNING GRT-0026] Missing route to pin _1144_/A2.
+[WARNING GRT-0026] Missing route to pin _1143_/X.
+[WARNING GRT-0026] Missing route to pin _1144_/A2.
+[WARNING GRT-0026] Missing route to pin _1143_/X.
+[WARNING GRT-0026] Missing route to pin _1151_/A2.
+[WARNING GRT-0026] Missing route to pin _1150_/X.
+[WARNING GRT-0026] Missing route to pin _1151_/A2.
+[WARNING GRT-0026] Missing route to pin _1150_/X.
+[WARNING GRT-0026] Missing route to pin _1151_/A2.
+[WARNING GRT-0026] Missing route to pin _1150_/X.
+[WARNING GRT-0026] Missing route to pin _1155_/A1.
+[WARNING GRT-0026] Missing route to pin _1153_/Y.
+[WARNING GRT-0026] Missing route to pin _1155_/A1.
+[WARNING GRT-0026] Missing route to pin _1153_/Y.
+[WARNING GRT-0026] Missing route to pin _1155_/A1.
+[WARNING GRT-0026] Missing route to pin _1153_/Y.
+[WARNING GRT-0026] Missing route to pin _1158_/A1.
+[WARNING GRT-0026] Missing route to pin _1156_/Y.
+[WARNING GRT-0026] Missing route to pin _1158_/A1.
+[WARNING GRT-0026] Missing route to pin _1156_/Y.
+[WARNING GRT-0026] Missing route to pin _1158_/A1.
+[WARNING GRT-0026] Missing route to pin _1156_/Y.
+[WARNING GRT-0026] Missing route to pin _1160_/B1.
+[WARNING GRT-0026] Missing route to pin _1159_/Y.
+[WARNING GRT-0026] Missing route to pin _1160_/B1.
+[WARNING GRT-0026] Missing route to pin _1159_/Y.
+[WARNING GRT-0026] Missing route to pin _1160_/B1.
+[WARNING GRT-0026] Missing route to pin _1159_/Y.
+[WARNING GRT-0026] Missing route to pin _1161_/B.
+[WARNING GRT-0026] Missing route to pin _1160_/Y.
+[WARNING GRT-0026] Missing route to pin _1161_/B.
+[WARNING GRT-0026] Missing route to pin _1160_/Y.
+[WARNING GRT-0026] Missing route to pin _1161_/B.
+[WARNING GRT-0026] Missing route to pin _1160_/Y.
+[WARNING GRT-0026] Missing route to pin clkbuf_4_8_0_clk/A.
+[WARNING GRT-0026] Missing route to pin clkbuf_4_8_0_clk/A.
+[WARNING GRT-0026] Missing route to pin clkbuf_4_8_0_clk/A.
+[WARNING GRT-0026] Missing route to pin _1179_/A1.
+[WARNING GRT-0026] Missing route to pin _1177_/Y.
+[WARNING GRT-0026] Missing route to pin _1179_/A1.
+[WARNING GRT-0026] Missing route to pin _1177_/Y.
+[WARNING GRT-0026] Missing route to pin _1179_/A1.
+[WARNING GRT-0026] Missing route to pin _1177_/Y.
+[WARNING GRT-0026] Missing route to pin _1182_/A1.
+[WARNING GRT-0026] Missing route to pin _1180_/Y.
+[WARNING GRT-0026] Missing route to pin _1182_/A1.
+[WARNING GRT-0026] Missing route to pin _1180_/Y.
+[WARNING GRT-0026] Missing route to pin _1182_/A1.
+[WARNING GRT-0026] Missing route to pin _1180_/Y.
+[WARNING GRT-0026] Missing route to pin _1185_/A1.
+[WARNING GRT-0026] Missing route to pin _1183_/Y.
+[WARNING GRT-0026] Missing route to pin _1185_/A1.
+[WARNING GRT-0026] Missing route to pin _1183_/Y.
+[WARNING GRT-0026] Missing route to pin _1185_/A1.
+[WARNING GRT-0026] Missing route to pin _1183_/Y.
+[WARNING GRT-0026] Missing route to pin _1189_/A1.
+[WARNING GRT-0026] Missing route to pin _1186_/Y.
+[WARNING GRT-0026] Missing route to pin _1189_/A1.
+[WARNING GRT-0026] Missing route to pin _1186_/Y.
+[WARNING GRT-0026] Missing route to pin _1189_/A1.
+[WARNING GRT-0026] Missing route to pin _1186_/Y.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_1_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_1_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_1_0_clk/X.
+[WARNING GRT-0026] Missing route to pin _1192_/A1.
+[WARNING GRT-0026] Missing route to pin _1190_/Y.
+[WARNING GRT-0026] Missing route to pin _1192_/A1.
+[WARNING GRT-0026] Missing route to pin _1190_/Y.
+[WARNING GRT-0026] Missing route to pin _1192_/A1.
+[WARNING GRT-0026] Missing route to pin _1190_/Y.
+[WARNING GRT-0026] Missing route to pin _1192_/A2.
+[WARNING GRT-0026] Missing route to pin _1191_/Y.
+[WARNING GRT-0026] Missing route to pin _1192_/A2.
+[WARNING GRT-0026] Missing route to pin _1191_/Y.
+[WARNING GRT-0026] Missing route to pin _1192_/A2.
+[WARNING GRT-0026] Missing route to pin _1191_/Y.
+[WARNING GRT-0026] Missing route to pin _1195_/A1.
+[WARNING GRT-0026] Missing route to pin _1193_/Y.
+[WARNING GRT-0026] Missing route to pin _1195_/A1.
+[WARNING GRT-0026] Missing route to pin _1193_/Y.
+[WARNING GRT-0026] Missing route to pin _1195_/A1.
+[WARNING GRT-0026] Missing route to pin _1193_/Y.
+[WARNING GRT-0026] Missing route to pin _1198_/A1.
+[WARNING GRT-0026] Missing route to pin _1196_/Y.
+[WARNING GRT-0026] Missing route to pin _1198_/A1.
+[WARNING GRT-0026] Missing route to pin _1196_/Y.
+[WARNING GRT-0026] Missing route to pin _1198_/A1.
+[WARNING GRT-0026] Missing route to pin _1196_/Y.
+[WARNING GRT-0026] Missing route to pin _1201_/A1.
+[WARNING GRT-0026] Missing route to pin _1199_/Y.
+[WARNING GRT-0026] Missing route to pin _1201_/A1.
+[WARNING GRT-0026] Missing route to pin _1199_/Y.
+[WARNING GRT-0026] Missing route to pin _1201_/A1.
+[WARNING GRT-0026] Missing route to pin _1199_/Y.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_0_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_0_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_2_0_0_clk/X.
+[WARNING GRT-0026] Missing route to pin _1205_/A1.
+[WARNING GRT-0026] Missing route to pin _1203_/Y.
+[WARNING GRT-0026] Missing route to pin _1205_/A1.
+[WARNING GRT-0026] Missing route to pin _1203_/Y.
+[WARNING GRT-0026] Missing route to pin _1205_/A1.
+[WARNING GRT-0026] Missing route to pin _1203_/Y.
+[WARNING GRT-0026] Missing route to pin _1205_/A2.
+[WARNING GRT-0026] Missing route to pin _1204_/Y.
+[WARNING GRT-0026] Missing route to pin _1205_/A2.
+[WARNING GRT-0026] Missing route to pin _1204_/Y.
+[WARNING GRT-0026] Missing route to pin _1205_/A2.
+[WARNING GRT-0026] Missing route to pin _1204_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A1.
+[WARNING GRT-0026] Missing route to pin _1210_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A1.
+[WARNING GRT-0026] Missing route to pin _1210_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A1.
+[WARNING GRT-0026] Missing route to pin _1210_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A2.
+[WARNING GRT-0026] Missing route to pin _1211_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A2.
+[WARNING GRT-0026] Missing route to pin _1211_/Y.
+[WARNING GRT-0026] Missing route to pin _1212_/A2.
+[WARNING GRT-0026] Missing route to pin _1211_/Y.
+[WARNING GRT-0026] Missing route to pin _1215_/A1.
+[WARNING GRT-0026] Missing route to pin _1213_/Y.
+[WARNING GRT-0026] Missing route to pin _1215_/A1.
+[WARNING GRT-0026] Missing route to pin _1213_/Y.
+[WARNING GRT-0026] Missing route to pin _1215_/A1.
+[WARNING GRT-0026] Missing route to pin _1213_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A1.
+[WARNING GRT-0026] Missing route to pin _1216_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A1.
+[WARNING GRT-0026] Missing route to pin _1216_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A1.
+[WARNING GRT-0026] Missing route to pin _1216_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A2.
+[WARNING GRT-0026] Missing route to pin _1217_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A2.
+[WARNING GRT-0026] Missing route to pin _1217_/Y.
+[WARNING GRT-0026] Missing route to pin _1218_/A2.
+[WARNING GRT-0026] Missing route to pin _1217_/Y.
+[WARNING GRT-0026] Missing route to pin _1222_/A1.
+[WARNING GRT-0026] Missing route to pin _1219_/Y.
+[WARNING GRT-0026] Missing route to pin _1222_/A1.
+[WARNING GRT-0026] Missing route to pin _1219_/Y.
+[WARNING GRT-0026] Missing route to pin _1222_/A1.
+[WARNING GRT-0026] Missing route to pin _1219_/Y.
+[WARNING GRT-0026] Missing route to pin max_cap22/X.
+[WARNING GRT-0026] Missing route to pin _1251_/B1.
+[WARNING GRT-0026] Missing route to pin _1070_/B1.
+[WARNING GRT-0026] Missing route to pin _1189_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap22/X.
+[WARNING GRT-0026] Missing route to pin _1251_/B1.
+[WARNING GRT-0026] Missing route to pin _1070_/B1.
+[WARNING GRT-0026] Missing route to pin _1189_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap22/X.
+[WARNING GRT-0026] Missing route to pin _1251_/B1.
+[WARNING GRT-0026] Missing route to pin _1070_/B1.
+[WARNING GRT-0026] Missing route to pin _1189_/B1.
+[WARNING GRT-0026] Missing route to pin _1225_/A1.
+[WARNING GRT-0026] Missing route to pin _1223_/Y.
+[WARNING GRT-0026] Missing route to pin _1225_/A1.
+[WARNING GRT-0026] Missing route to pin _1223_/Y.
+[WARNING GRT-0026] Missing route to pin _1225_/A1.
+[WARNING GRT-0026] Missing route to pin _1223_/Y.
+[WARNING GRT-0026] Missing route to pin _1225_/A2.
+[WARNING GRT-0026] Missing route to pin _1224_/Y.
+[WARNING GRT-0026] Missing route to pin _1225_/A2.
+[WARNING GRT-0026] Missing route to pin _1224_/Y.
+[WARNING GRT-0026] Missing route to pin _1225_/A2.
+[WARNING GRT-0026] Missing route to pin _1224_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A1.
+[WARNING GRT-0026] Missing route to pin _1226_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A1.
+[WARNING GRT-0026] Missing route to pin _1226_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A1.
+[WARNING GRT-0026] Missing route to pin _1226_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A2.
+[WARNING GRT-0026] Missing route to pin _1227_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A2.
+[WARNING GRT-0026] Missing route to pin _1227_/Y.
+[WARNING GRT-0026] Missing route to pin _1228_/A2.
+[WARNING GRT-0026] Missing route to pin _1227_/Y.
+[WARNING GRT-0026] Missing route to pin _1231_/A1.
+[WARNING GRT-0026] Missing route to pin _1229_/Y.
+[WARNING GRT-0026] Missing route to pin _1231_/A1.
+[WARNING GRT-0026] Missing route to pin _1229_/Y.
+[WARNING GRT-0026] Missing route to pin _1231_/A1.
+[WARNING GRT-0026] Missing route to pin _1229_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A1.
+[WARNING GRT-0026] Missing route to pin _1232_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A1.
+[WARNING GRT-0026] Missing route to pin _1232_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A1.
+[WARNING GRT-0026] Missing route to pin _1232_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A2.
+[WARNING GRT-0026] Missing route to pin _1233_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A2.
+[WARNING GRT-0026] Missing route to pin _1233_/Y.
+[WARNING GRT-0026] Missing route to pin _1234_/A2.
+[WARNING GRT-0026] Missing route to pin _1233_/Y.
+[WARNING GRT-0026] Missing route to pin max_cap21/X.
+[WARNING GRT-0026] Missing route to pin _0676_/S.
+[WARNING GRT-0026] Missing route to pin _0670_/S.
+[WARNING GRT-0026] Missing route to pin _1215_/B1.
+[WARNING GRT-0026] Missing route to pin _1222_/B1.
+[WARNING GRT-0026] Missing route to pin _1225_/B1.
+[WARNING GRT-0026] Missing route to pin _1218_/B1.
+[WARNING GRT-0026] Missing route to pin _1110_/B1.
+[WARNING GRT-0026] Missing route to pin _1198_/B1.
+[WARNING GRT-0026] Missing route to pin _1090_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap21/X.
+[WARNING GRT-0026] Missing route to pin _0676_/S.
+[WARNING GRT-0026] Missing route to pin _0670_/S.
+[WARNING GRT-0026] Missing route to pin _1215_/B1.
+[WARNING GRT-0026] Missing route to pin _1222_/B1.
+[WARNING GRT-0026] Missing route to pin _1225_/B1.
+[WARNING GRT-0026] Missing route to pin _1218_/B1.
+[WARNING GRT-0026] Missing route to pin _1110_/B1.
+[WARNING GRT-0026] Missing route to pin _1198_/B1.
+[WARNING GRT-0026] Missing route to pin _1090_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap21/X.
+[WARNING GRT-0026] Missing route to pin _0676_/S.
+[WARNING GRT-0026] Missing route to pin _0670_/S.
+[WARNING GRT-0026] Missing route to pin _1215_/B1.
+[WARNING GRT-0026] Missing route to pin _1222_/B1.
+[WARNING GRT-0026] Missing route to pin _1225_/B1.
+[WARNING GRT-0026] Missing route to pin _1218_/B1.
+[WARNING GRT-0026] Missing route to pin _1110_/B1.
+[WARNING GRT-0026] Missing route to pin _1198_/B1.
+[WARNING GRT-0026] Missing route to pin _1090_/B1.
+[WARNING GRT-0026] Missing route to pin _1242_/A1.
+[WARNING GRT-0026] Missing route to pin _1239_/Y.
+[WARNING GRT-0026] Missing route to pin _1242_/A1.
+[WARNING GRT-0026] Missing route to pin _1239_/Y.
+[WARNING GRT-0026] Missing route to pin _1242_/A1.
+[WARNING GRT-0026] Missing route to pin _1239_/Y.
+[WARNING GRT-0026] Missing route to pin max_cap20/X.
+[WARNING GRT-0026] Missing route to pin _0712_/S.
+[WARNING GRT-0026] Missing route to pin _1280_/B1.
+[WARNING GRT-0026] Missing route to pin _0718_/S.
+[WARNING GRT-0026] Missing route to pin _0686_/S.
+[WARNING GRT-0026] Missing route to pin _1144_/B1.
+[WARNING GRT-0026] Missing route to pin _1061_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap20/X.
+[WARNING GRT-0026] Missing route to pin _0712_/S.
+[WARNING GRT-0026] Missing route to pin _1280_/B1.
+[WARNING GRT-0026] Missing route to pin _0718_/S.
+[WARNING GRT-0026] Missing route to pin _0686_/S.
+[WARNING GRT-0026] Missing route to pin _1144_/B1.
+[WARNING GRT-0026] Missing route to pin _1061_/B1.
+[WARNING GRT-0026] Missing route to pin max_cap20/X.
+[WARNING GRT-0026] Missing route to pin _0712_/S.
+[WARNING GRT-0026] Missing route to pin _1280_/B1.
+[WARNING GRT-0026] Missing route to pin _0718_/S.
+[WARNING GRT-0026] Missing route to pin _0686_/S.
+[WARNING GRT-0026] Missing route to pin _1144_/B1.
+[WARNING GRT-0026] Missing route to pin _1061_/B1.
+[WARNING GRT-0026] Missing route to pin _1242_/A2.
+[WARNING GRT-0026] Missing route to pin _1241_/Y.
+[WARNING GRT-0026] Missing route to pin _1242_/A2.
+[WARNING GRT-0026] Missing route to pin _1241_/Y.
+[WARNING GRT-0026] Missing route to pin _1242_/A2.
+[WARNING GRT-0026] Missing route to pin _1241_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A1.
+[WARNING GRT-0026] Missing route to pin _1243_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A1.
+[WARNING GRT-0026] Missing route to pin _1243_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A1.
+[WARNING GRT-0026] Missing route to pin _1243_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A2.
+[WARNING GRT-0026] Missing route to pin _1244_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A2.
+[WARNING GRT-0026] Missing route to pin _1244_/Y.
+[WARNING GRT-0026] Missing route to pin _1245_/A2.
+[WARNING GRT-0026] Missing route to pin _1244_/Y.
+[WARNING GRT-0026] Missing route to pin _1248_/A1.
+[WARNING GRT-0026] Missing route to pin _1246_/Y.
+[WARNING GRT-0026] Missing route to pin _1248_/A1.
+[WARNING GRT-0026] Missing route to pin _1246_/Y.
+[WARNING GRT-0026] Missing route to pin _1248_/A1.
+[WARNING GRT-0026] Missing route to pin _1246_/Y.
+[WARNING GRT-0026] Missing route to pin _1254_/A2.
+[WARNING GRT-0026] Missing route to pin _1253_/Y.
+[WARNING GRT-0026] Missing route to pin _1254_/A2.
+[WARNING GRT-0026] Missing route to pin _1253_/Y.
+[WARNING GRT-0026] Missing route to pin _1254_/A2.
+[WARNING GRT-0026] Missing route to pin _1253_/Y.
+[WARNING GRT-0026] Missing route to pin _1256_/Y.
+[WARNING GRT-0026] Missing route to pin _1256_/Y.
+[WARNING GRT-0026] Missing route to pin _1256_/Y.
+[WARNING GRT-0026] Missing route to pin _1259_/Y.
+[WARNING GRT-0026] Missing route to pin _1259_/Y.
+[WARNING GRT-0026] Missing route to pin _1259_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A1.
+[WARNING GRT-0026] Missing route to pin _1261_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A1.
+[WARNING GRT-0026] Missing route to pin _1261_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A1.
+[WARNING GRT-0026] Missing route to pin _1261_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A2.
+[WARNING GRT-0026] Missing route to pin _1262_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A2.
+[WARNING GRT-0026] Missing route to pin _1262_/Y.
+[WARNING GRT-0026] Missing route to pin _1263_/A2.
+[WARNING GRT-0026] Missing route to pin _1262_/Y.
+[WARNING GRT-0026] Missing route to pin _1266_/A1.
+[WARNING GRT-0026] Missing route to pin _1264_/Y.
+[WARNING GRT-0026] Missing route to pin _1266_/A1.
+[WARNING GRT-0026] Missing route to pin _1264_/Y.
+[WARNING GRT-0026] Missing route to pin _1266_/A1.
+[WARNING GRT-0026] Missing route to pin _1264_/Y.
+[WARNING GRT-0026] Missing route to pin _1269_/A2.
+[WARNING GRT-0026] Missing route to pin _1268_/Y.
+[WARNING GRT-0026] Missing route to pin _1269_/A2.
+[WARNING GRT-0026] Missing route to pin _1268_/Y.
+[WARNING GRT-0026] Missing route to pin _1269_/A2.
+[WARNING GRT-0026] Missing route to pin _1268_/Y.
+[WARNING GRT-0026] Missing route to pin _1272_/A1.
+[WARNING GRT-0026] Missing route to pin _1270_/Y.
+[WARNING GRT-0026] Missing route to pin _1272_/A1.
+[WARNING GRT-0026] Missing route to pin _1270_/Y.
+[WARNING GRT-0026] Missing route to pin _1272_/A1.
+[WARNING GRT-0026] Missing route to pin _1270_/Y.
+[WARNING GRT-0026] Missing route to pin _1274_/B.
+[WARNING GRT-0026] Missing route to pin _1273_/Y.
+[WARNING GRT-0026] Missing route to pin _1274_/B.
+[WARNING GRT-0026] Missing route to pin _1273_/Y.
+[WARNING GRT-0026] Missing route to pin _1274_/B.
+[WARNING GRT-0026] Missing route to pin _1273_/Y.
+[WARNING GRT-0026] Missing route to pin _1277_/A1.
+[WARNING GRT-0026] Missing route to pin _1275_/Y.
+[WARNING GRT-0026] Missing route to pin _1277_/A1.
+[WARNING GRT-0026] Missing route to pin _1275_/Y.
+[WARNING GRT-0026] Missing route to pin _1277_/A1.
+[WARNING GRT-0026] Missing route to pin _1275_/Y.
+[WARNING GRT-0026] Missing route to pin _1279_/Y.
+[WARNING GRT-0026] Missing route to pin _1279_/Y.
+[WARNING GRT-0026] Missing route to pin _1279_/Y.
+[WARNING GRT-0026] Missing route to pin _1285_/B.
+[WARNING GRT-0026] Missing route to pin _1284_/Y.
+[WARNING GRT-0026] Missing route to pin _1285_/B.
+[WARNING GRT-0026] Missing route to pin _1284_/Y.
+[WARNING GRT-0026] Missing route to pin _1285_/B.
+[WARNING GRT-0026] Missing route to pin _1284_/Y.
+[WARNING GRT-0026] Missing route to pin _1050_/B.
+[WARNING GRT-0026] Missing route to pin _1050_/B.
+[WARNING GRT-0026] Missing route to pin _1050_/B.
+[WARNING GRT-0026] Missing route to pin _1247_/B.
+[WARNING GRT-0026] Missing route to pin _1217_/B.
+[WARNING GRT-0026] Missing route to pin _1220_/B.
+[WARNING GRT-0026] Missing route to pin _1184_/B.
+[WARNING GRT-0026] Missing route to pin _1191_/B.
+[WARNING GRT-0026] Missing route to pin _1200_/B.
+[WARNING GRT-0026] Missing route to pin _1060_/C1.
+[WARNING GRT-0026] Missing route to pin _1118_/B.
+[WARNING GRT-0026] Missing route to pin _1153_/B.
+[WARNING GRT-0026] Missing route to pin _1247_/B.
+[WARNING GRT-0026] Missing route to pin _1217_/B.
+[WARNING GRT-0026] Missing route to pin _1220_/B.
+[WARNING GRT-0026] Missing route to pin _1184_/B.
+[WARNING GRT-0026] Missing route to pin _1191_/B.
+[WARNING GRT-0026] Missing route to pin _1200_/B.
+[WARNING GRT-0026] Missing route to pin _1060_/C1.
+[WARNING GRT-0026] Missing route to pin _1118_/B.
+[WARNING GRT-0026] Missing route to pin _1153_/B.
+[WARNING GRT-0026] Missing route to pin _1247_/B.
+[WARNING GRT-0026] Missing route to pin _1217_/B.
+[WARNING GRT-0026] Missing route to pin _1220_/B.
+[WARNING GRT-0026] Missing route to pin _1184_/B.
+[WARNING GRT-0026] Missing route to pin _1191_/B.
+[WARNING GRT-0026] Missing route to pin _1200_/B.
+[WARNING GRT-0026] Missing route to pin _1060_/C1.
+[WARNING GRT-0026] Missing route to pin _1118_/B.
+[WARNING GRT-0026] Missing route to pin _1153_/B.
+[WARNING GRT-0026] Missing route to pin _0713_/B.
+[WARNING GRT-0026] Missing route to pin _0719_/B.
+[WARNING GRT-0026] Missing route to pin _0702_/A1.
+[WARNING GRT-0026] Missing route to pin _0720_/A1.
+[WARNING GRT-0026] Missing route to pin _0674_/B.
+[WARNING GRT-0026] Missing route to pin _0684_/B.
+[WARNING GRT-0026] Missing route to pin _0675_/A1.
+[WARNING GRT-0026] Missing route to pin _0685_/A1.
+[WARNING GRT-0026] Missing route to pin _0635_/B.
+[WARNING GRT-0026] Missing route to pin _0651_/B.
+[WARNING GRT-0026] Missing route to pin _0729_/A1.
+[WARNING GRT-0026] Missing route to pin _0642_/A1.
+[WARNING GRT-0026] Missing route to pin _0649_/A1.
+[WARNING GRT-0026] Missing route to pin _0655_/A1.
+[WARNING GRT-0026] Missing route to pin _1169_/A.
+[WARNING GRT-0026] Missing route to pin _0728_/B.
+[WARNING GRT-0026] Missing route to pin _0713_/B.
+[WARNING GRT-0026] Missing route to pin _0719_/B.
+[WARNING GRT-0026] Missing route to pin _0702_/A1.
+[WARNING GRT-0026] Missing route to pin _0720_/A1.
+[WARNING GRT-0026] Missing route to pin _0674_/B.
+[WARNING GRT-0026] Missing route to pin _0684_/B.
+[WARNING GRT-0026] Missing route to pin _0675_/A1.
+[WARNING GRT-0026] Missing route to pin _0685_/A1.
+[WARNING GRT-0026] Missing route to pin _0635_/B.
+[WARNING GRT-0026] Missing route to pin _0651_/B.
+[WARNING GRT-0026] Missing route to pin _0729_/A1.
+[WARNING GRT-0026] Missing route to pin _0642_/A1.
+[WARNING GRT-0026] Missing route to pin _0649_/A1.
+[WARNING GRT-0026] Missing route to pin _0655_/A1.
+[WARNING GRT-0026] Missing route to pin _1169_/A.
+[WARNING GRT-0026] Missing route to pin _0728_/B.
+[WARNING GRT-0026] Missing route to pin _0713_/B.
+[WARNING GRT-0026] Missing route to pin _0719_/B.
+[WARNING GRT-0026] Missing route to pin _0702_/A1.
+[WARNING GRT-0026] Missing route to pin _0720_/A1.
+[WARNING GRT-0026] Missing route to pin _0674_/B.
+[WARNING GRT-0026] Missing route to pin _0684_/B.
+[WARNING GRT-0026] Missing route to pin _0675_/A1.
+[WARNING GRT-0026] Missing route to pin _0685_/A1.
+[WARNING GRT-0026] Missing route to pin _0635_/B.
+[WARNING GRT-0026] Missing route to pin _0651_/B.
+[WARNING GRT-0026] Missing route to pin _0729_/A1.
+[WARNING GRT-0026] Missing route to pin _0642_/A1.
+[WARNING GRT-0026] Missing route to pin _0649_/A1.
+[WARNING GRT-0026] Missing route to pin _0655_/A1.
+[WARNING GRT-0026] Missing route to pin _1169_/A.
+[WARNING GRT-0026] Missing route to pin _0728_/B.
+[WARNING GRT-0026] Missing route to pin _0648_/Y.
+[WARNING GRT-0026] Missing route to pin _0648_/Y.
+[WARNING GRT-0026] Missing route to pin _0648_/Y.
+[WARNING GRT-0026] Missing route to pin _0652_/B1.
+[WARNING GRT-0026] Missing route to pin _0651_/Y.
+[WARNING GRT-0026] Missing route to pin _0652_/B1.
+[WARNING GRT-0026] Missing route to pin _0651_/Y.
+[WARNING GRT-0026] Missing route to pin _0652_/B1.
+[WARNING GRT-0026] Missing route to pin _0651_/Y.
+[WARNING GRT-0026] Missing route to pin _0658_/B1.
+[WARNING GRT-0026] Missing route to pin _0657_/Y.
+[WARNING GRT-0026] Missing route to pin _0658_/B1.
+[WARNING GRT-0026] Missing route to pin _0657_/Y.
+[WARNING GRT-0026] Missing route to pin _0658_/B1.
+[WARNING GRT-0026] Missing route to pin _0657_/Y.
+[WARNING GRT-0026] Missing route to pin _0661_/B1.
+[WARNING GRT-0026] Missing route to pin _0660_/Y.
+[WARNING GRT-0026] Missing route to pin _0661_/B1.
+[WARNING GRT-0026] Missing route to pin _0660_/Y.
+[WARNING GRT-0026] Missing route to pin _0661_/B1.
+[WARNING GRT-0026] Missing route to pin _0660_/Y.
+[WARNING GRT-0026] Missing route to pin _0663_/Y.
+[WARNING GRT-0026] Missing route to pin _0663_/Y.
+[WARNING GRT-0026] Missing route to pin _0663_/Y.
+[WARNING GRT-0026] Missing route to pin _0666_/B1.
+[WARNING GRT-0026] Missing route to pin _0665_/Y.
+[WARNING GRT-0026] Missing route to pin _0666_/B1.
+[WARNING GRT-0026] Missing route to pin _0665_/Y.
+[WARNING GRT-0026] Missing route to pin _0666_/B1.
+[WARNING GRT-0026] Missing route to pin _0665_/Y.
+[WARNING GRT-0026] Missing route to pin _0682_/B1.
+[WARNING GRT-0026] message limit reached, this message will no longer print
+SC_METRIC: report_checks -path_delay max
+Startpoint: q_$_SDFFE_PP0P__Q_31
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: ac_$_SDFFE_PP0P__Q_15 (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.10    0.10 ^ clk (in)
+   0.01    0.41    0.51 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.38    0.89 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.45    1.34 ^ clkbuf_4_8_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    1.34 ^ q_$_SDFFE_PP0P__Q_31/CLK (sky130_fd_sc_hd__dfxtp_4)
+   0.02    1.51    2.85 ^ q_$_SDFFE_PP0P__Q_31/Q (sky130_fd_sc_hd__dfxtp_4)
+   0.02    0.16    3.01 v _0951_/Y (sky130_fd_sc_hd__inv_8)
+   0.01    0.96    3.97 ^ ac_next_$_MUX__Y_29_B_sky130_fd_sc_hd__fa_1_SUM_A_sky130_fd_sc_hd__ha_1_A/SUM (sky130_fd_sc_hd__ha_4)
+   0.00    0.10    4.07 v _0737_/Y (sky130_fd_sc_hd__nor2b_2)
+   0.00    0.71    4.78 v _0738_/X (sky130_fd_sc_hd__o21a_1)
+   0.01    0.76    5.54 v _0739_/X (sky130_fd_sc_hd__o21a_1)
+   0.01    0.63    6.16 ^ _0740_/Y (sky130_fd_sc_hd__o21ai_4)
+   0.01    0.32    6.48 v _0741_/Y (sky130_fd_sc_hd__a21boi_4)
+   0.01    0.58    7.06 ^ _0742_/Y (sky130_fd_sc_hd__o21ai_4)
+   0.00    0.30    7.37 v _0744_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.75    8.12 ^ _0746_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.00    0.34    8.46 v _0749_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.00    0.58    9.04 ^ _0752_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.65    9.68 ^ _0755_/X (sky130_fd_sc_hd__a21o_1)
+   0.01    0.25    9.93 v _0758_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.80   10.73 ^ _0760_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.35   11.08 v _0763_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.00    0.59   11.67 ^ _0765_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.57   12.23 ^ _0768_/X (sky130_fd_sc_hd__a21o_1)
+   0.01    0.20   12.44 v _0771_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.72   13.16 ^ _0773_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.02    0.39   13.55 v _0775_/Y (sky130_fd_sc_hd__a21boi_4)
+   0.02    2.12   15.66 v _0785_/X (sky130_fd_sc_hd__or3_4)
+   0.04    0.65   16.31 v rebuffer10/X (sky130_fd_sc_hd__buf_12)
+   0.01    0.83   17.14 ^ _0876_/Y (sky130_fd_sc_hd__a21oi_1)
+   0.00    0.47   17.61 v _1112_/Y (sky130_fd_sc_hd__o31ai_1)
+   0.00    0.57   18.18 v _1113_/X (sky130_fd_sc_hd__and2_0)
+           0.00   18.18 v ac_$_SDFFE_PP0P__Q_15/D (sky130_fd_sc_hd__dfxtp_1)
+                  18.18   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.10   10.10 ^ clk (in)
+   0.01    0.41   10.51 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.38   10.89 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.50   11.39 ^ clkbuf_4_4_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   11.39 ^ ac_$_SDFFE_PP0P__Q_15/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00   11.39   clock reconvergence pessimism
+          -0.71   10.68   library setup time
+                  10.68   data required time
+----------------------------------------------------------------
+                  10.68   data required time
+                 -18.18   data arrival time
+----------------------------------------------------------------
+                  -7.49   slack (VIOLATED)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: x_$_DFFE_PP__Q_4 (rising edge-triggered flip-flop clocked by clk)
+Endpoint: x_$_DFFE_PP__Q_4 (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.02    0.02 ^ clk (in)
+   0.01    0.09    0.11 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.09    0.20 ^ clkbuf_2_3_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.30 ^ clkbuf_4_14_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.30 ^ x_$_DFFE_PP__Q_4/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.00    0.20    0.50 ^ x_$_DFFE_PP__Q_4/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    0.03    0.53 v _0704_/Y (sky130_fd_sc_hd__nand2_1)
+   0.00    0.03    0.56 ^ _0705_/Y (sky130_fd_sc_hd__o21ai_0)
+           0.00    0.56 ^ x_$_DFFE_PP__Q_4/D (sky130_fd_sc_hd__dfxtp_1)
+                   0.56   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.02    0.02 ^ clk (in)
+   0.01    0.09    0.11 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.09    0.20 ^ clkbuf_2_3_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.30 ^ clkbuf_4_14_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.30 ^ x_$_DFFE_PP__Q_4/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.30   clock reconvergence pessimism
+          -0.02    0.28   library hold time
+                   0.28   data required time
+----------------------------------------------------------------
+                   0.28   data required time
+                  -0.56   data arrival time
+----------------------------------------------------------------
+                   0.28   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: q_$_SDFFE_PP0P__Q_31
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: ac_$_SDFFE_PP0P__Q_15 (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.10    0.10 ^ clk (in)
+   0.01    0.41    0.51 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.38    0.89 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.45    1.34 ^ clkbuf_4_8_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    1.34 ^ q_$_SDFFE_PP0P__Q_31/CLK (sky130_fd_sc_hd__dfxtp_4)
+   0.02    1.51    2.85 ^ q_$_SDFFE_PP0P__Q_31/Q (sky130_fd_sc_hd__dfxtp_4)
+   0.02    0.16    3.01 v _0951_/Y (sky130_fd_sc_hd__inv_8)
+   0.01    0.96    3.97 ^ ac_next_$_MUX__Y_29_B_sky130_fd_sc_hd__fa_1_SUM_A_sky130_fd_sc_hd__ha_1_A/SUM (sky130_fd_sc_hd__ha_4)
+   0.00    0.10    4.07 v _0737_/Y (sky130_fd_sc_hd__nor2b_2)
+   0.00    0.71    4.78 v _0738_/X (sky130_fd_sc_hd__o21a_1)
+   0.01    0.76    5.54 v _0739_/X (sky130_fd_sc_hd__o21a_1)
+   0.01    0.63    6.16 ^ _0740_/Y (sky130_fd_sc_hd__o21ai_4)
+   0.01    0.32    6.48 v _0741_/Y (sky130_fd_sc_hd__a21boi_4)
+   0.01    0.58    7.06 ^ _0742_/Y (sky130_fd_sc_hd__o21ai_4)
+   0.00    0.30    7.37 v _0744_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.75    8.12 ^ _0746_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.00    0.34    8.46 v _0749_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.00    0.58    9.04 ^ _0752_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.65    9.68 ^ _0755_/X (sky130_fd_sc_hd__a21o_1)
+   0.01    0.25    9.93 v _0758_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.80   10.73 ^ _0760_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.35   11.08 v _0763_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.00    0.59   11.67 ^ _0765_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.01    0.57   12.23 ^ _0768_/X (sky130_fd_sc_hd__a21o_1)
+   0.01    0.20   12.44 v _0771_/Y (sky130_fd_sc_hd__a21oi_4)
+   0.01    0.72   13.16 ^ _0773_/Y (sky130_fd_sc_hd__o211ai_2)
+   0.02    0.39   13.55 v _0775_/Y (sky130_fd_sc_hd__a21boi_4)
+   0.02    2.12   15.66 v _0785_/X (sky130_fd_sc_hd__or3_4)
+   0.04    0.65   16.31 v rebuffer10/X (sky130_fd_sc_hd__buf_12)
+   0.01    0.83   17.14 ^ _0876_/Y (sky130_fd_sc_hd__a21oi_1)
+   0.00    0.47   17.61 v _1112_/Y (sky130_fd_sc_hd__o31ai_1)
+   0.00    0.57   18.18 v _1113_/X (sky130_fd_sc_hd__and2_0)
+           0.00   18.18 v ac_$_SDFFE_PP0P__Q_15/D (sky130_fd_sc_hd__dfxtp_1)
+                  18.18   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.10   10.10 ^ clk (in)
+   0.01    0.41   10.51 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.38   10.89 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.50   11.39 ^ clkbuf_4_4_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   11.39 ^ ac_$_SDFFE_PP0P__Q_15/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00   11.39   clock reconvergence pessimism
+          -0.71   10.68   library setup time
+                  10.68   data required time
+----------------------------------------------------------------
+                  10.68   data required time
+                 -18.18   data arrival time
+----------------------------------------------------------------
+                  -7.49   slack (VIOLATED)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+ac_$_SDFFE_PP0P__Q_16/CLK ^
+   1.40
+rem_$_DFFE_PP__Q_30/CLK ^
+   1.28      0.00       0.13
+
+SC_METRIC: DRV violators
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns -445.20
+
+SC_METRIC: setupslack
+worst slack -7.49
+
+SC_METRIC: holdslack
+worst slack 0.28
+
+SC_METRIC: fmax
+57.162026821381914 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             9.54e-04   1.33e-04   4.70e-06   1.09e-03  31.8%
+Combinational          1.15e-03   1.19e-03   4.74e-06   2.35e-03  68.2%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.11e-03   1.32e-03   9.45e-06   3.44e-03 100.0%
+                          61.3%      38.4%       0.3%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             3.36e-04   6.23e-05   5.52e-11   3.98e-04  28.3%
+Combinational          4.91e-04   5.18e-04   1.80e-10   1.01e-03  71.7%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  8.27e-04   5.80e-04   2.35e-10   1.41e-03 100.0%
+                          58.8%      41.2%       0.0%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             7.97e-04   1.11e-04   1.41e-09   9.07e-04  32.4%
+Combinational          9.20e-04   9.73e-04   2.09e-09   1.89e-03  67.6%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.72e-03   1.08e-03   3.50e-09   2.80e-03 100.0%
+                          61.3%      38.7%       0.0%
+
+SC_METRIC: cellarea
+Design area 9429 u^2 13% utilization.
