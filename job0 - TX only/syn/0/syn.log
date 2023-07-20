@@ -1,0 +1,2140 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.30+48 (git sha1 14d50a176, clang 10.0.0-4ubuntu1 -fPIC -Os)
+
+echo on
+
+yosys> read_verilog -sv inputs/UART_TX.v
+
+1. Executing Verilog-2005 frontend: inputs/UART_TX.v
+Parsing SystemVerilog input from `inputs/UART_TX.v' to AST representation.
+Generating RTLIL representation for module `\UART_TX'.
+Successfully finished Verilog frontend.
+
+yosys> chparam -list
+UART_TX:
+  CLKS_PER_BIT
+
+yosys> read_liberty -lib /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib
+
+2. Executing Liberty frontend: /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib
+Imported 428 cell types from liberty file.
+
+yosys> hierarchy -top UART_TX
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \UART_TX
+
+3.2. Analyzing design hierarchy..
+Top module:  \UART_TX
+Removed 0 unused modules.
+
+yosys> synth -flatten -top UART_TX -run begin:fine
+
+4. Executing SYNTH pass.
+
+yosys> hierarchy -check -top UART_TX
+
+4.1. Executing HIERARCHY pass (managing design hierarchy).
+
+4.1.1. Analyzing design hierarchy..
+Top module:  \UART_TX
+
+4.1.2. Analyzing design hierarchy..
+Top module:  \UART_TX
+Removed 0 unused modules.
+
+yosys> proc
+
+4.2. Executing PROC pass (convert processes to netlists).
+
+yosys> proc_clean
+
+4.2.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+yosys> proc_rmdead
+
+4.2.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 7 switch rules as full_case in process $proc$inputs/UART_TX.v:34$1 in module UART_TX.
+Removed a total of 0 dead cases.
+
+yosys> proc_prune
+
+4.2.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 1 redundant assignment.
+Promoted 0 assignments to connections.
+
+yosys> proc_init
+
+4.2.4. Executing PROC_INIT pass (extract init attributes).
+
+yosys> proc_arst
+
+4.2.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \i_Rst_L in `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+
+yosys> proc_rom
+
+4.2.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~6 debug messages>
+
+yosys> proc_mux
+
+4.2.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+     1/7: $0\r_SM_Main[2:0]
+     2/7: $0\r_TX_Data[7:0]
+     3/7: $0\r_Bit_Index[2:0]
+     4/7: $0\r_Clock_Count[8:0]
+     5/7: $0\o_TX_Done[0:0]
+     6/7: $0\o_TX_Serial[0:0]
+     7/7: $0\o_TX_Active[0:0]
+
+yosys> proc_dlatch
+
+4.2.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+
+yosys> proc_dff
+
+4.2.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\UART_TX.\o_TX_Active' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$93' with positive edge clock.
+Creating register for signal `\UART_TX.\o_TX_Serial' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$96' with positive edge clock.
+Creating register for signal `\UART_TX.\o_TX_Done' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$99' with positive edge clock.
+Creating register for signal `\UART_TX.\r_SM_Main' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $adff cell `$procdff$100' with positive edge clock and negative level reset.
+Creating register for signal `\UART_TX.\r_Clock_Count' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$103' with positive edge clock.
+Creating register for signal `\UART_TX.\r_Bit_Index' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$106' with positive edge clock.
+Creating register for signal `\UART_TX.\r_TX_Data' using process `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+  created $dff cell `$procdff$109' with positive edge clock.
+
+yosys> proc_memwr
+
+4.2.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+yosys> proc_clean
+
+4.2.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 6 empty switches in `\UART_TX.$proc$inputs/UART_TX.v:34$1'.
+Removing empty process `UART_TX.$proc$inputs/UART_TX.v:34$1'.
+Cleaned up 6 empty switches.
+
+yosys> opt_expr -keepdc
+
+4.2.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~7 debug messages>
+
+yosys> flatten
+
+4.3. Executing FLATTEN pass (flatten design).
+
+yosys> opt_expr
+
+4.4. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_clean
+
+4.5. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 1 unused cells and 23 unused wires.
+<suppressed ~2 debug messages>
+
+yosys> check
+
+4.6. Executing CHECK pass (checking for obvious problems).
+Checking module UART_TX...
+Found and reported 0 problems.
+
+yosys> opt -nodffe -nosdff
+
+4.7. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+4.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge -nomux
+
+4.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~54 debug messages>
+Removed a total of 18 cells.
+
+yosys> opt_muxtree
+
+4.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+yosys> opt_reduce
+
+4.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+    New ctrl vector for $pmux cell $procmux$76: { $procmux$29_CMP $procmux$25_CMP $auto$opt_reduce.cc:134:opt_pmux$111 }
+  Optimizing cells in module \UART_TX.
+Performed a total of 1 changes.
+
+yosys> opt_merge
+
+4.7.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+yosys> opt_dff -nodffe -nosdff
+
+4.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 0 unused cells and 20 unused wires.
+<suppressed ~1 debug messages>
+
+yosys> opt_expr
+
+4.7.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.7.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+4.7.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+yosys> opt_reduce
+
+4.7.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+    New ctrl vector for $pmux cell $procmux$58: { $procmux$33_CMP $auto$opt_reduce.cc:134:opt_pmux$113 }
+  Optimizing cells in module \UART_TX.
+Performed a total of 1 changes.
+
+yosys> opt_merge
+
+4.7.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff -nodffe -nosdff
+
+4.7.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.7.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+4.7.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.7.16. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+4.7.17. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+yosys> opt_reduce
+
+4.7.18. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+4.7.19. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff -nodffe -nosdff
+
+4.7.20. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.7.21. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+4.7.22. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.7.23. Finished OPT passes. (There is nothing left to do.)
+
+yosys> fsm
+
+4.8. Executing FSM pass (extract and optimize FSM).
+
+yosys> fsm_detect
+
+4.8.1. Executing FSM_DETECT pass (finding FSMs in design).
+Not marking UART_TX.r_SM_Main as FSM state register:
+    Circuit seems to be self-resetting.
+
+yosys> fsm_extract
+
+4.8.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+
+yosys> fsm_opt
+
+4.8.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+yosys> opt_clean
+
+4.8.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> fsm_opt
+
+4.8.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+
+yosys> fsm_recode
+
+4.8.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+
+yosys> fsm_info
+
+4.8.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+
+yosys> fsm_map
+
+4.8.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+
+yosys> opt
+
+4.9. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+4.9.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge -nomux
+
+4.9.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_muxtree
+
+4.9.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~7 debug messages>
+
+yosys> opt_reduce
+
+4.9.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+4.9.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+4.9.6. Executing OPT_DFF pass (perform DFF optimizations).
+Adding EN signal on $procdff$99 ($dff) from module UART_TX (D = $0\o_TX_Done[0:0], Q = \o_TX_Done).
+Adding SRST signal on $auto$ff.cc:266:slice$114 ($dffe) from module UART_TX (D = $procmux$71_Y, Q = \o_TX_Done, rval = 1'0).
+Adding EN signal on $procdff$96 ($dff) from module UART_TX (D = $0\o_TX_Serial[0:0], Q = \o_TX_Serial).
+Adding EN signal on $procdff$93 ($dff) from module UART_TX (D = $0\o_TX_Active[0:0], Q = \o_TX_Active).
+Adding EN signal on $procdff$109 ($dff) from module UART_TX (D = \i_TX_Byte, Q = \r_TX_Data).
+Adding EN signal on $procdff$106 ($dff) from module UART_TX (D = $0\r_Bit_Index[2:0], Q = \r_Bit_Index).
+Adding EN signal on $procdff$103 ($dff) from module UART_TX (D = $0\r_Clock_Count[8:0], Q = \r_Clock_Count).
+
+yosys> opt_clean
+
+4.9.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 9 unused cells and 9 unused wires.
+<suppressed ~10 debug messages>
+
+yosys> opt_expr
+
+4.9.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~4 debug messages>
+
+4.9.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+4.9.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+yosys> opt_reduce
+
+4.9.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+4.9.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+4.9.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.9.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+4.9.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.9.16. Finished OPT passes. (There is nothing left to do.)
+
+yosys> wreduce
+
+4.10. Executing WREDUCE pass (reducing word size of cells).
+Removed top 29 bits (of 32) from port B of cell UART_TX.$lt$inputs/UART_TX.v:97$9 ($lt).
+Removed top 31 bits (of 32) from port B of cell UART_TX.$add$inputs/UART_TX.v:99$10 ($add).
+Removed top 29 bits (of 32) from port Y of cell UART_TX.$add$inputs/UART_TX.v:99$10 ($add).
+Removed top 24 bits (of 32) from port B of cell UART_TX.$lt$inputs/UART_TX.v:117$11 ($lt).
+Removed top 31 bits (of 32) from port B of cell UART_TX.$add$inputs/UART_TX.v:119$12 ($add).
+Removed top 23 bits (of 32) from port Y of cell UART_TX.$add$inputs/UART_TX.v:119$12 ($add).
+Removed top 1 bits (of 3) from mux cell UART_TX.$procmux$15 ($mux).
+Removed top 1 bits (of 3) from port B of cell UART_TX.$procmux$18_CMP0 ($eq).
+Removed top 2 bits (of 3) from mux cell UART_TX.$procmux$20 ($mux).
+Removed top 2 bits (of 3) from mux cell UART_TX.$procmux$23 ($mux).
+Removed top 1 bits (of 3) from port B of cell UART_TX.$procmux$25_CMP0 ($eq).
+Removed top 1 bits (of 3) from mux cell UART_TX.$procmux$27 ($mux).
+Removed top 2 bits (of 3) from port B of cell UART_TX.$procmux$29_CMP0 ($eq).
+Removed top 2 bits (of 3) from mux cell UART_TX.$procmux$31 ($mux).
+Removed top 23 bits (of 32) from wire UART_TX.$add$inputs/UART_TX.v:119$12_Y.
+Removed top 29 bits (of 32) from wire UART_TX.$add$inputs/UART_TX.v:99$10_Y.
+Removed top 1 bits (of 3) from wire UART_TX.$procmux$15_Y.
+Removed top 2 bits (of 3) from wire UART_TX.$procmux$20_Y.
+Removed top 1 bits (of 3) from wire UART_TX.$procmux$27_Y.
+Removed top 2 bits (of 3) from wire UART_TX.$procmux$31_Y.
+
+yosys> peepopt
+
+4.11. Executing PEEPOPT pass (run peephole optimizers).
+
+yosys> opt_clean
+
+4.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 0 unused cells and 6 unused wires.
+<suppressed ~1 debug messages>
+
+yosys> alumacc
+
+4.13. Executing ALUMACC pass (create $alu and $macc cells).
+Extracting $alu and $macc cells in module UART_TX:
+  creating $macc model for $add$inputs/UART_TX.v:119$12 ($add).
+  creating $macc model for $add$inputs/UART_TX.v:99$10 ($add).
+  creating $alu model for $macc $add$inputs/UART_TX.v:99$10.
+  creating $alu model for $macc $add$inputs/UART_TX.v:119$12.
+  creating $alu model for $lt$inputs/UART_TX.v:117$11 ($lt): new $alu
+  creating $alu model for $lt$inputs/UART_TX.v:97$9 ($lt): new $alu
+  creating $alu cell for $lt$inputs/UART_TX.v:97$9: $auto$alumacc.cc:485:replace_alu$153
+  creating $alu cell for $lt$inputs/UART_TX.v:117$11: $auto$alumacc.cc:485:replace_alu$164
+  creating $alu cell for $add$inputs/UART_TX.v:119$12: $auto$alumacc.cc:485:replace_alu$175
+  creating $alu cell for $add$inputs/UART_TX.v:99$10: $auto$alumacc.cc:485:replace_alu$178
+  created 4 $alu and 0 $macc cells.
+
+yosys> share
+
+4.14. Executing SHARE pass (SAT-based resource sharing).
+
+yosys> opt
+
+4.15. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+4.15.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~9 debug messages>
+
+yosys> opt_merge -nomux
+
+4.15.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_muxtree
+
+4.15.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+yosys> opt_reduce
+
+4.15.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+4.15.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+4.15.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.15.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 1 unused cells and 3 unused wires.
+<suppressed ~2 debug messages>
+
+yosys> opt_expr
+
+4.15.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.15.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+4.15.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~6 debug messages>
+
+yosys> opt_reduce
+
+4.15.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+4.15.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+4.15.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+4.15.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+4.15.15. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+4.15.16. Finished OPT passes. (There is nothing left to do.)
+
+yosys> memory -nomap
+
+4.16. Executing MEMORY pass.
+
+yosys> opt_mem
+
+4.16.1. Executing OPT_MEM pass (optimize memories).
+Performed a total of 0 transformations.
+
+yosys> opt_mem_priority
+
+4.16.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+Performed a total of 0 transformations.
+
+yosys> opt_mem_feedback
+
+4.16.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+
+yosys> memory_bmux2rom
+
+4.16.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+
+yosys> memory_dff
+
+4.16.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+
+yosys> opt_clean
+
+4.16.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> memory_share
+
+4.16.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+
+yosys> opt_mem_widen
+
+4.16.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+Performed a total of 0 transformations.
+
+yosys> opt_clean
+
+4.16.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> memory_collect
+
+4.16.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+yosys> opt_clean
+
+4.17. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> synth -flatten -top UART_TX -run fine:check
+
+5. Executing SYNTH pass.
+
+yosys> opt -fast -full
+
+5.1. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr -full
+
+5.1.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~17 debug messages>
+
+yosys> opt_merge
+
+5.1.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+5.1.3. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$140 ($dffe) from module UART_TX (D = $add$inputs/UART_TX.v:119$12_Y, Q = \r_Clock_Count, rval = 9'000000000).
+Adding SRST signal on $auto$ff.cc:266:slice$133 ($dffe) from module UART_TX (D = $procmux$49_Y, Q = \r_Bit_Index, rval = 3'000).
+
+yosys> opt_clean
+
+5.1.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 6 unused cells and 18 unused wires.
+<suppressed ~7 debug messages>
+
+5.1.5. Rerunning OPT passes. (Removed registers in this run.)
+
+yosys> opt_expr -full
+
+5.1.6. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~1 debug messages>
+
+yosys> opt_merge
+
+5.1.7. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+5.1.8. Executing OPT_DFF pass (perform DFF optimizations).
+Adding SRST signal on $auto$ff.cc:266:slice$194 ($sdffce) from module UART_TX (D = $add$inputs/UART_TX.v:99$10_Y, Q = \r_Bit_Index, rval = 3'000).
+
+yosys> opt_clean
+
+5.1.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 1 unused cells and 1 unused wires.
+<suppressed ~2 debug messages>
+
+5.1.10. Rerunning OPT passes. (Removed registers in this run.)
+
+yosys> opt_expr -full
+
+5.1.11. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge
+
+5.1.12. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+5.1.13. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+5.1.14. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+5.1.15. Finished fast OPT passes.
+
+yosys> memory_map
+
+5.2. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+
+yosys> opt -full
+
+5.3. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr -full
+
+5.3.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge -nomux
+
+5.3.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_muxtree
+
+5.3.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+yosys> opt_reduce -full
+
+5.3.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+    Consolidated identical input bits for $mux cell $procmux$15:
+      Old ports: A=2'11, B=2'00, Y=$auto$wreduce.cc:455:run$147 [1:0]
+      New ports: A=1'1, B=1'0, Y=$auto$wreduce.cc:455:run$147 [0]
+      New connections: $auto$wreduce.cc:455:run$147 [1] = $auto$wreduce.cc:455:run$147 [0]
+    Consolidated identical input bits for $pmux cell $procmux$17:
+      Old ports: A=3'000, B={ 2'00 \i_TX_DV 1'0 $auto$wreduce.cc:455:run$149 [1:0] 2'01 $procmux$23_Y [0] 1'0 $auto$wreduce.cc:455:run$147 [1:0] }, Y=$0\r_SM_Main[2:0]
+      New ports: A=2'00, B={ 1'0 \i_TX_DV $auto$wreduce.cc:455:run$149 [1:0] 1'1 $procmux$23_Y [0] $auto$wreduce.cc:455:run$147 [1:0] }, Y=$0\r_SM_Main[2:0] [1:0]
+      New connections: $0\r_SM_Main[2:0] [2] = 1'0
+  Optimizing cells in module \UART_TX.
+Performed a total of 2 changes.
+
+yosys> opt_merge
+
+5.3.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_share
+
+5.3.6. Executing OPT_SHARE pass.
+
+yosys> opt_dff
+
+5.3.7. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+5.3.8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr -full
+
+5.3.9. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~1 debug messages>
+
+5.3.10. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+5.3.11. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+yosys> opt_reduce -full
+
+5.3.12. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+5.3.13. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~3 debug messages>
+Removed a total of 1 cells.
+
+yosys> opt_share
+
+5.3.14. Executing OPT_SHARE pass.
+
+yosys> opt_dff
+
+5.3.15. Executing OPT_DFF pass (perform DFF optimizations).
+Setting constant 0-bit at position 2 on $procdff$100 ($adff) from module UART_TX.
+
+yosys> opt_clean
+
+5.3.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+yosys> opt_expr -full
+
+5.3.17. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~1 debug messages>
+
+5.3.18. Rerunning OPT passes. (Maybe there is more to do..)
+
+yosys> opt_muxtree
+
+5.3.19. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~2 debug messages>
+
+yosys> opt_reduce -full
+
+5.3.20. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+5.3.21. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_share
+
+5.3.22. Executing OPT_SHARE pass.
+
+yosys> opt_dff
+
+5.3.23. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+5.3.24. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr -full
+
+5.3.25. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+5.3.26. Finished OPT passes. (There is nothing left to do.)
+
+yosys> techmap
+
+5.4. Executing TECHMAP pass (map to technology primitives).
+
+5.4.1. Executing Verilog-2005 frontend: /sc_tools/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/sc_tools/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+5.4.2. Continuing TECHMAP pass.
+Using extmapper simplemap for cells of type $not.
+Using extmapper simplemap for cells of type $reduce_or.
+Using extmapper simplemap for cells of type $dffe.
+Using template $paramod$constmap:ee5af906ae0d3d414c6a0471604c553ef70c8e09$paramod$92adee9538f2381d8e5006822c900eb986d754e8\_90_shift_shiftx for cells of type $shiftx.
+Using template $paramod$78464f9f65d57061f7490f3fe5dd257e4a61e2b7\_90_alu for cells of type $alu.
+Using template $paramod$53700bbee849b2010ad0b60a61ccd204a10e24ca\_90_alu for cells of type $alu.
+Using template $paramod$3ef7d3dd227da7627a99c5e5a6a4deb817573e39\_90_alu for cells of type $alu.
+Using extmapper simplemap for cells of type $adff.
+Using extmapper simplemap for cells of type $eq.
+Using template $paramod$068ad458e7761d78e5eed8238508872e7b0aef95\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $and.
+Using extmapper simplemap for cells of type $sdffce.
+Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $logic_not.
+Using extmapper simplemap for cells of type $reduce_and.
+Using extmapper simplemap for cells of type $reduce_bool.
+Using extmapper simplemap for cells of type $ne.
+Using extmapper simplemap for cells of type $or.
+Using template $paramod$c5c783b17ab1d780abfad8cfe6563a0a7b47a3b0\_90_pmux for cells of type $pmux.
+Using extmapper simplemap for cells of type $xor.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000001001 for cells of type $lcu.
+Using extmapper simplemap for cells of type $pos.
+Using template $paramod\_90_lcu\WIDTH=32'00000000000000000000000000000011 for cells of type $lcu.
+No more expansions possible.
+<suppressed ~826 debug messages>
+
+yosys> opt -fast
+
+5.5. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+5.5.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~129 debug messages>
+
+yosys> opt_merge
+
+5.5.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~78 debug messages>
+Removed a total of 26 cells.
+
+yosys> opt_dff
+
+5.5.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+5.5.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 35 unused cells and 199 unused wires.
+<suppressed ~36 debug messages>
+
+5.5.5. Finished fast OPT passes.
+
+yosys> abc -fast
+
+5.6. Executing ABC pass (technology mapping using ABC).
+
+5.6.1. Extracting gate netlist of module `\UART_TX' to `<abc-temp-dir>/input.blif'..
+Extracted 110 gates and 135 wires to a netlist network with 24 inputs and 24 outputs.
+
+5.6.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_library <abc-temp-dir>/stdcells.genlib 
+ABC: Entered genlib library with 13 gates from file "<abc-temp-dir>/stdcells.genlib".
+ABC: + strash 
+ABC: + dretime 
+ABC: + map 
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+5.6.1.2. Re-integrating ABC results.
+ABC RESULTS:               NOR cells:       10
+ABC RESULTS:             ORNOT cells:        5
+ABC RESULTS:               NOT cells:        6
+ABC RESULTS:               MUX cells:        8
+ABC RESULTS:              NAND cells:        8
+ABC RESULTS:               AND cells:        9
+ABC RESULTS:                OR cells:       11
+ABC RESULTS:            ANDNOT cells:       28
+ABC RESULTS:               XOR cells:       10
+ABC RESULTS:        internal signals:       87
+ABC RESULTS:           input signals:       24
+ABC RESULTS:          output signals:       24
+Removing temp directory.
+
+yosys> opt -fast
+
+5.7. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+5.7.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+<suppressed ~5 debug messages>
+
+yosys> opt_merge
+
+5.7.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~6 debug messages>
+Removed a total of 2 cells.
+
+yosys> opt_dff
+
+5.7.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean
+
+5.7.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 1 unused cells and 99 unused wires.
+<suppressed ~2 debug messages>
+
+5.7.5. Finished fast OPT passes.
+
+yosys> opt -purge
+
+6. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+6.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge -nomux
+
+6.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_muxtree
+
+6.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+yosys> opt_reduce
+
+6.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+6.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+6.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean -purge
+
+6.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+6.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+6.9. Finished OPT passes. (There is nothing left to do.)
+
+yosys> extract_fa
+
+7. Executing EXTRACT_FA pass (find and extract full/half adders).
+Extracting full/half adders from UART_TX:
+  2-Input XOR/XNOR \r_SM_Main [0] \r_SM_Main [1]:
+    0110 -> $abc$782$new_n60_ $abc$782$new_n62_
+    AND with inverted A B:
+      0001 -> $abc$782$new_n61_
+      Created $fa cell $auto$extract_fa.cc:503:run$878.
+    AND with inverted A:
+      0100 -> $abc$782$new_n54_
+      Created $fa cell $auto$extract_fa.cc:503:run$888.
+    AND with inverted B:
+      0010 -> $abc$782$new_n122_
+      Created $fa cell $auto$extract_fa.cc:503:run$896.
+    AND without inversions:
+      1000 -> $abc$782$new_n57_
+      Created $fa cell $auto$extract_fa.cc:503:run$904.
+  2-Input XOR/XNOR \r_Clock_Count [0] \r_Clock_Count [1]:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [1]
+    AND with inverted A B:
+      0001 -> $abc$782$new_n72_
+      Created $fa cell $auto$extract_fa.cc:503:run$908.
+    AND without inversions:
+      1000 -> $abc$782$new_n125_
+      Created $fa cell $auto$extract_fa.cc:503:run$917.
+  2-Input XOR/XNOR \r_Clock_Count [2] $abc$782$new_n125_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [2]
+    AND without inversions:
+      1000 -> $abc$782$new_n127_
+      Created $fa cell $auto$extract_fa.cc:503:run$921.
+  2-Input XOR/XNOR \r_Clock_Count [3] $abc$782$new_n127_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [3]
+  2-Input XOR/XNOR \r_Clock_Count [4] $abc$782$new_n130_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [4]
+    AND without inversions:
+      1000 -> $abc$782$new_n132_
+      Created $fa cell $auto$extract_fa.cc:503:run$926.
+  2-Input XOR/XNOR \r_Clock_Count [5] $abc$782$new_n132_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [5]
+  2-Input XOR/XNOR \r_Clock_Count [6] $abc$782$new_n135_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [6]
+    AND without inversions:
+      1000 -> $abc$782$new_n137_
+      Created $fa cell $auto$extract_fa.cc:503:run$931.
+  2-Input XOR/XNOR \r_Clock_Count [7] $abc$782$new_n137_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [7]
+  2-Input XOR/XNOR \r_Clock_Count [8] $abc$782$new_n140_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$175.Y [8]
+  2-Input XOR/XNOR \r_Bit_Index [0] \r_Bit_Index [1]:
+    0110 -> $auto$alumacc.cc:485:replace_alu$178.Y [1]
+    AND without inversions:
+      1000 -> $abc$782$new_n52_
+      Created $fa cell $auto$extract_fa.cc:503:run$936.
+  2-Input XOR/XNOR \r_Bit_Index [2] $abc$782$new_n52_:
+    0110 -> $auto$alumacc.cc:485:replace_alu$178.Y [2]
+    AND without inversions:
+      1000 -> $abc$782$new_n53_
+      Created $fa cell $auto$extract_fa.cc:503:run$941.
+
+yosys> techmap -map /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_adders.v
+
+8. Executing TECHMAP pass (map to technology primitives).
+
+8.1. Executing Verilog-2005 frontend: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_adders.v
+Parsing Verilog input from `/third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_adders.v' to AST representation.
+Generating RTLIL representation for module `\_tech_fa'.
+Successfully finished Verilog frontend.
+
+8.2. Continuing TECHMAP pass.
+Using template $paramod$366b53aa83fc1f56a6a9bf0b408f4c58a4c2aa2e\_tech_fa for cells of type $fa.
+No more expansions possible.
+<suppressed ~31 debug messages>
+
+yosys> techmap
+
+9. Executing TECHMAP pass (map to technology primitives).
+
+9.1. Executing Verilog-2005 frontend: /sc_tools/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/sc_tools/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+9.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+yosys> opt -fast -purge
+
+10. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+10.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge
+
+10.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+<suppressed ~9 debug messages>
+Removed a total of 3 cells.
+
+yosys> opt_dff
+
+10.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean -purge
+
+10.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+Removed 22 unused cells and 99 unused wires.
+<suppressed ~23 debug messages>
+
+10.5. Finished fast OPT passes.
+
+yosys> techmap -map /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_latch.v
+
+11. Executing TECHMAP pass (map to technology primitives).
+
+11.1. Executing Verilog-2005 frontend: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_latch.v
+Parsing Verilog input from `/third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/techmap/yosys/cells_latch.v' to AST representation.
+Generating RTLIL representation for module `\$_DLATCH_P_'.
+Generating RTLIL representation for module `\$_DLATCH_N_'.
+Successfully finished Verilog frontend.
+
+11.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~4 debug messages>
+
+yosys> techmap
+
+12. Executing TECHMAP pass (map to technology primitives).
+
+12.1. Executing Verilog-2005 frontend: /sc_tools/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/sc_tools/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+12.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+yosys> opt -fast -purge
+
+13. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+13.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge
+
+13.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+13.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean -purge
+
+13.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+13.5. Finished fast OPT passes.
+
+yosys> autoname
+
+14. Executing AUTONAME pass.
+Renamed 999 objects in module UART_TX (29 iterations).
+<suppressed ~199 debug messages>
+
+yosys> dfflibmap -liberty /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_dff_library.lib
+
+15. Executing DFFLIBMAP pass (mapping DFF cells to sequential cells from liberty file).
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfxtp_1 (noninv, pins=3, area=20.02) is a direct match for cell type $_DFF_P_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+  cell sky130_fd_sc_hd__dfrtn_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_NN0_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfrtp_1 (noninv, pins=4, area=25.02) is a direct match for cell type $_DFF_PN0_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfstp_2 (noninv, pins=4, area=26.28) is a direct match for cell type $_DFF_PN1_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+  cell sky130_fd_sc_hd__dfbbn_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_NNN_.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbn_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtn_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  cell sky130_fd_sc_hd__dfbbp_1 (noninv, pins=6, area=32.53) is a direct match for cell type $_DFFSR_PNN_.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE|IQ&!DE' in pin attribute of cell 'sky130_fd_sc_hd__edfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfbbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfrtp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfsbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfstp_4' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sdfxtp_4' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxbp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_1' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_2' - skipping.
+Warning: Found unsupported expression 'D&DE&!SCE|IQ&!DE&!SCE|SCD&SCE' in pin attribute of cell 'sky130_fd_sc_hd__sedfxtp_4' - skipping.
+  final dff cell mappings:
+    unmapped dff cell: $_DFF_N_
+    \sky130_fd_sc_hd__dfxtp_1 _DFF_P_ (.CLK( C), .D( D), .Q( Q));
+    \sky130_fd_sc_hd__dfrtn_1 _DFF_NN0_ (.CLK_N( C), .D( D), .Q( Q), .RESET_B( R));
+    unmapped dff cell: $_DFF_NN1_
+    unmapped dff cell: $_DFF_NP0_
+    unmapped dff cell: $_DFF_NP1_
+    \sky130_fd_sc_hd__dfrtp_1 _DFF_PN0_ (.CLK( C), .D( D), .Q( Q), .RESET_B( R));
+    \sky130_fd_sc_hd__dfstp_2 _DFF_PN1_ (.CLK( C), .D( D), .Q( Q), .SET_B( R));
+    unmapped dff cell: $_DFF_PP0_
+    unmapped dff cell: $_DFF_PP1_
+    \sky130_fd_sc_hd__dfbbn_1 _DFFSR_NNN_ (.CLK_N( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_NNP_
+    unmapped dff cell: $_DFFSR_NPN_
+    unmapped dff cell: $_DFFSR_NPP_
+    \sky130_fd_sc_hd__dfbbp_1 _DFFSR_PNN_ (.CLK( C), .D( D), .Q( Q), .Q_N(~Q), .RESET_B( R), .SET_B( S));
+    unmapped dff cell: $_DFFSR_PNP_
+    unmapped dff cell: $_DFFSR_PPN_
+    unmapped dff cell: $_DFFSR_PPP_
+
+yosys> dfflegalize -cell $_DFF_P_ 01 -cell $_DFF_NN0_ 01 -cell $_DFF_PN0_ 01 -cell $_DFF_PN1_ 01 -cell $_DFFSR_NNN_ 01 -cell $_DFFSR_PNN_ 01 t:$_DFF* t:$_SDFF*
+
+15.1. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+Mapping DFF cells in module `\UART_TX':
+  mapped 2 $_DFF_PN0_ cells to \sky130_fd_sc_hd__dfrtp_1 cells.
+  mapped 23 $_DFF_P_ cells to \sky130_fd_sc_hd__dfxtp_1 cells.
+
+yosys> techmap
+
+16. Executing TECHMAP pass (map to technology primitives).
+
+16.1. Executing Verilog-2005 frontend: /sc_tools/bin/../share/yosys/techmap.v
+Parsing Verilog input from `/sc_tools/bin/../share/yosys/techmap.v' to AST representation.
+Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
+Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
+Generating RTLIL representation for module `\_90_simplemap_logic_ops'.
+Generating RTLIL representation for module `\_90_simplemap_compare_ops'.
+Generating RTLIL representation for module `\_90_simplemap_various'.
+Generating RTLIL representation for module `\_90_simplemap_registers'.
+Generating RTLIL representation for module `\_90_shift_ops_shr_shl_sshl_sshr'.
+Generating RTLIL representation for module `\_90_shift_shiftx'.
+Generating RTLIL representation for module `\_90_fa'.
+Generating RTLIL representation for module `\_90_lcu'.
+Generating RTLIL representation for module `\_90_alu'.
+Generating RTLIL representation for module `\_90_macc'.
+Generating RTLIL representation for module `\_90_alumacc'.
+Generating RTLIL representation for module `\$__div_mod_u'.
+Generating RTLIL representation for module `\$__div_mod_trunc'.
+Generating RTLIL representation for module `\_90_div'.
+Generating RTLIL representation for module `\_90_mod'.
+Generating RTLIL representation for module `\$__div_mod_floor'.
+Generating RTLIL representation for module `\_90_divfloor'.
+Generating RTLIL representation for module `\_90_modfloor'.
+Generating RTLIL representation for module `\_90_pow'.
+Generating RTLIL representation for module `\_90_pmux'.
+Generating RTLIL representation for module `\_90_demux'.
+Generating RTLIL representation for module `\_90_lut'.
+Successfully finished Verilog frontend.
+
+16.2. Continuing TECHMAP pass.
+No more expansions possible.
+<suppressed ~73 debug messages>
+
+yosys> opt -purge
+
+17. Executing OPT pass (performing simple optimizations).
+
+yosys> opt_expr
+
+17.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+yosys> opt_merge -nomux
+
+17.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_muxtree
+
+17.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \UART_TX..
+  Creating internal representation of mux trees.
+  No muxes found in this module.
+Removed 0 multiplexer ports.
+
+yosys> opt_reduce
+
+17.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \UART_TX.
+Performed a total of 0 changes.
+
+yosys> opt_merge
+
+17.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\UART_TX'.
+Removed a total of 0 cells.
+
+yosys> opt_dff
+
+17.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+yosys> opt_clean -purge
+
+17.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \UART_TX..
+
+yosys> opt_expr
+
+17.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module UART_TX.
+
+17.9. Finished OPT passes. (There is nothing left to do.)
+
+yosys> abc -liberty /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_dff_library.lib -D 10000 -constr /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_abc.constraints -liberty /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib
+
+18. Executing ABC pass (technology mapping using ABC).
+
+18.1. Extracting gate netlist of module `\UART_TX' to `<abc-temp-dir>/input.blif'..
+Extracted 111 gates and 164 wires to a netlist network with 52 inputs and 31 outputs.
+
+18.1.1. Executing ABC.
+Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
+ABC: ABC command line: "source <abc-temp-dir>/abc.script".
+ABC: 
+ABC: + read_blif <abc-temp-dir>/input.blif 
+ABC: + read_lib -w /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_dff_library.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.12 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__buf_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrckapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__probe_p_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__probec_p_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130_fd_sc_hd__ss_n40C_1v40" from "/nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_dff_library.lib" has 301 cells (88 skipped: 63 seq; 13 tri-state; 12 no func; 39 dont_use).  Time =     0.18 sec
+ABC: Memory =   19.86 MB. Time =     0.18 sec
+ABC: Warning: Detected 9 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_lib -w /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.12 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__buf_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_12" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_3" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_6" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__decap_8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__diode_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__dlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtn_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__dlxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__ebufn_8".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__edfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_0".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvn_8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "sky130_fd_sc_hd__einvp_8".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_bleeder_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkbufkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_clkinvkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_12" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_3" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_6" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_decapkapwr_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso0p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1n_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_inputiso1p_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__lpflow_inputisolatch_1".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrc_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_isobufsrckapwr_16" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__maj3_4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__probe_p_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__probec_p_8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbn_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfbbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtn_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfrtp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfsbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfstp_4".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sdfxtp_4".
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "sky130_fd_sc_hd__sdlclkp_4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxbp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "sky130_fd_sc_hd__sedfxtp_4".
+ABC: Library "sky130hd_merged" from "/nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib" has 301 cells (88 skipped: 63 seq; 13 tri-state; 12 no func; 39 dont_use).  Time =     0.18 sec
+ABC: Memory =   19.86 MB. Time =     0.18 sec
+ABC: Warning: Detected 9 multi-output gates (for example, "sky130_fd_sc_hd__fa_1").
+ABC: + read_constr -v /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_abc.constraints 
+ABC: Setting driving cell to be "sky130_fd_sc_hd__buf_4".
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &fraig -x 
+ABC: + &put 
+ABC: + scorr 
+ABC: Warning: The network is combinational (run "fraig" or "fraig_sweep").
+ABC: + dc2 
+ABC: + dretime 
+ABC: + retime -o -D 10000 
+ABC: + strash 
+ABC: + &get -n 
+ABC: + &dch -f 
+ABC: + &nf -D 10000 
+ABC: + &put 
+ABC: + buffer 
+ABC: + upsize -D 10000 
+ABC: Current delay (4346.49 ps) does not exceed the target delay (10000.00 ps). Upsizing is not performed.
+ABC: + dnsize -D 10000 
+ABC: + stime -p 
+ABC: WireLoad = "none"  Gates =     74 (  9.5 %)   Cap =  3.1 ff (  5.1 %)   Area =      484.21 ( 85.1 %)   Delay =  4169.93 ps  (  8.1 %)               
+ABC: Path  0 --       2 : 0    4 pi                       A =   0.00  Df = 119.4  -60.4 ps  S = 194.6 ps  Cin =  0.0 ff  Cout =  14.5 ff  Cmax =   0.0 ff  G =    0  
+ABC: Path  1 --      88 : 6    1 sky130_fd_sc_hd__mux4_2  A =  22.52  Df =2518.0-1255.7 ps  S = 256.4 ps  Cin =  2.3 ff  Cout =   1.6 ff  Cmax = 540.9 ff  G =   65  
+ABC: Path  2 --      89 : 3    1 sky130_fd_sc_hd__o21ai_0 A =   5.00  Df =3059.9-1642.7 ps  S = 368.4 ps  Cin =  1.5 ff  Cout =   1.6 ff  Cmax =  83.9 ff  G =  100  
+ABC: Path  3 --      90 : 3    1 sky130_fd_sc_hd__o21ai_0 A =   5.00  Df =3354.1-1435.3 ps  S = 439.5 ps  Cin =  1.5 ff  Cout =   2.2 ff  Cmax =  83.9 ff  G =  139  
+ABC: Path  4 --      92 : 4    1 sky130_fd_sc_hd__a31o_1  A =   8.76  Df =4169.9-1766.3 ps  S =  66.6 ps  Cin =  2.1 ff  Cout =   0.0 ff  Cmax = 288.4 ff  G =    0  
+ABC: Start-point = pi1 (\r_Bit_Index [0]).  End-point = po0 ($auto$rtlil.cc:2607:MuxGate$1101).
+ABC: + write_blif <abc-temp-dir>/output.blif 
+
+18.1.2. Re-integrating ABC results.
+ABC RESULTS:   sky130_fd_sc_hd__mux4_2 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__a31o_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__buf_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__o21bai_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__and4b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a31oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a22o_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__mux2_2 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__o21ba_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__a41oi_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand2b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o21a_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__o21ai_0 cells:        4
+ABC RESULTS:   sky130_fd_sc_hd__nor2_1 cells:        7
+ABC RESULTS:   sky130_fd_sc_hd__xor2_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__a21oi_1 cells:        9
+ABC RESULTS:   sky130_fd_sc_hd__nor2b_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__inv_1 cells:        5
+ABC RESULTS:   sky130_fd_sc_hd__and3_1 cells:        2
+ABC RESULTS:   sky130_fd_sc_hd__nand2_1 cells:       13
+ABC RESULTS:   sky130_fd_sc_hd__nand3b_1 cells:        1
+ABC RESULTS:   sky130_fd_sc_hd__nand3_1 cells:        3
+ABC RESULTS:   sky130_fd_sc_hd__o2111ai_1 cells:        1
+ABC RESULTS:        internal signals:       81
+ABC RESULTS:           input signals:       52
+ABC RESULTS:          output signals:       31
+Removing temp directory.
+
+yosys> clean -purge
+Removed 0 unused cells and 158 unused wires.
+
+yosys> setundef -zero
+
+19. Executing SETUNDEF pass (replace undef values with defined constants).
+
+yosys> splitnets
+
+20. Executing SPLITNETS pass (splitting up multi-bit signals).
+
+yosys> clean -purge
+Removed 0 unused cells and 18 unused wires.
+
+yosys> hilomap -singleton -locell sky130_fd_sc_hd__conb_1 LO -hicell sky130_fd_sc_hd__conb_1 HI
+
+21. Executing HILOMAP pass (mapping to constant drivers).
+
+yosys> insbuf -buf sky130_fd_sc_hd__buf_4 A X
+
+22. Executing INSBUF pass (insert buffer cells for connected wires).
+
+yosys> clean -purge
+
+yosys> echo off
+echo off
+{
+   "creator": "Yosys 0.30+48 (git sha1 14d50a176, clang 10.0.0-4ubuntu1 -fPIC -Os)",
+   "invocation": "stat -json -top UART_TX -liberty /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_dff_library.lib -liberty /nfs/sc_compute/4bd020d41fd248ffbd5e83db79629ccf/UART_TX/job0/syn/0/inputs/sc_logiclib_sky130hd.lib ",
+   "modules": {
+      "\\UART_TX": {
+         "num_wires":         125,
+         "num_wire_bits":     132,
+         "num_pub_wires":     59,
+         "num_pub_wire_bits": 66,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         110,
+         "area":              1132.336000,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a21oi_1": 9,
+            "sky130_fd_sc_hd__a22o_1": 2,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 1,
+            "sky130_fd_sc_hd__a41oi_1": 1,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and4b_1": 1,
+            "sky130_fd_sc_hd__buf_1": 2,
+            "sky130_fd_sc_hd__dfrtp_1": 2,
+            "sky130_fd_sc_hd__dfxtp_1": 23,
+            "sky130_fd_sc_hd__ha_1": 11,
+            "sky130_fd_sc_hd__inv_1": 5,
+            "sky130_fd_sc_hd__mux2_2": 9,
+            "sky130_fd_sc_hd__mux4_2": 2,
+            "sky130_fd_sc_hd__nand2_1": 13,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3_1": 3,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 7,
+            "sky130_fd_sc_hd__nor2b_1": 3,
+            "sky130_fd_sc_hd__o2111ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 4,
+            "sky130_fd_sc_hd__o21ba_1": 1,
+            "sky130_fd_sc_hd__o21bai_1": 1,
+            "sky130_fd_sc_hd__xor2_1": 3
+         }
+      }
+   },
+      "design": {
+         "num_wires":         125,
+         "num_wire_bits":     132,
+         "num_pub_wires":     59,
+         "num_pub_wire_bits": 66,
+         "num_memories":      0,
+         "num_memory_bits":   0,
+         "num_processes":     0,
+         "num_cells":         110,
+         "area":              1132.336000,
+         "num_cells_by_type": {
+            "sky130_fd_sc_hd__a21oi_1": 9,
+            "sky130_fd_sc_hd__a22o_1": 2,
+            "sky130_fd_sc_hd__a31o_1": 1,
+            "sky130_fd_sc_hd__a31oi_1": 1,
+            "sky130_fd_sc_hd__a41oi_1": 1,
+            "sky130_fd_sc_hd__and3_1": 2,
+            "sky130_fd_sc_hd__and4b_1": 1,
+            "sky130_fd_sc_hd__buf_1": 2,
+            "sky130_fd_sc_hd__dfrtp_1": 2,
+            "sky130_fd_sc_hd__dfxtp_1": 23,
+            "sky130_fd_sc_hd__ha_1": 11,
+            "sky130_fd_sc_hd__inv_1": 5,
+            "sky130_fd_sc_hd__mux2_2": 9,
+            "sky130_fd_sc_hd__mux4_2": 2,
+            "sky130_fd_sc_hd__nand2_1": 13,
+            "sky130_fd_sc_hd__nand2b_1": 1,
+            "sky130_fd_sc_hd__nand3_1": 3,
+            "sky130_fd_sc_hd__nand3b_1": 1,
+            "sky130_fd_sc_hd__nor2_1": 7,
+            "sky130_fd_sc_hd__nor2b_1": 3,
+            "sky130_fd_sc_hd__o2111ai_1": 1,
+            "sky130_fd_sc_hd__o21a_1": 1,
+            "sky130_fd_sc_hd__o21ai_0": 4,
+            "sky130_fd_sc_hd__o21ba_1": 1,
+            "sky130_fd_sc_hd__o21bai_1": 1,
+            "sky130_fd_sc_hd__xor2_1": 3
+         }
+      }
+}
+
+echo on
+
+yosys> write_verilog -noattr -noexpr -nohex -nodec outputs/UART_TX.vg
+
+23. Executing Verilog backend.
+
+yosys> clean_zerowidth
+Dumping module `\UART_TX'.
+
+Warnings: 26 unique messages, 234 total
+End of script. Logfile hash: e27082158c, CPU: user 1.11s system 0.03s, MEM: 120.95 MB peak
+Yosys 0.30+48 (git sha1 14d50a176, clang 10.0.0-4ubuntu1 -fPIC -Os)
+Time spent: 34% 2x abc (0 sec), 20% 1x stat (0 sec), ...
