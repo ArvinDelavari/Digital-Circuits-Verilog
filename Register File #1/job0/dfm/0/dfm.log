@@ -1,0 +1,1227 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Register_File.odb
+Reading SDC: inputs/Register_File.sdc
+Warning: There are 50 input ports missing set_input_delay.
+Warning: There are 64 output ports missing set_output_delay.
+Warning: There are 64 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+######################
+# Do fill
+######################
+set removed_obs 0
+foreach obstruction [[ord::get_db_block] getObstructions] {
+  odb::dbObstruction_destroy $obstruction
+  incr removed_obs
+}
+utl::info FLW 1 "Deleted $removed_obs routing obstructions"
+[INFO FLW-0001] Deleted 0 routing obstructions
+if { $openroad_fin_add_fill == "true" && \
+     [dict exists $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] } {
+  set sc_fillrules [lindex [dict get $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] 0]
+  density_fill -rules $sc_fillrules
+}
+# estimate for metrics
+estimate_parasitics -global_routing
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3822_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin _3822_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin _3822_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _2384_/A0.
+[WARNING GRT-0026] Missing route to pin _2384_/A0.
+[WARNING GRT-0026] Missing route to pin _2384_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin Registers\[0\]_$_DFFE_PP__Q_25/D.
+[WARNING GRT-0026] Missing route to pin _3941_/A0.
+[WARNING GRT-0026] Missing route to pin _3941_/A0.
+[WARNING GRT-0026] Missing route to pin _3941_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin _3786_/A2.
+[WARNING GRT-0026] Missing route to pin _2093_/A2.
+[WARNING GRT-0026] Missing route to pin _3786_/A2.
+[WARNING GRT-0026] Missing route to pin _2093_/A2.
+[WARNING GRT-0026] Missing route to pin _3786_/A2.
+[WARNING GRT-0026] Missing route to pin _2093_/A2.
+[WARNING GRT-0026] Missing route to pin _2718_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin _2718_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin _2718_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _2702_/A1.
+[WARNING GRT-0026] Missing route to pin _2702_/A1.
+[WARNING GRT-0026] Missing route to pin _2702_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin _2705_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _2705_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _2705_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[10\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _2659_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin _2659_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin _2659_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _2676_/A1.
+[WARNING GRT-0026] Missing route to pin _2676_/A1.
+[WARNING GRT-0026] Missing route to pin _2676_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _2690_/A1.
+[WARNING GRT-0026] Missing route to pin _2690_/A1.
+[WARNING GRT-0026] Missing route to pin _2690_/A1.
+[WARNING GRT-0026] Missing route to pin _2056_/A3.
+[WARNING GRT-0026] Missing route to pin _2056_/A3.
+[WARNING GRT-0026] Missing route to pin _2056_/A3.
+[WARNING GRT-0026] Missing route to pin _4147_/A3.
+[WARNING GRT-0026] Missing route to pin _3721_/A3.
+[WARNING GRT-0026] Missing route to pin _2692_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _4147_/A3.
+[WARNING GRT-0026] Missing route to pin _3721_/A3.
+[WARNING GRT-0026] Missing route to pin _2692_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _4147_/A3.
+[WARNING GRT-0026] Missing route to pin _3721_/A3.
+[WARNING GRT-0026] Missing route to pin _2692_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[11\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _2633_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _2633_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _2633_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _2636_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _2636_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _2636_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _4047_/A0.
+[WARNING GRT-0026] Missing route to pin _2623_/A1.
+[WARNING GRT-0026] Missing route to pin _2354_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _4047_/A0.
+[WARNING GRT-0026] Missing route to pin _2623_/A1.
+[WARNING GRT-0026] Missing route to pin _2354_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _4047_/A0.
+[WARNING GRT-0026] Missing route to pin _2623_/A1.
+[WARNING GRT-0026] Missing route to pin _2354_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _2647_/A1.
+[WARNING GRT-0026] Missing route to pin _2647_/A1.
+[WARNING GRT-0026] Missing route to pin _2647_/A1.
+[WARNING GRT-0026] Missing route to pin _2649_/A1.
+[WARNING GRT-0026] Missing route to pin _2649_/A1.
+[WARNING GRT-0026] Missing route to pin _2649_/A1.
+[WARNING GRT-0026] Missing route to pin _4080_/A0.
+[WARNING GRT-0026] Missing route to pin _4080_/A0.
+[WARNING GRT-0026] Missing route to pin _4080_/A0.
+[WARNING GRT-0026] Missing route to pin _4024_/A0.
+[WARNING GRT-0026] Missing route to pin _2624_/A1.
+[WARNING GRT-0026] Missing route to pin _2331_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin _4024_/A0.
+[WARNING GRT-0026] Missing route to pin _2624_/A1.
+[WARNING GRT-0026] Missing route to pin _2331_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin _4024_/A0.
+[WARNING GRT-0026] Missing route to pin _2624_/A1.
+[WARNING GRT-0026] Missing route to pin _2331_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[12\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin _3969_/A0.
+[WARNING GRT-0026] Missing route to pin _3969_/A0.
+[WARNING GRT-0026] Missing route to pin _3969_/A0.
+[WARNING GRT-0026] Missing route to pin _2629_/A1.
+[WARNING GRT-0026] Missing route to pin _2263_/A0.
+[WARNING GRT-0026] Missing route to pin _2629_/A1.
+[WARNING GRT-0026] Missing route to pin _2263_/A0.
+[WARNING GRT-0026] Missing route to pin _2629_/A1.
+[WARNING GRT-0026] Missing route to pin _2263_/A0.
+[WARNING GRT-0026] Missing route to pin _2630_/A1.
+[WARNING GRT-0026] Missing route to pin _2630_/A1.
+[WARNING GRT-0026] Missing route to pin _2630_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _3649_/A0.
+[WARNING GRT-0026] Missing route to pin _3649_/A0.
+[WARNING GRT-0026] Missing route to pin _3649_/A0.
+[WARNING GRT-0026] Missing route to pin _2159_/A2.
+[WARNING GRT-0026] Missing route to pin _2159_/A2.
+[WARNING GRT-0026] Missing route to pin _2159_/A2.
+[WARNING GRT-0026] Missing route to pin _3838_/A2.
+[WARNING GRT-0026] Missing route to pin _3838_/A2.
+[WARNING GRT-0026] Missing route to pin _3838_/A2.
+[WARNING GRT-0026] Missing route to pin _3788_/A2.
+[WARNING GRT-0026] Missing route to pin _3656_/A0.
+[WARNING GRT-0026] Missing route to pin _2095_/A2.
+[WARNING GRT-0026] Missing route to pin _3788_/A2.
+[WARNING GRT-0026] Missing route to pin _3656_/A0.
+[WARNING GRT-0026] Missing route to pin _2095_/A2.
+[WARNING GRT-0026] Missing route to pin _3788_/A2.
+[WARNING GRT-0026] Missing route to pin _3656_/A0.
+[WARNING GRT-0026] Missing route to pin _2095_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_11/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin _3663_/A0.
+[WARNING GRT-0026] Missing route to pin _3663_/A0.
+[WARNING GRT-0026] Missing route to pin _3663_/A0.
+[WARNING GRT-0026] Missing route to pin _4036_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _4036_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _4036_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _3667_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3667_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3667_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _4149_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _4149_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _4149_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[13\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _3998_/A2.
+[WARNING GRT-0026] Missing route to pin _3640_/A0.
+[WARNING GRT-0026] Missing route to pin _2305_/A2.
+[WARNING GRT-0026] Missing route to pin _3998_/A2.
+[WARNING GRT-0026] Missing route to pin _3640_/A0.
+[WARNING GRT-0026] Missing route to pin _2305_/A2.
+[WARNING GRT-0026] Missing route to pin _3998_/A2.
+[WARNING GRT-0026] Missing route to pin _3640_/A0.
+[WARNING GRT-0026] Missing route to pin _2305_/A2.
+[WARNING GRT-0026] Missing route to pin _3983_/A2.
+[WARNING GRT-0026] Missing route to pin _3641_/A0.
+[WARNING GRT-0026] Missing route to pin _3983_/A2.
+[WARNING GRT-0026] Missing route to pin _3641_/A0.
+[WARNING GRT-0026] Missing route to pin _3983_/A2.
+[WARNING GRT-0026] Missing route to pin _3641_/A0.
+[WARNING GRT-0026] Missing route to pin _3969_/A2.
+[WARNING GRT-0026] Missing route to pin _3969_/A2.
+[WARNING GRT-0026] Missing route to pin _3969_/A2.
+[WARNING GRT-0026] Missing route to pin _2263_/A2.
+[WARNING GRT-0026] Missing route to pin _2263_/A2.
+[WARNING GRT-0026] Missing route to pin _2263_/A2.
+[WARNING GRT-0026] Missing route to pin _3600_/A0.
+[WARNING GRT-0026] Missing route to pin _3600_/A0.
+[WARNING GRT-0026] Missing route to pin _3600_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3614_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3614_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3614_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3615_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3615_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3615_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3619_/A0.
+[WARNING GRT-0026] Missing route to pin _3619_/A0.
+[WARNING GRT-0026] Missing route to pin _3619_/A0.
+[WARNING GRT-0026] Missing route to pin _4124_/A1.
+[WARNING GRT-0026] Missing route to pin _3624_/A0.
+[WARNING GRT-0026] Missing route to pin _2431_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4124_/A1.
+[WARNING GRT-0026] Missing route to pin _3624_/A0.
+[WARNING GRT-0026] Missing route to pin _2431_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4124_/A1.
+[WARNING GRT-0026] Missing route to pin _3624_/A0.
+[WARNING GRT-0026] Missing route to pin _2431_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4113_/A1.
+[WARNING GRT-0026] Missing route to pin _3625_/A0.
+[WARNING GRT-0026] Missing route to pin _2420_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin _4113_/A1.
+[WARNING GRT-0026] Missing route to pin _3625_/A0.
+[WARNING GRT-0026] Missing route to pin _2420_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin _4113_/A1.
+[WARNING GRT-0026] Missing route to pin _3625_/A0.
+[WARNING GRT-0026] Missing route to pin _2420_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _3602_/A0.
+[WARNING GRT-0026] Missing route to pin _3602_/A0.
+[WARNING GRT-0026] Missing route to pin _3602_/A0.
+[WARNING GRT-0026] Missing route to pin _3723_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _3723_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _3723_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _3969_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin _3969_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin _3969_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[14\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _2159_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _2159_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _2159_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _4080_/A3.
+[WARNING GRT-0026] Missing route to pin _3556_/A0.
+[WARNING GRT-0026] Missing route to pin _4080_/A3.
+[WARNING GRT-0026] Missing route to pin _3556_/A0.
+[WARNING GRT-0026] Missing route to pin _4080_/A3.
+[WARNING GRT-0026] Missing route to pin _3556_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[15\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3531_/A0.
+[WARNING GRT-0026] Missing route to pin _3531_/A0.
+[WARNING GRT-0026] Missing route to pin _3531_/A0.
+[WARNING GRT-0026] Missing route to pin _3969_/A3.
+[WARNING GRT-0026] Missing route to pin _3969_/A3.
+[WARNING GRT-0026] Missing route to pin _3969_/A3.
+[WARNING GRT-0026] Missing route to pin _3535_/A0.
+[WARNING GRT-0026] Missing route to pin _2263_/A3.
+[WARNING GRT-0026] Missing route to pin _3535_/A0.
+[WARNING GRT-0026] Missing route to pin _2263_/A3.
+[WARNING GRT-0026] Missing route to pin _3535_/A0.
+[WARNING GRT-0026] Missing route to pin _2263_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _3504_/A1.
+[WARNING GRT-0026] Missing route to pin _3504_/A1.
+[WARNING GRT-0026] Missing route to pin _3504_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3791_/A0.
+[WARNING GRT-0026] Missing route to pin _3512_/A1.
+[WARNING GRT-0026] Missing route to pin _2098_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3791_/A0.
+[WARNING GRT-0026] Missing route to pin _3512_/A1.
+[WARNING GRT-0026] Missing route to pin _2098_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3791_/A0.
+[WARNING GRT-0026] Missing route to pin _3512_/A1.
+[WARNING GRT-0026] Missing route to pin _2098_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3493_/A1.
+[WARNING GRT-0026] Missing route to pin _3493_/A1.
+[WARNING GRT-0026] Missing route to pin _3493_/A1.
+[WARNING GRT-0026] Missing route to pin _3514_/A1.
+[WARNING GRT-0026] Missing route to pin _3514_/A1.
+[WARNING GRT-0026] Missing route to pin _3514_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _3523_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3523_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3523_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _3524_/A1.
+[WARNING GRT-0026] Missing route to pin _3524_/A1.
+[WARNING GRT-0026] Missing route to pin _3524_/A1.
+[WARNING GRT-0026] Missing route to pin _3495_/A1.
+[WARNING GRT-0026] Missing route to pin _2321_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _3495_/A1.
+[WARNING GRT-0026] Missing route to pin _2321_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _3495_/A1.
+[WARNING GRT-0026] Missing route to pin _2321_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _3496_/A1.
+[WARNING GRT-0026] Missing route to pin _3496_/A1.
+[WARNING GRT-0026] Missing route to pin _3496_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[16\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _2242_/A0.
+[WARNING GRT-0026] Missing route to pin _2242_/A0.
+[WARNING GRT-0026] Missing route to pin _2242_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_31/Q.
+[WARNING GRT-0026] Missing route to pin _3432_/A1.
+[WARNING GRT-0026] Missing route to pin _3432_/A1.
+[WARNING GRT-0026] Missing route to pin _3432_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3435_/A1.
+[WARNING GRT-0026] Missing route to pin _3435_/A1.
+[WARNING GRT-0026] Missing route to pin _3435_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin _3439_/A1.
+[WARNING GRT-0026] Missing route to pin _3439_/A1.
+[WARNING GRT-0026] Missing route to pin _3439_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_10/Q.
+[WARNING GRT-0026] Missing route to pin _4126_/A1.
+[WARNING GRT-0026] Missing route to pin _3443_/A1.
+[WARNING GRT-0026] Missing route to pin _2433_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4126_/A1.
+[WARNING GRT-0026] Missing route to pin _3443_/A1.
+[WARNING GRT-0026] Missing route to pin _2433_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4126_/A1.
+[WARNING GRT-0026] Missing route to pin _3443_/A1.
+[WARNING GRT-0026] Missing route to pin _2433_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _4071_/A1.
+[WARNING GRT-0026] Missing route to pin _3448_/A1.
+[WARNING GRT-0026] Missing route to pin _4071_/A1.
+[WARNING GRT-0026] Missing route to pin _3448_/A1.
+[WARNING GRT-0026] Missing route to pin _4071_/A1.
+[WARNING GRT-0026] Missing route to pin _3448_/A1.
+[WARNING GRT-0026] Missing route to pin _3452_/A1.
+[WARNING GRT-0026] Missing route to pin _3452_/A1.
+[WARNING GRT-0026] Missing route to pin _3452_/A1.
+[WARNING GRT-0026] Missing route to pin _3424_/A1.
+[WARNING GRT-0026] Missing route to pin _3424_/A1.
+[WARNING GRT-0026] Missing route to pin _3424_/A1.
+[WARNING GRT-0026] Missing route to pin _3425_/A1.
+[WARNING GRT-0026] Missing route to pin _3425_/A1.
+[WARNING GRT-0026] Missing route to pin _3425_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[17\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin _2242_/A1.
+[WARNING GRT-0026] Missing route to pin _2242_/A1.
+[WARNING GRT-0026] Missing route to pin _2242_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _3407_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _3407_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _3407_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _4115_/A2.
+[WARNING GRT-0026] Missing route to pin _4115_/A2.
+[WARNING GRT-0026] Missing route to pin _4115_/A2.
+[WARNING GRT-0026] Missing route to pin _3410_/A1.
+[WARNING GRT-0026] Missing route to pin _3410_/A1.
+[WARNING GRT-0026] Missing route to pin _3410_/A1.
+[WARNING GRT-0026] Missing route to pin _3385_/A1.
+[WARNING GRT-0026] Missing route to pin _3385_/A1.
+[WARNING GRT-0026] Missing route to pin _3385_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _2321_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _2321_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _2321_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_25/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin _3935_/A2.
+[WARNING GRT-0026] Missing route to pin _3392_/A1.
+[WARNING GRT-0026] Missing route to pin _2242_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _3935_/A2.
+[WARNING GRT-0026] Missing route to pin _3392_/A1.
+[WARNING GRT-0026] Missing route to pin _2242_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _3935_/A2.
+[WARNING GRT-0026] Missing route to pin _3392_/A1.
+[WARNING GRT-0026] Missing route to pin _2242_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[18\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _2600_/A1.
+[WARNING GRT-0026] Missing route to pin _2600_/A1.
+[WARNING GRT-0026] Missing route to pin _2600_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _2611_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _2611_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _2611_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _2613_/A1.
+[WARNING GRT-0026] Missing route to pin _2613_/A1.
+[WARNING GRT-0026] Missing route to pin _2613_/A1.
+[WARNING GRT-0026] Missing route to pin _3895_/A3.
+[WARNING GRT-0026] Missing route to pin _3895_/A3.
+[WARNING GRT-0026] Missing route to pin _3895_/A3.
+[WARNING GRT-0026] Missing route to pin _3752_/A3.
+[WARNING GRT-0026] Missing route to pin _2615_/A1.
+[WARNING GRT-0026] Missing route to pin _2059_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _3752_/A3.
+[WARNING GRT-0026] Missing route to pin _2615_/A1.
+[WARNING GRT-0026] Missing route to pin _2059_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _3752_/A3.
+[WARNING GRT-0026] Missing route to pin _2615_/A1.
+[WARNING GRT-0026] Missing route to pin _2059_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[19\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _2321_/A3.
+[WARNING GRT-0026] Missing route to pin _2321_/A3.
+[WARNING GRT-0026] Missing route to pin _2321_/A3.
+[WARNING GRT-0026] Missing route to pin _2242_/A3.
+[WARNING GRT-0026] Missing route to pin _2242_/A3.
+[WARNING GRT-0026] Missing route to pin _2242_/A3.
+[WARNING GRT-0026] Missing route to pin _3363_/A1.
+[WARNING GRT-0026] Missing route to pin _3363_/A1.
+[WARNING GRT-0026] Missing route to pin _3363_/A1.
+[WARNING GRT-0026] Missing route to pin _2129_/A1.
+[WARNING GRT-0026] Missing route to pin _2129_/A1.
+[WARNING GRT-0026] Missing route to pin _2129_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin _3373_/A1.
+[WARNING GRT-0026] Missing route to pin _3373_/A1.
+[WARNING GRT-0026] Missing route to pin _3373_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _2299_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin _2299_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin _2299_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin _3352_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _3352_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _3352_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[1\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _3354_/A1.
+[WARNING GRT-0026] Missing route to pin _3354_/A1.
+[WARNING GRT-0026] Missing route to pin _3354_/A1.
+[WARNING GRT-0026] Missing route to pin _2248_/A1.
+[WARNING GRT-0026] Missing route to pin _2248_/A1.
+[WARNING GRT-0026] Missing route to pin _2248_/A1.
+[WARNING GRT-0026] Missing route to pin _3323_/A1.
+[WARNING GRT-0026] Missing route to pin _3323_/A1.
+[WARNING GRT-0026] Missing route to pin _3323_/A1.
+[WARNING GRT-0026] Missing route to pin _3884_/A0.
+[WARNING GRT-0026] Missing route to pin _3324_/A1.
+[WARNING GRT-0026] Missing route to pin _2191_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3884_/A0.
+[WARNING GRT-0026] Missing route to pin _3324_/A1.
+[WARNING GRT-0026] Missing route to pin _2191_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3884_/A0.
+[WARNING GRT-0026] Missing route to pin _3324_/A1.
+[WARNING GRT-0026] Missing route to pin _2191_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3326_/A1.
+[WARNING GRT-0026] Missing route to pin _3326_/A1.
+[WARNING GRT-0026] Missing route to pin _3326_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin _3329_/A1.
+[WARNING GRT-0026] Missing route to pin _3329_/A1.
+[WARNING GRT-0026] Missing route to pin _3329_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin _3792_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3792_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3792_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3333_/A1.
+[WARNING GRT-0026] Missing route to pin _3333_/A1.
+[WARNING GRT-0026] Missing route to pin _3333_/A1.
+[WARNING GRT-0026] Missing route to pin _3336_/A1.
+[WARNING GRT-0026] Missing route to pin _3336_/A1.
+[WARNING GRT-0026] Missing route to pin _3336_/A1.
+[WARNING GRT-0026] Missing route to pin _3338_/A1.
+[WARNING GRT-0026] Missing route to pin _3338_/A1.
+[WARNING GRT-0026] Missing route to pin _3338_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _3341_/A1.
+[WARNING GRT-0026] Missing route to pin _3341_/A1.
+[WARNING GRT-0026] Missing route to pin _3341_/A1.
+[WARNING GRT-0026] Missing route to pin _3342_/A1.
+[WARNING GRT-0026] Missing route to pin _3342_/A1.
+[WARNING GRT-0026] Missing route to pin _3342_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_29/Q.
+[WARNING GRT-0026] Missing route to pin _4015_/A0.
+[WARNING GRT-0026] Missing route to pin _3314_/A1.
+[WARNING GRT-0026] Missing route to pin _2322_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _4015_/A0.
+[WARNING GRT-0026] Missing route to pin _3314_/A1.
+[WARNING GRT-0026] Missing route to pin _2322_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _4015_/A0.
+[WARNING GRT-0026] Missing route to pin _3314_/A1.
+[WARNING GRT-0026] Missing route to pin _2322_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[20\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin _2123_/A1.
+[WARNING GRT-0026] Missing route to pin _2123_/A1.
+[WARNING GRT-0026] Missing route to pin _2123_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _3300_/A0.
+[WARNING GRT-0026] Missing route to pin _3300_/A0.
+[WARNING GRT-0026] Missing route to pin _3300_/A0.
+[WARNING GRT-0026] Missing route to pin _4094_/A1.
+[WARNING GRT-0026] Missing route to pin _3301_/A0.
+[WARNING GRT-0026] Missing route to pin _2401_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _4094_/A1.
+[WARNING GRT-0026] Missing route to pin _3301_/A0.
+[WARNING GRT-0026] Missing route to pin _2401_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _4094_/A1.
+[WARNING GRT-0026] Missing route to pin _3301_/A0.
+[WARNING GRT-0026] Missing route to pin _2401_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _3304_/A0.
+[WARNING GRT-0026] Missing route to pin _3304_/A0.
+[WARNING GRT-0026] Missing route to pin _3304_/A0.
+[WARNING GRT-0026] Missing route to pin _3276_/A0.
+[WARNING GRT-0026] Missing route to pin _3276_/A0.
+[WARNING GRT-0026] Missing route to pin _3276_/A0.
+[WARNING GRT-0026] Missing route to pin _3307_/A0.
+[WARNING GRT-0026] Missing route to pin _3307_/A0.
+[WARNING GRT-0026] Missing route to pin _3307_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[21\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _3280_/A0.
+[WARNING GRT-0026] Missing route to pin _3280_/A0.
+[WARNING GRT-0026] Missing route to pin _3280_/A0.
+[WARNING GRT-0026] Missing route to pin _3238_/A0.
+[WARNING GRT-0026] Missing route to pin _3238_/A0.
+[WARNING GRT-0026] Missing route to pin _3238_/A0.
+[WARNING GRT-0026] Missing route to pin _2217_/A2.
+[WARNING GRT-0026] Missing route to pin _2217_/A2.
+[WARNING GRT-0026] Missing route to pin _2217_/A2.
+[WARNING GRT-0026] Missing route to pin _2191_/A2.
+[WARNING GRT-0026] Missing route to pin _2191_/A2.
+[WARNING GRT-0026] Missing route to pin _2191_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3254_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _3254_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _3254_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin _2123_/A2.
+[WARNING GRT-0026] Missing route to pin _2123_/A2.
+[WARNING GRT-0026] Missing route to pin _2123_/A2.
+[WARNING GRT-0026] Missing route to pin _3805_/A2.
+[WARNING GRT-0026] Missing route to pin _3805_/A2.
+[WARNING GRT-0026] Missing route to pin _3805_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _2434_/A2.
+[WARNING GRT-0026] Missing route to pin _2434_/A2.
+[WARNING GRT-0026] Missing route to pin _2434_/A2.
+[WARNING GRT-0026] Missing route to pin _3264_/A0.
+[WARNING GRT-0026] Missing route to pin _3264_/A0.
+[WARNING GRT-0026] Missing route to pin _3264_/A0.
+[WARNING GRT-0026] Missing route to pin _3267_/A0.
+[WARNING GRT-0026] Missing route to pin _3267_/A0.
+[WARNING GRT-0026] Missing route to pin _3267_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_28/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[22\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin _3216_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3216_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3216_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_14/Q.
+[WARNING GRT-0026] Missing route to pin _3225_/A0.
+[WARNING GRT-0026] Missing route to pin _3225_/A0.
+[WARNING GRT-0026] Missing route to pin _3225_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_9/Q.
+[WARNING GRT-0026] Missing route to pin _3228_/A0.
+[WARNING GRT-0026] Missing route to pin _3228_/A0.
+[WARNING GRT-0026] Missing route to pin _3228_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_27/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[23\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin _3211_/A0.
+[WARNING GRT-0026] Missing route to pin _3211_/A0.
+[WARNING GRT-0026] Missing route to pin _3211_/A0.
+[WARNING GRT-0026] Missing route to pin _3176_/A1.
+[WARNING GRT-0026] Missing route to pin _3176_/A1.
+[WARNING GRT-0026] Missing route to pin _3176_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_15/Q.
+[WARNING GRT-0026] Missing route to pin _2125_/A0.
+[WARNING GRT-0026] Missing route to pin _2125_/A0.
+[WARNING GRT-0026] Missing route to pin _2125_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _3187_/A1.
+[WARNING GRT-0026] Missing route to pin _3187_/A1.
+[WARNING GRT-0026] Missing route to pin _3187_/A1.
+[WARNING GRT-0026] Missing route to pin _3196_/A1.
+[WARNING GRT-0026] Missing route to pin _3196_/A1.
+[WARNING GRT-0026] Missing route to pin _3196_/A1.
+[WARNING GRT-0026] Missing route to pin _3197_/A1.
+[WARNING GRT-0026] Missing route to pin _3197_/A1.
+[WARNING GRT-0026] Missing route to pin _3197_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[24\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _3924_/A1.
+[WARNING GRT-0026] Missing route to pin _3924_/A1.
+[WARNING GRT-0026] Missing route to pin _3924_/A1.
+[WARNING GRT-0026] Missing route to pin _2218_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _2218_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _2218_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_20/Q.
+[WARNING GRT-0026] Missing route to pin _3873_/A1.
+[WARNING GRT-0026] Missing route to pin _3142_/A0.
+[WARNING GRT-0026] Missing route to pin _2180_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3873_/A1.
+[WARNING GRT-0026] Missing route to pin _3142_/A0.
+[WARNING GRT-0026] Missing route to pin _2180_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin _3873_/A1.
+[WARNING GRT-0026] Missing route to pin _3142_/A0.
+[WARNING GRT-0026] Missing route to pin _2180_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_18/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _2125_/A1.
+[WARNING GRT-0026] Missing route to pin _2125_/A1.
+[WARNING GRT-0026] Missing route to pin _2125_/A1.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin _3148_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3148_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3148_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_12/Q.
+[WARNING GRT-0026] Missing route to pin _3150_/A0.
+[WARNING GRT-0026] Missing route to pin _3150_/A0.
+[WARNING GRT-0026] Missing route to pin _3150_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_8/Q.
+[WARNING GRT-0026] Missing route to pin _3154_/A0.
+[WARNING GRT-0026] Missing route to pin _3154_/A0.
+[WARNING GRT-0026] Missing route to pin _3154_/A0.
+[WARNING GRT-0026] Missing route to pin _3159_/A0.
+[WARNING GRT-0026] Missing route to pin _3159_/A0.
+[WARNING GRT-0026] Missing route to pin _3159_/A0.
+[WARNING GRT-0026] Missing route to pin _3133_/A0.
+[WARNING GRT-0026] Missing route to pin _3133_/A0.
+[WARNING GRT-0026] Missing route to pin _3133_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_24/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[25\]_$_DFFE_PP__Q_23/Q.
+[WARNING GRT-0026] Missing route to pin _3924_/A2.
+[WARNING GRT-0026] Missing route to pin _3924_/A2.
+[WARNING GRT-0026] Missing route to pin _3924_/A2.
+[WARNING GRT-0026] Missing route to pin _2218_/A2.
+[WARNING GRT-0026] Missing route to pin _2218_/A2.
+[WARNING GRT-0026] Missing route to pin _2218_/A2.
+[WARNING GRT-0026] Missing route to pin _3886_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3886_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin _3886_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_19/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_17/Q.
+[WARNING GRT-0026] Missing route to pin _3107_/A0.
+[WARNING GRT-0026] Missing route to pin _2150_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _3107_/A0.
+[WARNING GRT-0026] Missing route to pin _2150_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _3107_/A0.
+[WARNING GRT-0026] Missing route to pin _2150_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_16/Q.
+[WARNING GRT-0026] Missing route to pin _2125_/A2.
+[WARNING GRT-0026] Missing route to pin _2125_/A2.
+[WARNING GRT-0026] Missing route to pin _2125_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_13/Q.
+[WARNING GRT-0026] Missing route to pin _3092_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _3092_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _3092_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_30/Q.
+[WARNING GRT-0026] Missing route to pin _4106_/A2.
+[WARNING GRT-0026] Missing route to pin _4106_/A2.
+[WARNING GRT-0026] Missing route to pin _4106_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_2/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _3096_/A0.
+[WARNING GRT-0026] Missing route to pin _2295_/A2.
+[WARNING GRT-0026] Missing route to pin _3096_/A0.
+[WARNING GRT-0026] Missing route to pin _2295_/A2.
+[WARNING GRT-0026] Missing route to pin _3096_/A0.
+[WARNING GRT-0026] Missing route to pin _2295_/A2.
+[WARNING GRT-0026] Missing route to pin _2281_/A2.
+[WARNING GRT-0026] Missing route to pin _2281_/A2.
+[WARNING GRT-0026] Missing route to pin _2281_/A2.
+[WARNING GRT-0026] Missing route to pin _3098_/A0.
+[WARNING GRT-0026] Missing route to pin _3098_/A0.
+[WARNING GRT-0026] Missing route to pin _3098_/A0.
+[WARNING GRT-0026] Missing route to pin _2256_/A2.
+[WARNING GRT-0026] Missing route to pin _2256_/A2.
+[WARNING GRT-0026] Missing route to pin _2256_/A2.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[26\]_$_DFFE_PP__Q_22/Q.
+[WARNING GRT-0026] Missing route to pin _3924_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _3924_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _3924_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_21/Q.
+[WARNING GRT-0026] Missing route to pin _2218_/A3.
+[WARNING GRT-0026] Missing route to pin _2218_/A3.
+[WARNING GRT-0026] Missing route to pin _2218_/A3.
+[WARNING GRT-0026] Missing route to pin _3886_/A3.
+[WARNING GRT-0026] Missing route to pin _3886_/A3.
+[WARNING GRT-0026] Missing route to pin _3886_/A3.
+[WARNING GRT-0026] Missing route to pin _4106_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _4106_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _4106_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _3075_/A0.
+[WARNING GRT-0026] Missing route to pin _3075_/A0.
+[WARNING GRT-0026] Missing route to pin _3075_/A0.
+[WARNING GRT-0026] Missing route to pin _3077_/A0.
+[WARNING GRT-0026] Missing route to pin _3077_/A0.
+[WARNING GRT-0026] Missing route to pin _3077_/A0.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_3/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q/Q.
+[WARNING GRT-0026] Missing route to pin _2324_/A3.
+[WARNING GRT-0026] Missing route to pin _2324_/A3.
+[WARNING GRT-0026] Missing route to pin _2324_/A3.
+[WARNING GRT-0026] Missing route to pin Registers\[27\]_$_DFFE_PP__Q_26/Q.
+[WARNING GRT-0026] message limit reached, this message will no longer print
+SC_METRIC: report_checks -path_delay max
+Startpoint: Registers[25]_$_DFFE_PP__Q_31
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_1_$_DFF_P__Q_31
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.10    0.10 ^ clk (in)
+   0.00    0.38    0.48 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33    0.80 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33    1.13 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41    1.53 ^ clkbuf_3_5_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.72    2.26 ^ clkbuf_leaf_20_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    2.26 ^ Registers[25]_$_DFFE_PP__Q_31/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.00    1.23    3.49 v Registers[25]_$_DFFE_PP__Q_31/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.01    2.55    6.04 v _4062_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    2.64    8.68 v _4064_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    1.56   10.24 v _4065_/X (sky130_fd_sc_hd__mux2_1)
+           0.00   10.24 v read_data_1_$_DFF_P__Q_31/D (sky130_fd_sc_hd__dfxtp_4)
+                  10.24   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.10   10.10 ^ clk (in)
+   0.00    0.38   10.48 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33   10.80 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33   11.13 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41   11.53 ^ clkbuf_3_5_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   11.53 ^ read_data_1_$_DFF_P__Q_31/CLK (sky130_fd_sc_hd__dfxtp_4)
+           0.00   11.53   clock reconvergence pessimism
+          -0.78   10.75   library setup time
+                  10.75   data required time
+----------------------------------------------------------------
+                  10.75   data required time
+                 -10.24   data arrival time
+----------------------------------------------------------------
+                   0.51   slack (MET)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: Registers[0]_$_DFFE_PP__Q_5
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: Registers[0]_$_DFFE_PP__Q_5
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.02    0.02 ^ clk (in)
+   0.00    0.08    0.10 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.08    0.18 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.08    0.27 ^ clkbuf_2_3_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.11    0.38 ^ clkbuf_3_6_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.12    0.49 ^ clkbuf_leaf_29_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.49 ^ Registers[0]_$_DFFE_PP__Q_5/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.21    0.70 ^ Registers[0]_$_DFFE_PP__Q_5/Q (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.70 ^ Registers[0]_$_DFFE_PP__Q_5/D (sky130_fd_sc_hd__dfxtp_1)
+                   0.70   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.02    0.02 ^ clk (in)
+   0.00    0.08    0.10 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.08    0.18 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.08    0.27 ^ clkbuf_2_3_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.11    0.38 ^ clkbuf_3_6_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.12    0.49 ^ clkbuf_leaf_29_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.49 ^ Registers[0]_$_DFFE_PP__Q_5/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.49   clock reconvergence pessimism
+          -0.02    0.47   library hold time
+                   0.47   data required time
+----------------------------------------------------------------
+                   0.47   data required time
+                  -0.70   data arrival time
+----------------------------------------------------------------
+                   0.23   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: Registers[25]_$_DFFE_PP__Q_31
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_1_$_DFF_P__Q_31
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.10    0.10 ^ clk (in)
+   0.00    0.38    0.48 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33    0.80 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33    1.13 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41    1.53 ^ clkbuf_3_5_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.72    2.26 ^ clkbuf_leaf_20_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    2.26 ^ Registers[25]_$_DFFE_PP__Q_31/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.00    1.23    3.49 v Registers[25]_$_DFFE_PP__Q_31/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.01    2.55    6.04 v _4062_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    2.64    8.68 v _4064_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    1.56   10.24 v _4065_/X (sky130_fd_sc_hd__mux2_1)
+           0.00   10.24 v read_data_1_$_DFF_P__Q_31/D (sky130_fd_sc_hd__dfxtp_4)
+                  10.24   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.10   10.10 ^ clk (in)
+   0.00    0.38   10.48 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33   10.80 ^ clkbuf_1_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.00    0.33   11.13 ^ clkbuf_2_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41   11.53 ^ clkbuf_3_5_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   11.53 ^ read_data_1_$_DFF_P__Q_31/CLK (sky130_fd_sc_hd__dfxtp_4)
+           0.00   11.53   clock reconvergence pessimism
+          -0.78   10.75   library setup time
+                  10.75   data required time
+----------------------------------------------------------------
+                  10.75   data required time
+                 -10.24   data arrival time
+----------------------------------------------------------------
+                   0.51   slack (MET)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+Registers[10]_$_DFFE_PP__Q_3/CLK ^
+   2.29
+read_data_1_$_DFF_P__Q_3/CLK ^
+   1.55      0.00       0.74
+
+SC_METRIC: DRV violators
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns 0.00
+
+SC_METRIC: setupslack
+worst slack 0.51
+
+SC_METRIC: holdslack
+worst slack 0.23
+
+SC_METRIC: fmax
+105.4097647510311 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             5.85e-03   3.03e-04   3.01e-05   6.18e-03  70.7%
+Combinational          1.43e-03   1.09e-03   3.71e-05   2.56e-03  29.3%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  7.28e-03   1.39e-03   6.72e-05   8.74e-03 100.0%
+                          83.3%      15.9%       0.8%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.94e-03   1.37e-04   3.43e-10   2.08e-03  66.7%
+Combinational          6.00e-04   4.36e-04   5.17e-10   1.04e-03  33.3%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.54e-03   5.73e-04   8.60e-10   3.12e-03 100.0%
+                          81.6%      18.4%       0.0%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             4.82e-03   2.47e-04   9.19e-09   5.07e-03  72.0%
+Combinational          1.10e-03   8.72e-04   1.25e-08   1.97e-03  28.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  5.92e-03   1.12e-03   2.17e-08   7.04e-03 100.0%
+                          84.1%      15.9%       0.0%
+
+SC_METRIC: cellarea
+Design area 62193 u^2 13% utilization.

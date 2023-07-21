@@ -1,0 +1,112 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Register_File.odb
+Reading SDC: inputs/Register_File.sdc
+Warning: There are 50 input ports missing set_input_delay.
+Warning: There are 64 output ports missing set_output_delay.
+Warning: There are 64 unconstrained endpoints.
+[INFO ORD-0030] Using 1 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+# Write LEF
+write_abstract_lef "outputs/${sc_design}.lef"
+if { [lindex [dict get $sc_cfg tool $sc_tool task $sc_task {var} write_cdl] 0] == "true" } {
+  # Write CDL
+  set sc_cdl_masters []
+  foreach lib "$sc_targetlibs $sc_macrolibs" {
+    #CDL files
+    if {[dict exists $sc_cfg library $lib output $sc_stackup cdl]} {
+      foreach cdl_file [dict get $sc_cfg library $lib output $sc_stackup cdl] {
+        lappend sc_cdl_masters $cdl_file
+      }
+    }
+  }
+  write_cdl -masters $sc_cdl_masters "outputs/${sc_design}.cdl"
+}
+# generate SPEF
+# just need to define a corner
+define_process_corner -ext_model_index 0 X
+[INFO RCX-0431] Defined process_corner X with ext_model_index 0
+[INFO RCX-0029] Defined extraction corner X
+foreach pexcorner $sc_pex_corners {
+  set sc_pextool "${sc_tool}-openrcx"
+  set pex_model [lindex [dict get $sc_cfg pdk $sc_pdk pexmodel $sc_pextool $sc_stackup $pexcorner] 0]
+  puts "Writing SPEF for $pexcorner"
+  extract_parasitics -ext_model_file $pex_model
+  write_spef "outputs/${sc_design}.${pexcorner}.spef"
+}
+Writing SPEF for maximum
+[INFO RCX-0008] extracting parasitics of Register_File ...
+[INFO RCX-0435] Reading extraction model file /third_party/pdks/skywater/skywater130/pdk/v0_0_2/pex/openroad/maximum.rules ...
+[INFO RCX-0436] RC segment generation Register_File (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 17467 rc segments
+[INFO RCX-0439] Coupling Cap extraction Register_File ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0043] 46817 wires to be extracted
+[INFO RCX-0442] 64% completion -- 30046 wires have been extracted
+[INFO RCX-0442] 100% completion -- 46817 wires have been extracted
+[INFO RCX-0045] Extract 3026 nets, 20491 rsegs, 20491 caps, 28799 ccs
+[INFO RCX-0015] Finished extracting Register_File.
+[INFO RCX-0016] Writing SPEF ...
+[INFO RCX-0443] 3026 nets finished
+[INFO RCX-0017] Finished writing SPEF ...
+Writing SPEF for typical
+[INFO RCX-0008] extracting parasitics of Register_File ...
+[INFO RCX-0435] Reading extraction model file /third_party/pdks/skywater/skywater130/pdk/v0_0_2/pex/openroad/typical.rules ...
+[INFO RCX-0436] RC segment generation Register_File (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 17117 rc segments
+[INFO RCX-0439] Coupling Cap extraction Register_File ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0043] 46817 wires to be extracted
+[INFO RCX-0045] Extract 3026 nets, 20141 rsegs, 20141 caps, 28644 ccs
+[INFO RCX-0015] Finished extracting Register_File.
+[INFO RCX-0016] Writing SPEF ...
+[INFO RCX-0443] 3026 nets finished
+[INFO RCX-0017] Finished writing SPEF ...
+Writing SPEF for minimum
+[INFO RCX-0008] extracting parasitics of Register_File ...
+[INFO RCX-0435] Reading extraction model file /third_party/pdks/skywater/skywater130/pdk/v0_0_2/pex/openroad/minimum.rules ...
+[INFO RCX-0436] RC segment generation Register_File (max_merge_res 50.0) ...
+[INFO RCX-0040] Final 16807 rc segments
+[INFO RCX-0439] Coupling Cap extraction Register_File ...
+[INFO RCX-0440] Coupling threshhold is 0.1000 fF, coupling capacitance less than 0.1000 fF will be grounded.
+[INFO RCX-0043] 46817 wires to be extracted
+[INFO RCX-0045] Extract 3026 nets, 19831 rsegs, 19831 caps, 28514 ccs
+[INFO RCX-0015] Finished extracting Register_File.
+[INFO RCX-0016] Writing SPEF ...
+[INFO RCX-0443] 3026 nets finished
+[INFO RCX-0017] Finished writing SPEF ...
+set lib_pex [dict create]
+foreach scenario $sc_scenarios {
+  set libcorner [dict get $sc_cfg constraint timing $scenario libcorner]
+  set pexcorner [dict get $sc_cfg constraint timing $scenario pexcorner]
+  dict set lib_pex $libcorner $pexcorner
+}
+# read in spef for timing corners
+foreach corner $sc_corners {
+  set pexcorner [dict get $lib_pex $corner]
+  puts "Reading SPEF for $pexcorner into $corner"
+  read_spef -corner $corner \
+    "outputs/${sc_design}.${pexcorner}.spef"
+}
+Reading SPEF for minimum into fast
+Reading SPEF for maximum into slow
+Reading SPEF for typical into typical
+# Write timing models
+foreach corner $sc_corners {
+  puts "Writing timing model for $corner"
+  write_timing_model -library_name "${sc_design}_${corner}" \
+    -corner $corner \
+    "outputs/${sc_design}.${corner}.lib"
+}
+Writing timing model for fast
+Writing timing model for slow
+Writing timing model for typical

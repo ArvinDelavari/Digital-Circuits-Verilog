@@ -1,0 +1,75 @@
+[INFO] Loading technology file: /third_party/pdks/skywater/skywater130/pdk/v0_0_2/setup/klayout/skywater130.lyt
+[INFO] LEF file: /third_party/pdks/skywater/skywater130/pdk/v0_0_2/apr/sky130_fd_sc_hd.tlef
+[INFO] LEF file: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lef/sky130_fd_sc_hd_merged.lef
+[INFO] Layer properies: /third_party/pdks/skywater/skywater130/pdk/v0_0_2/setup/klayout/sky130A.lyp
+[INFO] Read in 30 cells from DEF file
+  [INFO] DEF cell: sky130_fd_sc_hd__and2_0
+  [INFO] DEF cell: sky130_fd_sc_hd__and3b_4
+  [INFO] DEF cell: sky130_fd_sc_hd__buf_12
+  [INFO] DEF cell: sky130_fd_sc_hd__clkbuf_16
+  [INFO] DEF cell: sky130_fd_sc_hd__clkbuf_4
+  [INFO] DEF cell: sky130_fd_sc_hd__dfxtp_1
+  [INFO] DEF cell: sky130_fd_sc_hd__dfxtp_2
+  [INFO] DEF cell: sky130_fd_sc_hd__dfxtp_4
+  [INFO] DEF cell: sky130_fd_sc_hd__diode_2
+  [INFO] DEF cell: sky130_fd_sc_hd__fill_1
+  [INFO] DEF cell: sky130_fd_sc_hd__fill_2
+  [INFO] DEF cell: sky130_fd_sc_hd__fill_4
+  [INFO] DEF cell: sky130_fd_sc_hd__fill_8
+  [INFO] DEF cell: sky130_fd_sc_hd__mux2_1
+  [INFO] DEF cell: sky130_fd_sc_hd__mux2_2
+  [INFO] DEF cell: sky130_fd_sc_hd__mux2_4
+  [INFO] DEF cell: sky130_fd_sc_hd__mux4_1
+  [INFO] DEF cell: sky130_fd_sc_hd__nand2_2
+  [INFO] DEF cell: sky130_fd_sc_hd__nand2_8
+  [INFO] DEF cell: sky130_fd_sc_hd__nand2b_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nand3_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nand3b_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nand4_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nand4b_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nand4bb_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nor2_8
+  [INFO] DEF cell: sky130_fd_sc_hd__nor3_4
+  [INFO] DEF cell: sky130_fd_sc_hd__nor3b_4
+  [INFO] DEF cell: sky130_fd_sc_hd__or3_4
+  [INFO] DEF cell: sky130_fd_sc_hd__tapvpwrvgnd_1
+[INFO] Merging GDS/OAS files...
+[INFO] Read in /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/gds/sky130_fd_sc_hd.gds
+  [INFO] Merging in sky130_fd_sc_hd__and2_0
+  [INFO] Merging in sky130_fd_sc_hd__and3b_4
+  [INFO] Merging in sky130_fd_sc_hd__buf_12
+  [INFO] Merging in sky130_fd_sc_hd__clkbuf_16
+  [INFO] Merging in sky130_fd_sc_hd__clkbuf_4
+  [INFO] Merging in sky130_fd_sc_hd__dfxtp_1
+  [INFO] Merging in sky130_fd_sc_hd__dfxtp_2
+  [INFO] Merging in sky130_fd_sc_hd__dfxtp_4
+  [INFO] Merging in sky130_fd_sc_hd__diode_2
+  [INFO] Merging in sky130_fd_sc_hd__fill_1
+  [INFO] Merging in sky130_fd_sc_hd__fill_2
+  [INFO] Merging in sky130_fd_sc_hd__fill_4
+  [INFO] Merging in sky130_fd_sc_hd__fill_8
+  [INFO] Merging in sky130_fd_sc_hd__mux2_1
+  [INFO] Merging in sky130_fd_sc_hd__mux2_2
+  [INFO] Merging in sky130_fd_sc_hd__mux2_4
+  [INFO] Merging in sky130_fd_sc_hd__mux4_1
+  [INFO] Merging in sky130_fd_sc_hd__nand2_2
+  [INFO] Merging in sky130_fd_sc_hd__nand2_8
+  [INFO] Merging in sky130_fd_sc_hd__nand2b_4
+  [INFO] Merging in sky130_fd_sc_hd__nand3_4
+  [INFO] Merging in sky130_fd_sc_hd__nand3b_4
+  [INFO] Merging in sky130_fd_sc_hd__nand4_4
+  [INFO] Merging in sky130_fd_sc_hd__nand4b_4
+  [INFO] Merging in sky130_fd_sc_hd__nand4bb_4
+  [INFO] Merging in sky130_fd_sc_hd__nor2_8
+  [INFO] Merging in sky130_fd_sc_hd__nor3_4
+  [INFO] Merging in sky130_fd_sc_hd__nor3b_4
+  [INFO] Merging in sky130_fd_sc_hd__or3_4
+  [INFO] Merging in sky130_fd_sc_hd__tapvpwrvgnd_1
+[INFO] Copying toplevel cell 'Register_File'
+[WARNING] no fill config file specified
+[INFO] Checking for missing GDS/OAS...
+[INFO] All LEF cells have matching GDS/OAS cells
+[INFO] Checking for orphan cell in the final layout...
+[INFO] Writing out GDS/OAS 'outputs/Register_File.gds'
+[INFO] Opening outputs/Register_File.gds
+[INFO] Saving screenshot to outputs/Register_File.png

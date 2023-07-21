@@ -1,0 +1,488 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Register_File.odb
+Reading SDC: inputs/Register_File.sdc
+Warning: There are 50 input ports missing set_input_delay.
+Warning: There are 64 output ports missing set_output_delay.
+Warning: There are 64 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+#######################
+# Global Placement
+#######################
+set openroad_gpl_args []
+if {$openroad_gpl_routability_driven == "true"} {
+  lappend openroad_gpl_args "-routability_driven"
+}
+if {$openroad_gpl_timing_driven == "true"} {
+  lappend openroad_gpl_args "-timing_driven"
+}
+global_placement {*}$openroad_gpl_args \
+  -density $openroad_gpl_place_density \
+  -pad_left $openroad_gpl_padding \
+  -pad_right $openroad_gpl_padding
+[INFO GPL-0002] DBU: 1000
+[INFO GPL-0003] SiteSize: 460 2720
+[INFO GPL-0004] CoreAreaLxLy: 4600 5440
+[INFO GPL-0005] CoreAreaUxUy: 709780 709920
+[INFO GPL-0006] NumInstances: 9487
+[INFO GPL-0007] NumPlaceInstances: 2832
+[INFO GPL-0008] NumFixedInstances: 6655
+[INFO GPL-0009] NumDummyInstances: 0
+[INFO GPL-0010] NumNets: 2883
+[INFO GPL-0011] NumPins: 12270
+[INFO GPL-0012] DieAreaLxLy: 0 0
+[INFO GPL-0013] DieAreaUxUy: 714815 714815
+[INFO GPL-0014] CoreAreaLxLy: 4600 5440
+[INFO GPL-0015] CoreAreaUxUy: 709780 709920
+[INFO GPL-0016] CoreArea: 496785206400
+[INFO GPL-0017] NonPlaceInstsArea: 8326736000
+[INFO GPL-0018] PlaceInstsArea: 76728588800
+[INFO GPL-0019] Util(%): 15.71
+[INFO GPL-0020] StdInstsArea: 76728588800
+[INFO GPL-0021] MacroInstsArea: 0
+[InitialPlace]  Iter: 1 CG residual: 0.00000012 HPWL: 110391210
+[InitialPlace]  Iter: 2 CG residual: 0.00000571 HPWL: 95153872
+[InitialPlace]  Iter: 3 CG residual: 0.00001754 HPWL: 95593855
+[InitialPlace]  Iter: 4 CG residual: 0.00004122 HPWL: 95824653
+[InitialPlace]  Iter: 5 CG residual: 0.00004603 HPWL: 95990491
+[InitialPlace]  Iter: 6 CG residual: 0.00035810 HPWL: 96251364
+[InitialPlace]  Iter: 7 CG residual: 0.05376962 HPWL: 96533148
+[InitialPlace]  Iter: 8 CG residual: 0.04934671 HPWL: 112582176
+[InitialPlace]  Iter: 9 CG residual: 0.00436180 HPWL: 105557318
+[InitialPlace]  Iter: 10 CG residual: 0.00294936 HPWL: 104666789
+[InitialPlace]  Iter: 11 CG residual: 0.00195194 HPWL: 104390956
+[InitialPlace]  Iter: 12 CG residual: 0.00376236 HPWL: 104248244
+[InitialPlace]  Iter: 13 CG residual: 0.00213703 HPWL: 103846014
+[InitialPlace]  Iter: 14 CG residual: 0.03165212 HPWL: 104294582
+[InitialPlace]  Iter: 15 CG residual: 0.00218572 HPWL: 129131583
+[InitialPlace]  Iter: 16 CG residual: 0.00112863 HPWL: 110007533
+[InitialPlace]  Iter: 17 CG residual: 0.00076200 HPWL: 107329735
+[InitialPlace]  Iter: 18 CG residual: 0.00103516 HPWL: 106547120
+[InitialPlace]  Iter: 19 CG residual: 0.00048498 HPWL: 104584100
+[InitialPlace]  Iter: 20 CG residual: 0.00041472 HPWL: 104981886
+[INFO GPL-0031] FillerInit: NumGCells: 10783
+[INFO GPL-0032] FillerInit: NumGNets: 2883
+[INFO GPL-0033] FillerInit: NumGPins: 12270
+[INFO GPL-0023] TargetDensity: 0.60
+[INFO GPL-0024] AveragePlaceInstArea: 27093428
+[INFO GPL-0025] IdealBinArea: 45155712
+[INFO GPL-0026] IdealBinCnt: 11001
+[INFO GPL-0027] TotalBinArea: 496785206400
+[INFO GPL-0028] BinCnt: 64 64
+[INFO GPL-0029] BinSize: 11019 11008
+[INFO GPL-0030] NumBins: 4096
+[NesterovSolve] Iter: 1 overflow: 0.871508 HPWL: 83648062
+[NesterovSolve] Iter: 10 overflow: 0.837971 HPWL: 97042968
+[NesterovSolve] Iter: 20 overflow: 0.844151 HPWL: 96436053
+[NesterovSolve] Iter: 30 overflow: 0.860297 HPWL: 95760421
+[NesterovSolve] Iter: 40 overflow: 0.860861 HPWL: 95421341
+[NesterovSolve] Iter: 50 overflow: 0.85591 HPWL: 94848338
+[NesterovSolve] Iter: 60 overflow: 0.855517 HPWL: 94243717
+[NesterovSolve] Iter: 70 overflow: 0.85852 HPWL: 93963747
+[NesterovSolve] Iter: 80 overflow: 0.859742 HPWL: 93903596
+[NesterovSolve] Iter: 90 overflow: 0.858717 HPWL: 93903456
+[NesterovSolve] Iter: 100 overflow: 0.85765 HPWL: 94009366
+[NesterovSolve] Iter: 110 overflow: 0.85403 HPWL: 94226129
+[NesterovSolve] Iter: 120 overflow: 0.853009 HPWL: 94564996
+[NesterovSolve] Iter: 130 overflow: 0.849204 HPWL: 95039637
+[NesterovSolve] Iter: 140 overflow: 0.842471 HPWL: 95593146
+[NesterovSolve] Iter: 150 overflow: 0.833174 HPWL: 96052664
+[NesterovSolve] Iter: 160 overflow: 0.819143 HPWL: 96028093
+[NesterovSolve] Iter: 170 overflow: 0.80552 HPWL: 95983332
+[NesterovSolve] Iter: 180 overflow: 0.785359 HPWL: 97308905
+[INFO GPL-0100] worst slack 1.33e-09
+[INFO GPL-0103] Weighted 288 nets.
+[NesterovSolve] Iter: 190 overflow: 0.762652 HPWL: 97141522
+[NesterovSolve] Iter: 200 overflow: 0.737549 HPWL: 98076491
+[NesterovSolve] Iter: 210 overflow: 0.707567 HPWL: 99335167
+[NesterovSolve] Iter: 220 overflow: 0.682639 HPWL: 98644294
+[NesterovSolve] Iter: 230 overflow: 0.637142 HPWL: 97268030
+[INFO GPL-0100] worst slack 1.34e-09
+[INFO GPL-0103] Weighted 288 nets.
+[NesterovSolve] Iter: 240 overflow: 0.602238 HPWL: 96499027
+[NesterovSolve] Snapshot saved at iter = 241
+[NesterovSolve] Iter: 250 overflow: 0.566529 HPWL: 93313013
+[NesterovSolve] Iter: 260 overflow: 0.53344 HPWL: 91778672
+[NesterovSolve] Iter: 270 overflow: 0.488013 HPWL: 91784896
+[INFO GPL-0100] worst slack 1.41e-09
+[INFO GPL-0103] Weighted 287 nets.
+[NesterovSolve] Iter: 280 overflow: 0.443112 HPWL: 91281760
+[NesterovSolve] Iter: 290 overflow: 0.391472 HPWL: 90990360
+[NesterovSolve] Iter: 300 overflow: 0.342233 HPWL: 91647577
+[NesterovSolve] Iter: 310 overflow: 0.307223 HPWL: 92186594
+[INFO GPL-0100] worst slack 1.32e-09
+[INFO GPL-0103] Weighted 288 nets.
+[NesterovSolve] Iter: 320 overflow: 0.276811 HPWL: 92080847
+[NesterovSolve] Iter: 330 overflow: 0.239076 HPWL: 93922997
+[NesterovSolve] Iter: 340 overflow: 0.203275 HPWL: 93876435
+[INFO GPL-0100] worst slack 1.49e-09
+[INFO GPL-0103] Weighted 288 nets.
+[INFO GPL-0075] Routability numCall: 1 inflationIterCnt: 1 bloatIterCnt: 0
+[INFO GPL-0036] TileLxLy: 0 0
+[INFO GPL-0037] TileSize: 6900 6900
+[INFO GPL-0038] TileCnt: 103 103
+[INFO GPL-0039] numRoutingLayers: 6
+[INFO GPL-0040] NumTiles: 10609
+[INFO GPL-0063] TotalRouteOverflowH2: 1.8000001907348633
+[INFO GPL-0064] TotalRouteOverflowV2: 0.06666672229766846
+[INFO GPL-0065] OverflowTileCnt2: 10
+[INFO GPL-0066] 0.5%RC: 1.011612904456354
+[INFO GPL-0067] 1.0%RC: 0.9996774185088373
+[INFO GPL-0068] 2.0%RC: 0.943780287305835
+[INFO GPL-0069] 5.0%RC: 0.8229948228651617
+[INFO GPL-0070] 0.5rcK: 1.0
+[INFO GPL-0071] 1.0rcK: 1.0
+[INFO GPL-0072] 2.0rcK: 0.0
+[INFO GPL-0073] 5.0rcK: 0.0
+[INFO GPL-0074] FinalRC: 1.0056452
+[NesterovSolve] Iter: 350 overflow: 0.185284 HPWL: 94647680
+[NesterovSolve] Iter: 360 overflow: 0.163946 HPWL: 94830791
+[NesterovSolve] Iter: 370 overflow: 0.143639 HPWL: 95111856
+[INFO GPL-0100] worst slack 1.49e-09
+[INFO GPL-0103] Weighted 288 nets.
+[NesterovSolve] Iter: 380 overflow: 0.133813 HPWL: 94324137
+[NesterovSolve] Iter: 390 overflow: 0.116333 HPWL: 94537940
+[NesterovSolve] Iter: 400 overflow: 0.0985414 HPWL: 95161913
+[NesterovSolve] Finished with Overflow: 0.098541
+###########################
+# Refine Automatic Pin Placement
+###########################
+if {[dict exists $sc_cfg tool $sc_tool task $sc_task var pin_thickness_h]} {
+  set h_mult [lindex [dict get $sc_cfg tool $sc_tool task $sc_task var pin_thickness_h] 0]
+  set_pin_thick_multiplier -hor_multiplier $h_mult
+}
+if {[dict exists $sc_cfg tool $sc_tool task $sc_task var pin_thickness_v]} {
+  set v_mult [lindex [dict get $sc_cfg tool $sc_tool task $sc_task var pin_thickness_v] 0]
+  set_pin_thick_multiplier -ver_multiplier $v_mult
+}
+if {[dict exists $sc_cfg tool $sc_tool task $sc_task {file} ppl_constraints]} {
+  foreach pin_constraint [dict get $sc_cfg tool $sc_tool task $sc_task {file} ppl_constraints] {
+    puts "Sourcing pin constraints: ${pin_constraint}"
+    source $pin_constraint
+  }
+}
+place_pins -hor_layers $sc_hpinmetal \
+  -ver_layers $sc_vpinmetal
+Found 0 macro blocks.
+Using 1u default distance from corners.
+Using 2 tracks default min distance between IO pins.
+[INFO PPL-0010] Tentative 0 to set up sections.
+[INFO PPL-0001] Number of slots          2602
+[INFO PPL-0002] Number of I/O            115
+[INFO PPL-0003] Number of I/O w/sink     115
+[INFO PPL-0004] Number of I/O w/o sink   2
+[INFO PPL-0005] Slots per section        200
+[INFO PPL-0006] Slots increase factor    0.01
+[INFO PPL-0008] Successfully assigned pins to sections.
+[INFO PPL-0012] I/O nets HPWL: 35427.81 um.
+#######################
+# Repair Design
+#######################
+estimate_parasitics -placement
+if {$openroad_rsz_buffer_inputs == "true"} {
+  buffer_ports -inputs
+}
+if {$openroad_rsz_buffer_outputs == "true"} {
+  buffer_ports -outputs
+}
+set repair_design_args []
+if {$openroad_rsz_cap_margin != "false"} {
+  lappend repair_design_args "-cap_margin" $openroad_rsz_cap_margin
+}
+if {$openroad_rsz_slew_margin != "false"} {
+  lappend repair_design_args "-slew_margin" $openroad_rsz_slew_margin
+}
+repair_design {*}$repair_design_args
+[INFO RSZ-0058] Using max wire length 19521um.
+[INFO RSZ-0034] Found 13 slew violations.
+[INFO RSZ-0036] Found 13 capacitance violations.
+[INFO RSZ-0038] Inserted 66 buffers in 13 nets.
+[INFO RSZ-0039] Resized 1803 instances.
+#######################
+# TIE FANOUT
+#######################
+foreach tie_type "high low" {
+  if {[has_tie_cell $tie_type]} {
+    repair_tie_fanout -separation $openroad_ifp_tie_separation [get_tie_cell $tie_type]
+  }
+}
+#######################
+# DETAILED PLACEMENT
+#######################
+set_placement_padding -global \
+  -left $openroad_dpl_padding \
+  -right $openroad_dpl_padding
+set dpl_args []
+if { $openroad_dpl_disallow_one_site == "true" } {
+  lappend dpl_args "-disallow_one_site_gaps"
+}
+detailed_placement -max_displacement $openroad_dpl_max_displacement \
+  {*}$dpl_args
+Placement Analysis
+---------------------------------
+total displacement      15297.4 u
+average displacement        1.6 u
+max displacement           19.4 u
+original HPWL           99622.5 u
+legalized HPWL         119244.4 u
+delta HPWL                   20 %
+
+if { $openroad_dpo_enable == "true" } {
+  improve_placement -max_displacement $openroad_dpo_max_displacement
+  # Do another detailed placement in case DPO leaves violations behind
+  detailed_placement -max_displacement $openroad_dpl_max_displacement \
+    {*}$dpl_args
+}
+Detailed placement improvement.
+Importing netlist into detailed improver.
+[INFO DPO-0100] Creating network with 9553 cells, 115 terminals, 2949 edges and 12402 pins.
+[INFO DPO-0109] Network stats: inst 9668, edges 2949, pins 12402
+[INFO DPO-0110] Number of regions is 1
+[INFO DPO-0401] Setting random seed to 1.
+[INFO DPO-0402] Setting maximum displacement 0 0 to 1410360 1410360 units.
+[INFO DPO-0320] Collected 6770 fixed cells (excluded terminal_NI).
+[INFO DPO-0318] Collected 2898 single height cells.
+[INFO DPO-0321] Collected 0 wide cells.
+[INFO DPO-0322] Image (4600, 5440) - (709780, 709920)
+[INFO DPO-0310] Assigned 2898 cells into segments.  Movement in X-direction is 0.000000, movement in Y-direction is 0.000000.
+[INFO DPO-0313] Found 0 cells in wrong regions.
+[INFO DPO-0315] Found 0 row alignment problems.
+[INFO DPO-0314] Found 0 site alignment problems.
+[INFO DPO-0311] Found 0 overlaps between adjacent cells.
+[INFO DPO-0312] Found 0 edge spacing violations and 0 padding violations.
+[INFO DPO-0303] Running algorithm for independent set matching.
+[INFO DPO-0300] Set matching objective is wirelength.
+[INFO DPO-0301] Pass   1 of matching; objective is 1.193809e+08.
+[INFO DPO-0301] Pass   2 of matching; objective is 1.173309e+08.
+[INFO DPO-0302] End of matching; objective is 1.172672e+08, improvement is 1.77 percent.
+[INFO DPO-0303] Running algorithm for global swaps.
+[INFO DPO-0306] Pass   1 of global swaps; hpwl is 1.154653e+08.
+[INFO DPO-0306] Pass   2 of global swaps; hpwl is 1.151619e+08.
+[INFO DPO-0307] End of global swaps; objective is 1.151619e+08, improvement is 1.80 percent.
+[INFO DPO-0303] Running algorithm for vertical swaps.
+[INFO DPO-0308] Pass   1 of vertical swaps; hpwl is 1.135866e+08.
+[INFO DPO-0308] Pass   2 of vertical swaps; hpwl is 1.126363e+08.
+[INFO DPO-0309] End of vertical swaps; objective is 1.126363e+08, improvement is 2.19 percent.
+[INFO DPO-0303] Running algorithm for reordering.
+[INFO DPO-0304] Pass   1 of reordering; objective is 1.126337e+08.
+[INFO DPO-0305] End of reordering; objective is 1.126337e+08, improvement is 0.00 percent.
+[INFO DPO-0303] Running algorithm for random improvement.
+[INFO DPO-0324] Random improver is using displacement generator.
+[INFO DPO-0325] Random improver is using hpwl objective.
+[INFO DPO-0326] Random improver cost string is (a).
+[INFO DPO-0332] End of pass, Generator displacement called 57960 times.
+[INFO DPO-0335] Generator displacement, Cumulative attempts 57960, swaps 31422, moves 26301 since last reset.
+[INFO DPO-0333] End of pass, Objective hpwl, Initial cost 1.114844e+08, Scratch cost 1.096398e+08, Incremental cost 1.096398e+08, Mismatch? N
+[INFO DPO-0338] End of pass, Total cost is 1.096398e+08.
+[INFO DPO-0327] Pass   1 of random improver; improvement in cost is 1.65 percent.
+[INFO DPO-0332] End of pass, Generator displacement called 57960 times.
+[INFO DPO-0335] Generator displacement, Cumulative attempts 115920, swaps 62693, moves 52741 since last reset.
+[INFO DPO-0333] End of pass, Objective hpwl, Initial cost 1.096398e+08, Scratch cost 1.088018e+08, Incremental cost 1.088018e+08, Mismatch? N
+[INFO DPO-0338] End of pass, Total cost is 1.088018e+08.
+[INFO DPO-0327] Pass   2 of random improver; improvement in cost is 0.76 percent.
+[INFO DPO-0328] End of random improver; improvement is 2.406225 percent.
+[INFO DPO-0380] Cell flipping.
+[INFO DPO-0382] Changed 1443 cell orientations for row compatibility.
+[INFO DPO-0383] Performed 616 cell flips.
+[INFO DPO-0384] End of flipping; objective is 1.067367e+08, improvement is 2.95 percent.
+[INFO DPO-0313] Found 0 cells in wrong regions.
+[INFO DPO-0315] Found 0 row alignment problems.
+[INFO DPO-0314] Found 0 site alignment problems.
+[INFO DPO-0311] Found 0 overlaps between adjacent cells.
+[INFO DPO-0312] Found 0 edge spacing violations and 0 padding violations.
+Detailed Improvement Results
+------------------------------------------
+Original HPWL           119244.4 u
+Final HPWL              106530.6 u
+Delta HPWL                 -10.7 %
+
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL          106530.6 u
+legalized HPWL         109974.3 u
+delta HPWL                    3 %
+
+optimize_mirroring
+[INFO DPL-0020] Mirrored 609 instances
+[INFO DPL-0021] HPWL before          109974.3 u
+[INFO DPL-0022] HPWL after           106630.3 u
+[INFO DPL-0023] HPWL delta               -3.0 %
+check_placement -verbose
+global_connect
+# estimate for metrics
+estimate_parasitics -placement
+SC_METRIC: report_checks -path_delay max
+Startpoint: Registers[7]_$_DFFE_PP__Q_23
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_2_$_DFF_P__Q_23
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ Registers[7]_$_DFFE_PP__Q_23/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.95    0.95 v Registers[7]_$_DFFE_PP__Q_23/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    2.43    3.38 v _2249_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    2.58    5.95 v _2252_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    1.70    7.65 v _2259_/X (sky130_fd_sc_hd__mux2_1)
+           0.00    7.65 v read_data_2_$_DFF_P__Q_23/D (sky130_fd_sc_hd__dfxtp_2)
+                   7.65   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock network delay (ideal)
+           0.00   10.00   clock reconvergence pessimism
+                  10.00 ^ read_data_2_$_DFF_P__Q_23/CLK (sky130_fd_sc_hd__dfxtp_2)
+          -0.95    9.05   library setup time
+                   9.05   data required time
+----------------------------------------------------------------
+                   9.05   data required time
+                  -7.65   data arrival time
+----------------------------------------------------------------
+                   1.40   slack (MET)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: Registers[0]_$_DFFE_PP__Q_3
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: Registers[0]_$_DFFE_PP__Q_3
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ Registers[0]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.20    0.20 ^ Registers[0]_$_DFFE_PP__Q_3/Q (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.20 ^ Registers[0]_$_DFFE_PP__Q_3/D (sky130_fd_sc_hd__dfxtp_1)
+                   0.20   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00   clock reconvergence pessimism
+                   0.00 ^ Registers[0]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+          -0.02   -0.02   library hold time
+                  -0.02   data required time
+----------------------------------------------------------------
+                  -0.02   data required time
+                  -0.20   data arrival time
+----------------------------------------------------------------
+                   0.22   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: Registers[7]_$_DFFE_PP__Q_23
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_2_$_DFF_P__Q_23
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ Registers[7]_$_DFFE_PP__Q_23/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.95    0.95 v Registers[7]_$_DFFE_PP__Q_23/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    2.43    3.38 v _2249_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    2.58    5.95 v _2252_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    1.70    7.65 v _2259_/X (sky130_fd_sc_hd__mux2_1)
+           0.00    7.65 v read_data_2_$_DFF_P__Q_23/D (sky130_fd_sc_hd__dfxtp_2)
+                   7.65   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock network delay (ideal)
+           0.00   10.00   clock reconvergence pessimism
+                  10.00 ^ read_data_2_$_DFF_P__Q_23/CLK (sky130_fd_sc_hd__dfxtp_2)
+          -0.95    9.05   library setup time
+                   9.05   data required time
+----------------------------------------------------------------
+                   9.05   data required time
+                  -7.65   data arrival time
+----------------------------------------------------------------
+                   1.40   slack (MET)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+Registers[0]_$_DFFE_PP__Q/CLK ^
+  11.69
+Registers[0]_$_DFFE_PP__Q/CLK ^
+  11.69      0.00       0.00
+
+SC_METRIC: DRV violators
+max capacitance
+
+Pin                                    Limit     Cap   Slack
+------------------------------------------------------------
+read_index_2[4]                         0.13    0.13   -0.00 (VIOLATED)
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns 0.00
+
+SC_METRIC: setupslack
+worst slack 1.40
+
+SC_METRIC: holdslack
+worst slack 0.22
+
+SC_METRIC: fmax
+116.22374045763802 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             5.85e-03   3.62e-04   3.01e-05   6.24e-03  83.3%
+Combinational          1.01e-03   2.02e-04   3.62e-05   1.25e-03  16.7%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  6.87e-03   5.64e-04   6.63e-05   7.50e-03 100.0%
+                          91.6%       7.5%       0.9%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             2.51e-03   1.68e-04   3.43e-10   2.68e-03  84.7%
+Combinational          3.93e-04   8.92e-05   4.93e-10   4.83e-04  15.3%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.90e-03   2.57e-04   8.37e-10   3.16e-03 100.0%
+                          91.9%       8.1%       0.0%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             4.93e-03   2.97e-04   9.19e-09   5.22e-03  85.2%
+Combinational          7.45e-04   1.63e-04   1.22e-08   9.09e-04  14.8%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  5.67e-03   4.61e-04   2.13e-08   6.13e-03 100.0%
+                          92.5%       7.5%       0.0%
+
+SC_METRIC: cellarea
+Design area 61533 u^2 12% utilization.

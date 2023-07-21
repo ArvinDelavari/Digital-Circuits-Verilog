@@ -1,0 +1,350 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Register_File.odb
+Reading SDC: inputs/Register_File.sdc
+Warning: There are 50 input ports missing set_input_delay.
+Warning: There are 64 output ports missing set_output_delay.
+Warning: There are 64 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+#######################################
+# Clock tree synthesis
+# (skip if no clocks defined)
+#######################################
+if {[llength [all_clocks]] > 0} {
+  # Clone clock tree inverters next to register loads
+  # so cts does not try to buffer the inverted clocks.
+  repair_clock_inverters
+  set sc_cts_arguments []
+  if {$openroad_cts_balance_levels == "true"} {
+    lappend sc_cts_arguments "-balance_levels"
+  }
+  clock_tree_synthesis -root_buf $sc_clkbuf -buf_list $sc_clkbuf \
+    -sink_clustering_enable \
+    -sink_clustering_size $openroad_cts_cluster_size \
+    -sink_clustering_max_diameter $openroad_cts_cluster_diameter \
+    -distance_between_buffers $openroad_cts_distance_between_buffers \
+    {*}$sc_cts_arguments
+  set_propagated_clock [all_clocks]
+  estimate_parasitics -placement
+  repair_clock_nets
+  set_placement_padding -global \
+    -left $openroad_dpl_padding \
+    -right $openroad_dpl_padding
+  set dpl_args []
+  if { $openroad_dpl_disallow_one_site == "true" } {
+    lappend dpl_args "-disallow_one_site_gaps"
+  }
+  detailed_placement -max_displacement $openroad_dpl_max_displacement \
+    {*}$dpl_args
+  check_placement -verbose
+  estimate_parasitics -placement
+  set repair_timing_args []
+  if { $openroad_rsz_skip_pin_swap == "true" } {
+    lappend repair_timing_args "-skip_pin_swap"
+  }
+  puts "Repair setup violations"
+  repair_timing -setup \
+    -setup_margin $openroad_rsz_setup_slack_margin \
+    -hold_margin $openroad_rsz_hold_slack_margin \
+    -repair_tns $openroad_rsz_repair_tns
+  estimate_parasitics -placement
+  puts "Repair hold violations"
+  repair_timing -hold \
+    -setup_margin $openroad_rsz_setup_slack_margin \
+    -hold_margin $openroad_rsz_hold_slack_margin \
+    -repair_tns $openroad_rsz_repair_tns
+  detailed_placement -max_displacement $openroad_dpl_max_displacement \
+    {*}$dpl_args
+  check_placement -verbose
+}
+[INFO CTS-0049] Characterization buffer is: sky130_fd_sc_hd__clkbuf_4.
+[INFO CTS-0039] Number of created patterns = 12240.
+[INFO CTS-0084] Compiling LUT.
+Min. len    Max. len    Min. cap    Max. cap    Min. slew   Max. slew
+2           8           1           34          1           12          
+[WARNING CTS-0043] 1632 wires are pure wire and no slew degradation.
+TritonCTS forced slew degradation on these wires.
+[INFO CTS-0046]     Number of wire segments: 12240.
+[INFO CTS-0047]     Number of keys in characterization LUT: 1552.
+[INFO CTS-0048]     Actual min input cap: 1.
+[INFO CTS-0007] Net "clk" found for clock "clk".
+[INFO CTS-0010]  Clock net "clk" has 1088 sinks.
+[INFO CTS-0008] TritonCTS found 1 clock nets.
+[INFO CTS-0097] Characterization used 1 buffer(s) types.
+[INFO CTS-0027] Generating H-Tree topology for net clk.
+[INFO CTS-0028]  Total number of sinks: 1088.
+[INFO CTS-0029]  Sinks will be clustered in groups of up to 30 and with maximum cluster diameter of 100.0 um.
+[INFO CTS-0030]  Number of static layers: 0.
+[INFO CTS-0020]  Wire segment unit: 13000  dbu (13 um).
+[INFO CTS-0021]  Distance between buffers: 3 units (100 um).
+[INFO CTS-0019]  Total number of sinks after clustering: 64.
+[INFO CTS-0024]  Normalized sink region: [(11.0046, 4.70308), (46.3388, 48.7872)].
+[INFO CTS-0025]     Width:  35.3342.
+[INFO CTS-0026]     Height: 44.0841.
+ Level 1
+    Direction: Vertical
+    Sinks per sub-region: 32
+    Sub-region size: 35.3342 X 22.0421
+[INFO CTS-0034]     Segment length (rounded): 12.
+    Key: 168 inSlew: 1 inCap: 1 outSlew: 1 load: 1 length: 8 delay: 6
+      location: 0.25 buffer: sky130_fd_sc_hd__clkbuf_4
+    Key: 60 inSlew: 1 inCap: 1 outSlew: 2 load: 1 length: 4 delay: 1
+ Level 2
+    Direction: Horizontal
+    Sinks per sub-region: 16
+    Sub-region size: 17.6671 X 22.0421
+[INFO CTS-0034]     Segment length (rounded): 8.
+    Key: 168 inSlew: 1 inCap: 1 outSlew: 1 load: 1 length: 8 delay: 6
+      location: 0.25 buffer: sky130_fd_sc_hd__clkbuf_4
+ Level 3
+    Direction: Vertical
+    Sinks per sub-region: 8
+    Sub-region size: 17.6671 X 11.0210
+[INFO CTS-0034]     Segment length (rounded): 6.
+    Key: 72 inSlew: 1 inCap: 1 outSlew: 1 load: 1 length: 6 delay: 6
+      location: 0.333333 buffer: sky130_fd_sc_hd__clkbuf_4
+ Out of 18 sinks, 1 sinks closer to other cluster.
+[INFO CTS-0032]  Stop criterion found. Max number of sinks is 15.
+[INFO CTS-0035]  Number of sinks covered: 64.
+[INFO CTS-0018]     Created 77 clock buffers.
+[INFO CTS-0012]     Minimum number of buffers in the clock path: 4.
+[INFO CTS-0013]     Maximum number of buffers in the clock path: 5.
+[INFO CTS-0015]     Created 77 clock nets.
+[INFO CTS-0016]     Fanout distribution for the current clock = 2:2, 3:5, 4:1, 6:3, 7:2, 8:2, 9:2, 10:3, 11:2, 12:3, 14:1, 16:1, 17:3, 18:5, 19:5, 20:8, 21:3, 22:6, 23:4, 27:3, 29:1, 30:5..
+[INFO CTS-0017]     Max level of the clock tree: 3.
+[INFO CTS-0098] Clock net "clk"
+[INFO CTS-0099]  Sinks 1088
+[INFO CTS-0100]  Leaf buffers 62
+[INFO CTS-0101]  Average sink wire length 907.46 um
+[INFO CTS-0102]  Path depth 4 - 5
+[INFO RSZ-0058] Using max wire length 19521um.
+Placement Analysis
+---------------------------------
+total displacement        247.3 u
+average displacement        0.0 u
+max displacement           11.1 u
+original HPWL          116268.4 u
+legalized HPWL         119707.0 u
+delta HPWL                    3 %
+
+Repair setup violations
+Repair hold violations
+[INFO RSZ-0033] No hold violations found.
+Placement Analysis
+---------------------------------
+total displacement          0.0 u
+average displacement        0.0 u
+max displacement            0.0 u
+original HPWL          119707.0 u
+legalized HPWL         119707.0 u
+delta HPWL                    0 %
+
+global_connect
+# estimate for metrics
+estimate_parasitics -placement
+SC_METRIC: report_checks -path_delay max
+Startpoint: Registers[29]_$_DFFE_PP__Q_3
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_1_$_DFF_P__Q_3
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.03    1.10    1.10 ^ clk (in)
+   0.01    1.10    2.20 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44    2.64 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44    3.08 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.71    3.79 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.06    1.07    4.86 ^ clkbuf_leaf_52_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    4.86 ^ Registers[29]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.00    1.34    6.20 v Registers[29]_$_DFFE_PP__Q_3/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    2.44    8.64 v _4041_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    2.58   11.22 v _4042_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    1.71   12.93 v _4043_/X (sky130_fd_sc_hd__mux2_1)
+           0.00   12.93 v read_data_1_$_DFF_P__Q_3/D (sky130_fd_sc_hd__dfxtp_2)
+                  12.93   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.03    1.10   11.10 ^ clk (in)
+   0.01    1.10   12.20 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44   12.64 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44   13.08 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.71   13.79 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   13.79 ^ read_data_1_$_DFF_P__Q_3/CLK (sky130_fd_sc_hd__dfxtp_2)
+           0.00   13.79   clock reconvergence pessimism
+          -0.70   13.10   library setup time
+                  13.10   data required time
+----------------------------------------------------------------
+                  13.10   data required time
+                 -12.93   data arrival time
+----------------------------------------------------------------
+                   0.17   slack (MET)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: Registers[0]_$_DFFE_PP__Q_3
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: Registers[0]_$_DFFE_PP__Q_3
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.03    0.18    0.18 ^ clk (in)
+   0.01    0.14    0.32 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.10    0.43 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.52 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.15    0.68 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.03    0.14    0.82 ^ clkbuf_leaf_49_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.82 ^ Registers[0]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.21    1.03 ^ Registers[0]_$_DFFE_PP__Q_3/Q (sky130_fd_sc_hd__dfxtp_1)
+           0.00    1.03 ^ Registers[0]_$_DFFE_PP__Q_3/D (sky130_fd_sc_hd__dfxtp_1)
+                   1.03   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.03    0.18    0.18 ^ clk (in)
+   0.01    0.14    0.32 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.02    0.10    0.43 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.52 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.15    0.68 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.03    0.14    0.82 ^ clkbuf_leaf_49_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.82 ^ Registers[0]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.82   clock reconvergence pessimism
+          -0.02    0.80   library hold time
+                   0.80   data required time
+----------------------------------------------------------------
+                   0.80   data required time
+                  -1.03   data arrival time
+----------------------------------------------------------------
+                   0.23   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: Registers[29]_$_DFFE_PP__Q_3
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: read_data_1_$_DFF_P__Q_3
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.03    1.10    1.10 ^ clk (in)
+   0.01    1.10    2.20 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44    2.64 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44    3.08 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.71    3.79 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.06    1.07    4.86 ^ clkbuf_leaf_52_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    4.86 ^ Registers[29]_$_DFFE_PP__Q_3/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.00    1.34    6.20 v Registers[29]_$_DFFE_PP__Q_3/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    2.44    8.64 v _4041_/X (sky130_fd_sc_hd__mux4_1)
+   0.00    2.58   11.22 v _4042_/X (sky130_fd_sc_hd__mux4_1)
+   0.01    1.71   12.93 v _4043_/X (sky130_fd_sc_hd__mux2_1)
+           0.00   12.93 v read_data_1_$_DFF_P__Q_3/D (sky130_fd_sc_hd__dfxtp_2)
+                  12.93   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.03    1.10   11.10 ^ clk (in)
+   0.01    1.10   12.20 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44   12.64 ^ clkbuf_1_0_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.44   13.08 ^ clkbuf_2_1_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.05    0.71   13.79 ^ clkbuf_3_2_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   13.79 ^ read_data_1_$_DFF_P__Q_3/CLK (sky130_fd_sc_hd__dfxtp_2)
+           0.00   13.79   clock reconvergence pessimism
+          -0.70   13.10   library setup time
+                  13.10   data required time
+----------------------------------------------------------------
+                  13.10   data required time
+                 -12.93   data arrival time
+----------------------------------------------------------------
+                   0.17   slack (MET)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+Registers[30]_$_DFFE_PP__Q_3/CLK ^
+   4.86
+read_data_1_$_DFF_P__Q_3/CLK ^
+   3.79      0.00       1.07
+
+SC_METRIC: DRV violators
+max capacitance
+
+Pin                                    Limit     Cap   Slack
+------------------------------------------------------------
+read_index_2[4]                         0.13    0.13   -0.00 (VIOLATED)
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns 0.00
+
+SC_METRIC: setupslack
+worst slack 0.17
+
+SC_METRIC: holdslack
+worst slack 0.23
+
+SC_METRIC: fmax
+101.71873248932171 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             5.92e-03   3.65e-04   3.01e-05   6.31e-03  68.0%
+Combinational          1.46e-03   1.48e-03   3.71e-05   2.97e-03  32.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  7.37e-03   1.84e-03   6.72e-05   9.28e-03 100.0%
+                          79.5%      19.8%       0.7%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.95e-03   1.69e-04   3.43e-10   2.11e-03  63.1%
+Combinational          6.01e-04   6.37e-04   5.17e-10   1.24e-03  36.9%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.55e-03   8.06e-04   8.60e-10   3.35e-03 100.0%
+                          76.0%      24.0%       0.0%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             4.83e-03   2.99e-04   9.19e-09   5.13e-03  69.0%
+Combinational          1.10e-03   1.20e-03   1.25e-08   2.31e-03  31.0%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  5.93e-03   1.50e-03   2.17e-08   7.43e-03 100.0%
+                          79.8%      20.2%       0.0%
+
+SC_METRIC: cellarea
+Design area 62111 u^2 13% utilization.
