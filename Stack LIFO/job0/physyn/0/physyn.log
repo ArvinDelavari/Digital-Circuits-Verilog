@@ -1,0 +1,187 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Stack_LIFO.odb
+Reading SDC: inputs/Stack_LIFO.sdc
+Warning: There are 11 input ports missing set_input_delay.
+Warning: There are 10 output ports missing set_output_delay.
+Warning: There are 72 unclocked register/latch pins.
+Warning: There are 90 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+# while (not good enough):
+  # global placement
+  # estimate parasitics
+  # logic remapping, buffering 
+puts "NOP"
+NOP
+SC_METRIC: report_checks -path_delay max
+Startpoint: index_$_SDFFE_PN0P__Q_7
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q_5
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ index_$_SDFFE_PN0P__Q_7/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.02    1.54    1.54 ^ index_$_SDFFE_PN0P__Q_7/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.41    1.95 v _207_/Y (sky130_fd_sc_hd__inv_1)
+   0.01    0.95    2.90 v next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1/COUT (sky130_fd_sc_hd__ha_1)
+   0.07    2.58    5.47 ^ next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/SUM (sky130_fd_sc_hd__ha_1)
+   0.00    1.33    6.81 ^ _148_/X (sky130_fd_sc_hd__mux2_2)
+   0.00    0.14    6.94 v _151_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    6.94 v index_$_SDFFE_PN0P__Q_5/D (sky130_fd_sc_hd__dfxtp_1)
+                   6.94   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock network delay (ideal)
+           0.00   10.00   clock reconvergence pessimism
+                  10.00 ^ index_$_SDFFE_PN0P__Q_5/CLK (sky130_fd_sc_hd__dfxtp_1)
+          -0.84    9.16   library setup time
+                   9.16   data required time
+----------------------------------------------------------------
+                   9.16   data required time
+                  -6.94   data arrival time
+----------------------------------------------------------------
+                   2.22   slack (MET)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: index_$_SDFFE_PN0P__Q_2
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q_2
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ index_$_SDFFE_PN0P__Q_2/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.21    0.21 ^ index_$_SDFFE_PN0P__Q_2/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    0.04    0.25 v _163_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    0.25 v index_$_SDFFE_PN0P__Q_2/D (sky130_fd_sc_hd__dfxtp_1)
+                   0.25   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00   clock reconvergence pessimism
+                   0.00 ^ index_$_SDFFE_PN0P__Q_2/CLK (sky130_fd_sc_hd__dfxtp_1)
+          -0.03   -0.03   library hold time
+                  -0.03   data required time
+----------------------------------------------------------------
+                  -0.03   data required time
+                  -0.25   data arrival time
+----------------------------------------------------------------
+                   0.28   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: index_$_SDFFE_PN0P__Q_7
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q_5
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock network delay (ideal)
+           0.00    0.00 ^ index_$_SDFFE_PN0P__Q_7/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.02    1.54    1.54 ^ index_$_SDFFE_PN0P__Q_7/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.41    1.95 v _207_/Y (sky130_fd_sc_hd__inv_1)
+   0.01    0.95    2.90 v next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1/COUT (sky130_fd_sc_hd__ha_1)
+   0.07    2.58    5.47 ^ next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/SUM (sky130_fd_sc_hd__ha_1)
+   0.00    1.33    6.81 ^ _148_/X (sky130_fd_sc_hd__mux2_2)
+   0.00    0.14    6.94 v _151_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    6.94 v index_$_SDFFE_PN0P__Q_5/D (sky130_fd_sc_hd__dfxtp_1)
+                   6.94   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock network delay (ideal)
+           0.00   10.00   clock reconvergence pessimism
+                  10.00 ^ index_$_SDFFE_PN0P__Q_5/CLK (sky130_fd_sc_hd__dfxtp_1)
+          -0.84    9.16   library setup time
+                   9.16   data required time
+----------------------------------------------------------------
+                   9.16   data required time
+                  -6.94   data arrival time
+----------------------------------------------------------------
+                   2.22   slack (MET)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+index_$_SDFFE_PN0P__Q/CLK ^
+   0.80
+index_$_SDFFE_PN0P__Q/CLK ^
+   0.80      0.00       0.00
+
+SC_METRIC: DRV violators
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns 0.00
+
+SC_METRIC: setupslack
+worst slack 2.22
+
+SC_METRIC: holdslack
+worst slack 0.28
+
+SC_METRIC: fmax
+128.57103986962971 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.53e-04   1.94e-05   2.20e-06   1.74e-04  63.6%
+Combinational          5.62e-05   4.22e-05   1.11e-06   9.96e-05  36.4%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.09e-04   6.16e-05   3.31e-06   2.74e-04 100.0%
+                          76.3%      22.5%       1.2%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             6.59e-05   9.01e-06   4.40e-07   7.54e-05  65.4%
+Combinational          2.17e-05   1.82e-05   2.76e-11   3.99e-05  34.6%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  8.77e-05   2.72e-05   4.40e-07   1.15e-04 100.0%
+                          76.0%      23.6%       0.4%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.24e-04   1.61e-05   4.40e-07   1.40e-04  65.5%
+Combinational          3.97e-05   3.44e-05   4.53e-10   7.40e-05  34.5%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.63e-04   5.04e-05   4.41e-07   2.14e-04 100.0%
+                          76.3%      23.5%       0.2%
+
+SC_METRIC: cellarea
+Design area 2972 u^2 12% utilization.

@@ -1,0 +1,1008 @@
+OpenROAD v2.0-8853-g3ec606c02 
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+Reading liberty file for fast: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ff_100C_1v95.lib.gz
+Reading liberty file for slow: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__ss_n40C_1v40.lib.gz
+Reading liberty file for typical: /third_party/pdks/skywater/skywater130/libs/sky130hd/v0_0_2/lib/sky130_fd_sc_hd__tt_025C_1v80.lib.gz
+Reading ODB: inputs/Stack_LIFO.odb
+Reading SDC: inputs/Stack_LIFO.sdc
+Warning: There are 11 input ports missing set_input_delay.
+Warning: There are 10 output ports missing set_output_delay.
+Warning: There are 72 unclocked register/latch pins.
+Warning: There are 90 unconstrained endpoints.
+[INFO ORD-0030] Using 2 thread(s).
+[INFO FLW-0001] Setting global routing adjustment for li1 to 100.0%
+[INFO FLW-0001] Setting global routing adjustment for met1 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met2 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met3 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met4 to 30.0%
+[INFO FLW-0001] Setting global routing adjustment for met5 to 30.0%
+######################
+# Do fill
+######################
+set removed_obs 0
+foreach obstruction [[ord::get_db_block] getObstructions] {
+  odb::dbObstruction_destroy $obstruction
+  incr removed_obs
+}
+utl::info FLW 1 "Deleted $removed_obs routing obstructions"
+[INFO FLW-0001] Deleted 0 routing obstructions
+if { $openroad_fin_add_fill == "true" && \
+     [dict exists $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] } {
+  set sc_fillrules [lindex [dict get $sc_cfg pdk $sc_pdk aprtech openroad $sc_stackup $sc_libtype fill] 0]
+  density_fill -rules $sc_fillrules
+}
+# estimate for metrics
+estimate_parasitics -global_routing
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _155_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _155_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_4/D.
+[WARNING GRT-0026] Missing route to pin _155_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _159_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _159_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _159_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_1/D.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _171_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _171_/Y.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q/D.
+[WARNING GRT-0026] Missing route to pin _171_/Y.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _172_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _172_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_7/D.
+[WARNING GRT-0026] Missing route to pin _172_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _173_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _173_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_6/D.
+[WARNING GRT-0026] Missing route to pin _173_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _176_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _176_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_3/D.
+[WARNING GRT-0026] Missing route to pin _176_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q/D.
+[WARNING GRT-0026] Missing route to pin _179_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q/D.
+[WARNING GRT-0026] Missing route to pin _179_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q/D.
+[WARNING GRT-0026] Missing route to pin _179_/X.
+[WARNING GRT-0026] Missing route to pin _137_/Y.
+[WARNING GRT-0026] Missing route to pin _137_/Y.
+[WARNING GRT-0026] Missing route to pin _137_/Y.
+[WARNING GRT-0026] Missing route to pin _150_/A2.
+[WARNING GRT-0026] Missing route to pin _150_/A2.
+[WARNING GRT-0026] Missing route to pin _150_/A2.
+[WARNING GRT-0026] Missing route to pin _151_/A2.
+[WARNING GRT-0026] Missing route to pin _148_/X.
+[WARNING GRT-0026] Missing route to pin _151_/A2.
+[WARNING GRT-0026] Missing route to pin _148_/X.
+[WARNING GRT-0026] Missing route to pin _151_/A2.
+[WARNING GRT-0026] Missing route to pin _148_/X.
+[WARNING GRT-0026] Missing route to pin _151_/B1.
+[WARNING GRT-0026] Missing route to pin _150_/Y.
+[WARNING GRT-0026] Missing route to pin _151_/B1.
+[WARNING GRT-0026] Missing route to pin _150_/Y.
+[WARNING GRT-0026] Missing route to pin _151_/B1.
+[WARNING GRT-0026] Missing route to pin _150_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/B.
+[WARNING GRT-0026] Missing route to pin _152_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/B.
+[WARNING GRT-0026] Missing route to pin _152_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/B.
+[WARNING GRT-0026] Missing route to pin _152_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/Y.
+[WARNING GRT-0026] Missing route to pin _153_/Y.
+[WARNING GRT-0026] Missing route to pin _155_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/Y.
+[WARNING GRT-0026] Missing route to pin _155_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/Y.
+[WARNING GRT-0026] Missing route to pin _155_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/Y.
+[WARNING GRT-0026] Missing route to pin _157_/B1.
+[WARNING GRT-0026] Missing route to pin _156_/Y.
+[WARNING GRT-0026] Missing route to pin _157_/B1.
+[WARNING GRT-0026] Missing route to pin _156_/Y.
+[WARNING GRT-0026] Missing route to pin _157_/B1.
+[WARNING GRT-0026] Missing route to pin _156_/Y.
+[WARNING GRT-0026] Missing route to pin _159_/A2.
+[WARNING GRT-0026] Missing route to pin _157_/Y.
+[WARNING GRT-0026] Missing route to pin _159_/A2.
+[WARNING GRT-0026] Missing route to pin _157_/Y.
+[WARNING GRT-0026] Missing route to pin _159_/A2.
+[WARNING GRT-0026] Missing route to pin _157_/Y.
+[WARNING GRT-0026] Missing route to pin _162_/Y.
+[WARNING GRT-0026] Missing route to pin _162_/Y.
+[WARNING GRT-0026] Missing route to pin _162_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/A2.
+[WARNING GRT-0026] Missing route to pin _165_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/A2.
+[WARNING GRT-0026] Missing route to pin _165_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/A2.
+[WARNING GRT-0026] Missing route to pin _165_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/B1.
+[WARNING GRT-0026] Missing route to pin _166_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/B1.
+[WARNING GRT-0026] Missing route to pin _166_/Y.
+[WARNING GRT-0026] Missing route to pin _167_/B1.
+[WARNING GRT-0026] Missing route to pin _166_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/A2.
+[WARNING GRT-0026] Missing route to pin _170_/A2.
+[WARNING GRT-0026] Missing route to pin _169_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/A2.
+[WARNING GRT-0026] Missing route to pin _170_/A2.
+[WARNING GRT-0026] Missing route to pin _169_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/A2.
+[WARNING GRT-0026] Missing route to pin _170_/A2.
+[WARNING GRT-0026] Missing route to pin _169_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/B1.
+[WARNING GRT-0026] Missing route to pin _170_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/B1.
+[WARNING GRT-0026] Missing route to pin _170_/Y.
+[WARNING GRT-0026] Missing route to pin _171_/B1.
+[WARNING GRT-0026] Missing route to pin _170_/Y.
+[WARNING GRT-0026] Missing route to pin _195_/Y.
+[WARNING GRT-0026] Missing route to pin _195_/Y.
+[WARNING GRT-0026] Missing route to pin _195_/Y.
+[WARNING GRT-0026] Missing route to pin _294_/A.
+[WARNING GRT-0026] Missing route to pin _294_/A.
+[WARNING GRT-0026] Missing route to pin _294_/A.
+[WARNING GRT-0026] Missing route to pin _264_/A2.
+[WARNING GRT-0026] Missing route to pin _210_/Y.
+[WARNING GRT-0026] Missing route to pin _264_/A2.
+[WARNING GRT-0026] Missing route to pin _210_/Y.
+[WARNING GRT-0026] Missing route to pin _264_/A2.
+[WARNING GRT-0026] Missing route to pin _210_/Y.
+[WARNING GRT-0026] Missing route to pin _212_/Y.
+[WARNING GRT-0026] Missing route to pin _212_/Y.
+[WARNING GRT-0026] Missing route to pin _212_/Y.
+[WARNING GRT-0026] Missing route to pin _216_/B1.
+[WARNING GRT-0026] Missing route to pin _264_/B1.
+[WARNING GRT-0026] Missing route to pin _213_/Y.
+[WARNING GRT-0026] Missing route to pin _216_/B1.
+[WARNING GRT-0026] Missing route to pin _264_/B1.
+[WARNING GRT-0026] Missing route to pin _213_/Y.
+[WARNING GRT-0026] Missing route to pin _216_/B1.
+[WARNING GRT-0026] Missing route to pin _264_/B1.
+[WARNING GRT-0026] Missing route to pin _213_/Y.
+[WARNING GRT-0026] Missing route to pin _225_/B1.
+[WARNING GRT-0026] Missing route to pin _216_/X.
+[WARNING GRT-0026] Missing route to pin _225_/B1.
+[WARNING GRT-0026] Missing route to pin _216_/X.
+[WARNING GRT-0026] Missing route to pin _225_/B1.
+[WARNING GRT-0026] Missing route to pin _216_/X.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_2/CLK.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_2/CLK.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_2/CLK.
+[WARNING GRT-0026] Missing route to pin _224_/C.
+[WARNING GRT-0026] Missing route to pin _221_/Y.
+[WARNING GRT-0026] Missing route to pin _224_/C.
+[WARNING GRT-0026] Missing route to pin _221_/Y.
+[WARNING GRT-0026] Missing route to pin _224_/C.
+[WARNING GRT-0026] Missing route to pin _221_/Y.
+[WARNING GRT-0026] Missing route to pin clkbuf_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_0_clk/X.
+[WARNING GRT-0026] Missing route to pin clkbuf_0_clk/X.
+[WARNING GRT-0026] Missing route to pin _224_/Y.
+[WARNING GRT-0026] Missing route to pin _224_/Y.
+[WARNING GRT-0026] Missing route to pin _224_/Y.
+[WARNING GRT-0026] Missing route to pin _226_/A1.
+[WARNING GRT-0026] Missing route to pin _226_/A1.
+[WARNING GRT-0026] Missing route to pin _226_/A1.
+[WARNING GRT-0026] Missing route to pin _233_/A.
+[WARNING GRT-0026] Missing route to pin _229_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/A.
+[WARNING GRT-0026] Missing route to pin _229_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/A.
+[WARNING GRT-0026] Missing route to pin _229_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/D.
+[WARNING GRT-0026] Missing route to pin _232_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/D.
+[WARNING GRT-0026] Missing route to pin _232_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/D.
+[WARNING GRT-0026] Missing route to pin _232_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/Y.
+[WARNING GRT-0026] Missing route to pin _233_/Y.
+[WARNING GRT-0026] Missing route to pin _235_/A1.
+[WARNING GRT-0026] Missing route to pin _235_/A1.
+[WARNING GRT-0026] Missing route to pin _235_/A1.
+[WARNING GRT-0026] Missing route to pin _237_/C1.
+[WARNING GRT-0026] Missing route to pin _236_/X.
+[WARNING GRT-0026] Missing route to pin _237_/C1.
+[WARNING GRT-0026] Missing route to pin _236_/X.
+[WARNING GRT-0026] Missing route to pin _237_/C1.
+[WARNING GRT-0026] Missing route to pin _236_/X.
+[WARNING GRT-0026] Missing route to pin _242_/A.
+[WARNING GRT-0026] Missing route to pin _238_/Y.
+[WARNING GRT-0026] Missing route to pin _242_/A.
+[WARNING GRT-0026] Missing route to pin _238_/Y.
+[WARNING GRT-0026] Missing route to pin _242_/A.
+[WARNING GRT-0026] Missing route to pin _238_/Y.
+[WARNING GRT-0026] Missing route to pin _242_/D.
+[WARNING GRT-0026] Missing route to pin _241_/Y.
+[WARNING GRT-0026] Missing route to pin _242_/D.
+[WARNING GRT-0026] Missing route to pin _241_/Y.
+[WARNING GRT-0026] Missing route to pin _242_/D.
+[WARNING GRT-0026] Missing route to pin _241_/Y.
+[WARNING GRT-0026] Missing route to pin _246_/C1.
+[WARNING GRT-0026] Missing route to pin _245_/X.
+[WARNING GRT-0026] Missing route to pin _246_/C1.
+[WARNING GRT-0026] Missing route to pin _245_/X.
+[WARNING GRT-0026] Missing route to pin _246_/C1.
+[WARNING GRT-0026] Missing route to pin _245_/X.
+[WARNING GRT-0026] Missing route to pin _251_/C.
+[WARNING GRT-0026] Missing route to pin _249_/Y.
+[WARNING GRT-0026] Missing route to pin _251_/C.
+[WARNING GRT-0026] Missing route to pin _249_/Y.
+[WARNING GRT-0026] Missing route to pin _251_/C.
+[WARNING GRT-0026] Missing route to pin _249_/Y.
+[WARNING GRT-0026] Missing route to pin _251_/D.
+[WARNING GRT-0026] Missing route to pin _250_/Y.
+[WARNING GRT-0026] Missing route to pin _251_/D.
+[WARNING GRT-0026] Missing route to pin _250_/Y.
+[WARNING GRT-0026] Missing route to pin _251_/D.
+[WARNING GRT-0026] Missing route to pin _250_/Y.
+[WARNING GRT-0026] Missing route to pin _255_/C1.
+[WARNING GRT-0026] Missing route to pin _254_/X.
+[WARNING GRT-0026] Missing route to pin _255_/C1.
+[WARNING GRT-0026] Missing route to pin _254_/X.
+[WARNING GRT-0026] Missing route to pin _255_/C1.
+[WARNING GRT-0026] Missing route to pin _254_/X.
+[WARNING GRT-0026] Missing route to pin _260_/B.
+[WARNING GRT-0026] Missing route to pin _257_/Y.
+[WARNING GRT-0026] Missing route to pin _260_/B.
+[WARNING GRT-0026] Missing route to pin _257_/Y.
+[WARNING GRT-0026] Missing route to pin _260_/B.
+[WARNING GRT-0026] Missing route to pin _257_/Y.
+[WARNING GRT-0026] Missing route to pin _260_/C.
+[WARNING GRT-0026] Missing route to pin _258_/Y.
+[WARNING GRT-0026] Missing route to pin _260_/C.
+[WARNING GRT-0026] Missing route to pin _258_/Y.
+[WARNING GRT-0026] Missing route to pin _260_/C.
+[WARNING GRT-0026] Missing route to pin _258_/Y.
+[WARNING GRT-0026] Missing route to pin _264_/C1.
+[WARNING GRT-0026] Missing route to pin _263_/X.
+[WARNING GRT-0026] Missing route to pin _264_/C1.
+[WARNING GRT-0026] Missing route to pin _263_/X.
+[WARNING GRT-0026] Missing route to pin _264_/C1.
+[WARNING GRT-0026] Missing route to pin _263_/X.
+[WARNING GRT-0026] Missing route to pin _269_/B.
+[WARNING GRT-0026] Missing route to pin _266_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/B.
+[WARNING GRT-0026] Missing route to pin _266_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/B.
+[WARNING GRT-0026] Missing route to pin _266_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/C.
+[WARNING GRT-0026] Missing route to pin _267_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/C.
+[WARNING GRT-0026] Missing route to pin _267_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/C.
+[WARNING GRT-0026] Missing route to pin _267_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/D.
+[WARNING GRT-0026] Missing route to pin _268_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/D.
+[WARNING GRT-0026] Missing route to pin _268_/Y.
+[WARNING GRT-0026] Missing route to pin _269_/D.
+[WARNING GRT-0026] Missing route to pin _268_/Y.
+[WARNING GRT-0026] Missing route to pin _279_/B1.
+[WARNING GRT-0026] Missing route to pin _273_/X.
+[WARNING GRT-0026] Missing route to pin _279_/B1.
+[WARNING GRT-0026] Missing route to pin _273_/X.
+[WARNING GRT-0026] Missing route to pin _279_/B1.
+[WARNING GRT-0026] Missing route to pin _273_/X.
+[WARNING GRT-0026] Missing route to pin _278_/A.
+[WARNING GRT-0026] Missing route to pin _274_/Y.
+[WARNING GRT-0026] Missing route to pin _278_/A.
+[WARNING GRT-0026] Missing route to pin _274_/Y.
+[WARNING GRT-0026] Missing route to pin _278_/A.
+[WARNING GRT-0026] Missing route to pin _274_/Y.
+[WARNING GRT-0026] Missing route to pin _280_/A1.
+[WARNING GRT-0026] Missing route to pin _280_/A1.
+[WARNING GRT-0026] Missing route to pin _280_/A1.
+[WARNING GRT-0026] Missing route to pin _281_/X.
+[WARNING GRT-0026] Missing route to pin _281_/X.
+[WARNING GRT-0026] Missing route to pin _281_/X.
+[WARNING GRT-0026] Missing route to pin _287_/A.
+[WARNING GRT-0026] Missing route to pin _283_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/A.
+[WARNING GRT-0026] Missing route to pin _283_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/A.
+[WARNING GRT-0026] Missing route to pin _283_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/B.
+[WARNING GRT-0026] Missing route to pin _284_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/B.
+[WARNING GRT-0026] Missing route to pin _284_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/B.
+[WARNING GRT-0026] Missing route to pin _284_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/C.
+[WARNING GRT-0026] Missing route to pin _285_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/C.
+[WARNING GRT-0026] Missing route to pin _285_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/C.
+[WARNING GRT-0026] Missing route to pin _285_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/D.
+[WARNING GRT-0026] Missing route to pin _286_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/D.
+[WARNING GRT-0026] Missing route to pin _286_/Y.
+[WARNING GRT-0026] Missing route to pin _287_/D.
+[WARNING GRT-0026] Missing route to pin _286_/Y.
+[WARNING GRT-0026] Missing route to pin _292_/B.
+[WARNING GRT-0026] Missing route to pin _292_/B.
+[WARNING GRT-0026] Missing route to pin _292_/B.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_7/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_3/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_3/D.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_3/D.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin _280_/A0.
+[WARNING GRT-0026] Missing route to pin _280_/A0.
+[WARNING GRT-0026] Missing route to pin _280_/A0.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_5/Q.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin dout_$_SDFF_PN0__Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _244_/A0.
+[WARNING GRT-0026] Missing route to pin _244_/A0.
+[WARNING GRT-0026] Missing route to pin _244_/A0.
+[WARNING GRT-0026] Missing route to pin _226_/A0.
+[WARNING GRT-0026] Missing route to pin _226_/A0.
+[WARNING GRT-0026] Missing route to pin _226_/A0.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _293_/B.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _293_/B.
+[WARNING GRT-0026] Missing route to pin index_$_SDFFE_PN0P__Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _293_/B.
+[WARNING GRT-0026] Missing route to pin _162_/A1.
+[WARNING GRT-0026] Missing route to pin _162_/A1.
+[WARNING GRT-0026] Missing route to pin _162_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/A.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/A.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/A.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _177_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _177_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _177_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _178_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _178_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _178_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _179_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _179_/B.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _179_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _165_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _165_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _165_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _168_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _168_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_1_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _168_/A1.
+[WARNING GRT-0026] Missing route to pin _180_/Y.
+[WARNING GRT-0026] Missing route to pin _180_/Y.
+[WARNING GRT-0026] Missing route to pin _180_/Y.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _157_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _157_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _157_/A2.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _160_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _160_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_3_B_sky130_fd_sc_hd__ha_1_SUM/COUT.
+[WARNING GRT-0026] Missing route to pin _160_/A1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/COUT.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/COUT.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/COUT.
+[WARNING GRT-0026] Missing route to pin _196_/Y.
+[WARNING GRT-0026] Missing route to pin _196_/Y.
+[WARNING GRT-0026] Missing route to pin _196_/Y.
+[WARNING GRT-0026] Missing route to pin _200_/A.
+[WARNING GRT-0026] Missing route to pin _200_/A.
+[WARNING GRT-0026] Missing route to pin _200_/A.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin _195_/A0.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin _195_/A0.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin _195_/A0.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM_COUT_$_OR__A_B_$_OR__B_A_sky130_fd_sc_hd__ha_1_COUT/COUT.
+[WARNING GRT-0026] Missing route to pin _201_/B1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM_COUT_$_OR__A_B_$_OR__B_A_sky130_fd_sc_hd__ha_1_COUT/COUT.
+[WARNING GRT-0026] Missing route to pin _201_/B1.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_5_B_$_NOT__Y_A_sky130_fd_sc_hd__ha_1_SUM_COUT_$_OR__A_B_$_OR__B_A_sky130_fd_sc_hd__ha_1_COUT/COUT.
+[WARNING GRT-0026] Missing route to pin _201_/B1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _206_/Y.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _206_/Y.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _206_/Y.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _143_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _143_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/SUM.
+[WARNING GRT-0026] Missing route to pin _143_/B.
+[WARNING GRT-0026] Missing route to pin _223_/A_N.
+[WARNING GRT-0026] Missing route to pin _231_/A.
+[WARNING GRT-0026] Missing route to pin _276_/A.
+[WARNING GRT-0026] Missing route to pin _265_/A.
+[WARNING GRT-0026] Missing route to pin _283_/A.
+[WARNING GRT-0026] Missing route to pin _215_/A.
+[WARNING GRT-0026] Missing route to pin _263_/A.
+[WARNING GRT-0026] Missing route to pin _277_/A_N.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/SUM.
+[WARNING GRT-0026] Missing route to pin _223_/A_N.
+[WARNING GRT-0026] Missing route to pin _231_/A.
+[WARNING GRT-0026] Missing route to pin _276_/A.
+[WARNING GRT-0026] Missing route to pin _265_/A.
+[WARNING GRT-0026] Missing route to pin _283_/A.
+[WARNING GRT-0026] Missing route to pin _215_/A.
+[WARNING GRT-0026] Missing route to pin _263_/A.
+[WARNING GRT-0026] Missing route to pin _277_/A_N.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/SUM.
+[WARNING GRT-0026] Missing route to pin _223_/A_N.
+[WARNING GRT-0026] Missing route to pin _231_/A.
+[WARNING GRT-0026] Missing route to pin _276_/A.
+[WARNING GRT-0026] Missing route to pin _265_/A.
+[WARNING GRT-0026] Missing route to pin _283_/A.
+[WARNING GRT-0026] Missing route to pin _215_/A.
+[WARNING GRT-0026] Missing route to pin _263_/A.
+[WARNING GRT-0026] Missing route to pin _277_/A_N.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1_COUT_sky130_fd_sc_hd__ha_1_B/SUM.
+[WARNING GRT-0026] Missing route to pin _194_/B.
+[WARNING GRT-0026] Missing route to pin _198_/A2.
+[WARNING GRT-0026] Missing route to pin _231_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A/COUT.
+[WARNING GRT-0026] Missing route to pin _194_/B.
+[WARNING GRT-0026] Missing route to pin _198_/A2.
+[WARNING GRT-0026] Missing route to pin _231_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A/COUT.
+[WARNING GRT-0026] Missing route to pin _194_/B.
+[WARNING GRT-0026] Missing route to pin _198_/A2.
+[WARNING GRT-0026] Missing route to pin _231_/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A/COUT.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM/B.
+[WARNING GRT-0026] Missing route to pin _201_/A2.
+[WARNING GRT-0026] Missing route to pin _201_/A2.
+[WARNING GRT-0026] Missing route to pin _201_/A2.
+[WARNING GRT-0026] Missing route to pin _218_/B.
+[WARNING GRT-0026] Missing route to pin _238_/B.
+[WARNING GRT-0026] Missing route to pin _247_/B.
+[WARNING GRT-0026] Missing route to pin _265_/B.
+[WARNING GRT-0026] Missing route to pin _212_/C.
+[WARNING GRT-0026] Missing route to pin _218_/B.
+[WARNING GRT-0026] Missing route to pin _238_/B.
+[WARNING GRT-0026] Missing route to pin _247_/B.
+[WARNING GRT-0026] Missing route to pin _265_/B.
+[WARNING GRT-0026] Missing route to pin _212_/C.
+[WARNING GRT-0026] Missing route to pin _218_/B.
+[WARNING GRT-0026] Missing route to pin _238_/B.
+[WARNING GRT-0026] Missing route to pin _247_/B.
+[WARNING GRT-0026] Missing route to pin _265_/B.
+[WARNING GRT-0026] Missing route to pin _212_/C.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_A_$_XOR__Y_A_sky130_fd_sc_hd__ha_1_COUT/A.
+[WARNING GRT-0026] Missing route to pin _209_/Y.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_A_$_XOR__Y_A_sky130_fd_sc_hd__ha_1_COUT/A.
+[WARNING GRT-0026] Missing route to pin _209_/Y.
+[WARNING GRT-0026] Missing route to pin next_index_$_MUX__Y_A_$_XOR__Y_A_sky130_fd_sc_hd__ha_1_COUT/A.
+[WARNING GRT-0026] Missing route to pin _209_/Y.
+[WARNING GRT-0026] Missing route to pin _137_/B.
+[WARNING GRT-0026] Missing route to pin _244_/S.
+[WARNING GRT-0026] Missing route to pin _262_/S.
+[WARNING GRT-0026] Missing route to pin _137_/B.
+[WARNING GRT-0026] Missing route to pin _244_/S.
+[WARNING GRT-0026] Missing route to pin _262_/S.
+[WARNING GRT-0026] Missing route to pin _137_/B.
+[WARNING GRT-0026] Missing route to pin _244_/S.
+[WARNING GRT-0026] Missing route to pin _262_/S.
+[WARNING GRT-0026] Missing route to pin _280_/X.
+[WARNING GRT-0026] Missing route to pin _280_/X.
+[WARNING GRT-0026] Missing route to pin _280_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin _262_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin _262_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_4/D.
+[WARNING GRT-0026] Missing route to pin _262_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin _226_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin _226_/X.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q/D.
+[WARNING GRT-0026] Missing route to pin _226_/X.
+[WARNING GRT-0026] Missing route to pin _160_/S.
+[WARNING GRT-0026] Missing route to pin _168_/S.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin _160_/S.
+[WARNING GRT-0026] Missing route to pin _168_/S.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin _160_/S.
+[WARNING GRT-0026] Missing route to pin _168_/S.
+[WARNING GRT-0026] Missing route to pin next_dout_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin _150_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/B1.
+[WARNING GRT-0026] Missing route to pin _150_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/B1.
+[WARNING GRT-0026] Missing route to pin _150_/B1.
+[WARNING GRT-0026] Missing route to pin _154_/B1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _279_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _279_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _279_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _261_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _261_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _261_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _252_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _252_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _252_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _243_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _243_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _243_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _234_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _234_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _234_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _225_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _225_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[0\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _225_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _276_/C.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _276_/C.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _276_/C.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin stack\[1\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _272_/C.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _272_/C.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _272_/C.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q_1/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[2\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _283_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _283_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _283_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _274_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _274_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _274_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _256_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _256_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _256_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _247_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _247_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _247_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _238_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _238_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _238_/C.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _292_/Y.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _292_/Y.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q_5/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[3\]_sky130_fd_sc_hd__dlxtn_1_Q/GATE_N.
+[WARNING GRT-0026] Missing route to pin _292_/Y.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _282_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _282_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _282_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _255_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _255_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _255_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _246_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _246_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _246_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _228_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _228_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[4\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin _228_/A1.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _275_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _275_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _275_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _266_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _266_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _266_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _248_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _248_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_3/Q.
+[WARNING GRT-0026] Missing route to pin _248_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _220_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _220_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _220_/C.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_7/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[5\]_sky130_fd_sc_hd__dlxtn_1_Q_4/GATE_N.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _273_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _264_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _264_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_5/Q.
+[WARNING GRT-0026] Missing route to pin _264_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _237_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _237_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[6\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _237_/B2.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _286_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _286_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_7/Q.
+[WARNING GRT-0026] Missing route to pin _286_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _277_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _277_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_6/Q.
+[WARNING GRT-0026] Missing route to pin _277_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _259_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _259_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_4/Q.
+[WARNING GRT-0026] Missing route to pin _259_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _241_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _241_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_2/Q.
+[WARNING GRT-0026] Missing route to pin _241_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q_1/Q.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _223_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _223_/C.
+[WARNING GRT-0026] Missing route to pin stack\[7\]_sky130_fd_sc_hd__dlxtn_1_Q/Q.
+[WARNING GRT-0026] Missing route to pin _223_/C.
+SC_METRIC: report_checks -path_delay max
+Startpoint: index_$_SDFFE_PN0P__Q_7
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.07    0.07 ^ clk (in)
+   0.00    0.35    0.42 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41    0.83 ^ clkbuf_1_0__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.83 ^ index_$_SDFFE_PN0P__Q_7/CLK (sky130_fd_sc_hd__dfxtp_2)
+   0.03    1.63    2.46 ^ index_$_SDFFE_PN0P__Q_7/Q (sky130_fd_sc_hd__dfxtp_2)
+   0.03    0.39    2.84 v _207_/Y (sky130_fd_sc_hd__inv_2)
+   0.02    0.86    3.71 v next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1/COUT (sky130_fd_sc_hd__ha_2)
+   0.00    0.56    4.27 v _180_/Y (sky130_fd_sc_hd__nor3b_1)
+   0.00    0.51    4.78 v _182_/X (sky130_fd_sc_hd__and2_0)
+   0.00    0.78    5.55 v next_index_$_MUX__Y_A_$_XOR__Y_A_sky130_fd_sc_hd__ha_1_COUT/COUT (sky130_fd_sc_hd__ha_1)
+   0.01    0.63    6.18 ^ _168_/Y (sky130_fd_sc_hd__mux2i_1)
+   0.00    0.38    6.56 v _169_/Y (sky130_fd_sc_hd__nor2_1)
+   0.00    0.53    7.09 ^ _170_/Y (sky130_fd_sc_hd__o21ai_0)
+   0.00    0.23    7.32 v _171_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    7.32 v index_$_SDFFE_PN0P__Q/D (sky130_fd_sc_hd__dfxtp_1)
+                   7.32   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.07   10.07 ^ clk (in)
+   0.00    0.35   10.42 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.39   10.80 ^ clkbuf_1_1__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   10.80 ^ index_$_SDFFE_PN0P__Q/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00   10.80   clock reconvergence pessimism
+          -0.76   10.04   library setup time
+                  10.04   data required time
+----------------------------------------------------------------
+                  10.04   data required time
+                  -7.32   data arrival time
+----------------------------------------------------------------
+                   2.72   slack (MET)
+
+SC_METRIC: report_checks -path_delay min
+Startpoint: index_$_SDFFE_PN0P__Q_4
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q_4
+          (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: min
+Corner: fast
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.01    0.01 ^ clk (in)
+   0.00    0.08    0.10 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.19 ^ clkbuf_1_1__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.19 ^ index_$_SDFFE_PN0P__Q_4/CLK (sky130_fd_sc_hd__dfxtp_1)
+   0.01    0.23    0.42 ^ index_$_SDFFE_PN0P__Q_4/Q (sky130_fd_sc_hd__dfxtp_1)
+   0.00    0.04    0.46 v _155_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    0.46 v index_$_SDFFE_PN0P__Q_4/D (sky130_fd_sc_hd__dfxtp_1)
+                   0.46   data arrival time
+
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.01    0.01 ^ clk (in)
+   0.00    0.08    0.10 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.10    0.19 ^ clkbuf_1_1__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.19 ^ index_$_SDFFE_PN0P__Q_4/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00    0.19   clock reconvergence pessimism
+          -0.02    0.17   library hold time
+                   0.17   data required time
+----------------------------------------------------------------
+                   0.17   data required time
+                  -0.46   data arrival time
+----------------------------------------------------------------
+                   0.29   slack (MET)
+
+SC_METRIC: unconstrained
+Startpoint: index_$_SDFFE_PN0P__Q_7
+            (rising edge-triggered flip-flop clocked by clk)
+Endpoint: index_$_SDFFE_PN0P__Q (rising edge-triggered flip-flop clocked by clk)
+Path Group: clk
+Path Type: max
+Corner: slow
+
+    Cap   Delay    Time   Description
+----------------------------------------------------------------
+           0.00    0.00   clock clk (rise edge)
+           0.00    0.00   clock source latency
+   0.00    0.07    0.07 ^ clk (in)
+   0.00    0.35    0.42 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.41    0.83 ^ clkbuf_1_0__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00    0.83 ^ index_$_SDFFE_PN0P__Q_7/CLK (sky130_fd_sc_hd__dfxtp_2)
+   0.03    1.63    2.46 ^ index_$_SDFFE_PN0P__Q_7/Q (sky130_fd_sc_hd__dfxtp_2)
+   0.03    0.39    2.84 v _207_/Y (sky130_fd_sc_hd__inv_2)
+   0.02    0.86    3.71 v next_index_$_MUX__Y_6_B_sky130_fd_sc_hd__ha_1_SUM_A_sky130_fd_sc_hd__ha_1_A_1/COUT (sky130_fd_sc_hd__ha_2)
+   0.00    0.56    4.27 v _180_/Y (sky130_fd_sc_hd__nor3b_1)
+   0.00    0.51    4.78 v _182_/X (sky130_fd_sc_hd__and2_0)
+   0.00    0.78    5.55 v next_index_$_MUX__Y_A_$_XOR__Y_A_sky130_fd_sc_hd__ha_1_COUT/COUT (sky130_fd_sc_hd__ha_1)
+   0.01    0.63    6.18 ^ _168_/Y (sky130_fd_sc_hd__mux2i_1)
+   0.00    0.38    6.56 v _169_/Y (sky130_fd_sc_hd__nor2_1)
+   0.00    0.53    7.09 ^ _170_/Y (sky130_fd_sc_hd__o21ai_0)
+   0.00    0.23    7.32 v _171_/Y (sky130_fd_sc_hd__a21oi_1)
+           0.00    7.32 v index_$_SDFFE_PN0P__Q/D (sky130_fd_sc_hd__dfxtp_1)
+                   7.32   data arrival time
+
+          10.00   10.00   clock clk (rise edge)
+           0.00   10.00   clock source latency
+   0.00    0.07   10.07 ^ clk (in)
+   0.00    0.35   10.42 ^ clkbuf_0_clk/X (sky130_fd_sc_hd__clkbuf_4)
+   0.01    0.39   10.80 ^ clkbuf_1_1__f_clk/X (sky130_fd_sc_hd__clkbuf_4)
+           0.00   10.80 ^ index_$_SDFFE_PN0P__Q/CLK (sky130_fd_sc_hd__dfxtp_1)
+           0.00   10.80   clock reconvergence pessimism
+          -0.76   10.04   library setup time
+                  10.04   data required time
+----------------------------------------------------------------
+                  10.04   data required time
+                  -7.32   data arrival time
+----------------------------------------------------------------
+                   2.72   slack (MET)
+
+SC_METRIC: clock_skew
+Clock clk
+Latency      CRPR       Skew
+index_$_SDFFE_PN0P__Q_2/CLK ^
+   0.83
+index_$_SDFFE_PN0P__Q/CLK ^
+   0.80      0.00       0.03
+
+SC_METRIC: DRV violators
+
+SC_METRIC: floating nets
+SC_METRIC: tns
+tns 0.00
+
+SC_METRIC: setupslack
+worst slack 2.72
+
+SC_METRIC: holdslack
+worst slack 0.29
+
+SC_METRIC: fmax
+137.33254673283375 MHz
+SC_METRIC: power
+Power for corner: fast
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.51e-04   2.38e-05   2.22e-06   1.77e-04  53.7%
+Combinational          7.93e-05   7.18e-05   1.25e-06   1.52e-04  46.3%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  2.30e-04   9.56e-05   3.47e-06   3.29e-04 100.0%
+                          69.9%      29.1%       1.1%
+
+Power for corner: slow
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             5.88e-05   1.11e-05   4.40e-07   7.03e-05  51.7%
+Combinational          3.48e-05   3.10e-05   6.62e-11   6.58e-05  48.3%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  9.36e-05   4.21e-05   4.40e-07   1.36e-04 100.0%
+                          68.8%      30.9%       0.3%
+
+Power for corner: typical
+Group                  Internal  Switching    Leakage      Total
+                          Power      Power      Power      Power (Watts)
+----------------------------------------------------------------
+Sequential             1.24e-04   1.97e-05   4.40e-07   1.44e-04  54.2%
+Combinational          6.31e-05   5.86e-05   5.06e-10   1.22e-04  45.8%
+Macro                  0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+Pad                    0.00e+00   0.00e+00   0.00e+00   0.00e+00   0.0%
+----------------------------------------------------------------
+Total                  1.87e-04   7.84e-05   4.41e-07   2.66e-04 100.0%
+                          70.3%      29.5%       0.2%
+
+SC_METRIC: cellarea
+Design area 3201 u^2 12% utilization.

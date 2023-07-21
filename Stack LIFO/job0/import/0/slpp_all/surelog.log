@@ -1,0 +1,50 @@
+********************************************
+*  SURELOG SystemVerilog  Compiler/Linter  *
+********************************************
+
+Copyright (c) 2017-2023 Alain Dargelas,
+http://www.apache.org/licenses/LICENSE-2.0
+
+VERSION: 1.67
+BUILT  : Jun 30 2023
+DATE   : 2023-07-17.21:43:55
+COMMAND: -nocache -parse -nouhdm /home/arvin/Desktop/siliconcompiler/Stack_LIFO.v -top Stack_LIFO +libext+.sv+.v
+
+[INF:CM0023] Creating log file /home/arvin/Desktop/siliconcompiler/build/Stack_LIFO/job0/import/0/slpp_all/surelog.log.
+
+[WRN:PA0205] /home/arvin/Desktop/siliconcompiler/Stack_LIFO.v:1:1: No timescale set for "Stack_LIFO".
+
+[INF:CP0300] Compilation...
+
+[INF:CP0303] /home/arvin/Desktop/siliconcompiler/Stack_LIFO.v:1:1: Compile module "work@Stack_LIFO".
+
+[INF:CP0302] Compile class "work@mailbox".
+
+[INF:CP0302] Compile class "work@process".
+
+[INF:CP0302] Compile class "work@semaphore".
+
+[INF:EL0526] Design Elaboration...
+
+[NTE:EL0503] /home/arvin/Desktop/siliconcompiler/Stack_LIFO.v:1:1: Top level module "work@Stack_LIFO".
+
+[NTE:EL0508] Nb Top level modules: 1.
+
+[NTE:EL0509] Max instance depth: 1.
+
+[NTE:EL0510] Nb instances: 1.
+
+[NTE:EL0511] Nb leaf instances: 0.
+
+[INF:UH0706] Creating UHDM Model...
+
+[  FATAL] : 0
+[ SYNTAX] : 0
+[  ERROR] : 0
+[WARNING] : 1
+[   NOTE] : 5
+
+********************************************
+*   End SURELOG SVerilog Compiler/Linter   *
+********************************************
+
