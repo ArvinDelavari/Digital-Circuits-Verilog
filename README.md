@@ -19,5 +19,5 @@ You can check the waveforms using GTKWave application.
 
 This repository will be updated.
 
-Last update : 7/21/2023
+Last update : 10/22/2023
 ## Arvin Delavari - IUST
