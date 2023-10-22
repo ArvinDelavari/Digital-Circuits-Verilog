@@ -11,9 +11,11 @@ Each folder includes 4 files:
 
 Simulations can be done using iverilog tool.
 You can use iverilog tool in vs code application and simulate your Verilog codes (all in the same folder) with 3 commands in your terminal:
-1) iverilog -o module.vvp testbench.v
-2) vvp module.vvp
-3) gtkwave
+```console 
+iverilog -o module.vvp testbench.v
+vvp module.vvp
+gtkwave
+```
 
 You can check the waveforms using GTKWave application.
 
