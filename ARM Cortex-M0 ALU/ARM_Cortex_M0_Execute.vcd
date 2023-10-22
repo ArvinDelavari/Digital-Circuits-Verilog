@@ -1,0 +1,152 @@
+$date
+	Fri Oct 20 14:00:31 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module ARM_Cortex_M0_Execute_TB $end
+$var wire 1 ! zero_flag $end
+$var wire 32 " result [31:0] $end
+$var wire 1 # negative_flag $end
+$var reg 4 $ opcode [3:0] $end
+$var reg 32 % operand_A [31:0] $end
+$var reg 32 & operand_B [31:0] $end
+$var reg 5 ' shift_amount [4:0] $end
+$scope module ALU_EXE $end
+$var wire 4 ( opcode [3:0] $end
+$var wire 32 ) operand_A [31:0] $end
+$var wire 32 * operand_B [31:0] $end
+$var wire 5 + shift_amount [4:0] $end
+$var wire 1 ! zero_flag $end
+$var wire 32 , result [31:0] $end
+$var wire 32 - operand_B_shifted [31:0] $end
+$var wire 1 # negative_flag $end
+$var wire 3 . alu_control [2:0] $end
+$scope module ALU $end
+$var wire 32 / operand_A [31:0] $end
+$var wire 1 ! zero $end
+$var wire 32 0 operand_B [31:0] $end
+$var wire 1 # neg $end
+$var wire 3 1 alu_control [2:0] $end
+$var reg 32 2 result [31:0] $end
+$upscope $end
+$scope module ARM_ALU_CONTROL $end
+$var wire 4 3 opcode [3:0] $end
+$var reg 3 4 alu_control [2:0] $end
+$upscope $end
+$scope module ARM_ALU_SHIFT $end
+$var wire 32 5 data_in [31:0] $end
+$var wire 4 6 opcode [3:0] $end
+$var wire 5 7 shift_amount [4:0] $end
+$var parameter 32 8 SHIFT $end
+$var parameter 32 9 WIDTH $end
+$var reg 32 : shifted_data [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100000 9
+b101 8
+$end
+#0
+$dumpvars
+b101 :
+b0 7
+b100 6
+b101 5
+b11 4
+b100 3
+b1111 2
+b11 1
+b101 0
+b1010 /
+b11 .
+b101 -
+b1111 ,
+b0 +
+b101 *
+b1010 )
+b100 (
+b0 '
+b101 &
+b1010 %
+b100 $
+0#
+b1111 "
+0!
+$end
+#40
+b101 "
+b101 ,
+b101 2
+b10 .
+b10 1
+b10 4
+b10 $
+b10 (
+b10 3
+b10 6
+#80
+1#
+b11111111111111111111111111111011 "
+b11111111111111111111111111111011 ,
+b11111111111111111111111111111011 2
+b1111 -
+b1111 0
+b1111 :
+b1111 &
+b1111 *
+b1111 5
+#120
+0#
+1!
+b0 "
+b0 ,
+b0 2
+b1010 -
+b1010 0
+b1010 :
+b1010 &
+b1010 *
+b1010 5
+#160
+0!
+b111100000000 "
+b111100000000 ,
+b111100000000 2
+b111 .
+b111 1
+b111 4
+b111100000000 -
+b111100000000 0
+b111100000000 :
+b1111 &
+b1111 *
+b1111 5
+b1000 '
+b1000 +
+b1000 7
+b1010 $
+b1010 (
+b1010 3
+b1010 6
+#200
+b11 "
+b11 ,
+b11 2
+b11 -
+b11 0
+b11 :
+b10 '
+b10 +
+b10 7
+b1011 $
+b1011 (
+b1011 3
+b1011 6
+#240
